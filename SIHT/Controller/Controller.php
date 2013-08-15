@@ -12,10 +12,10 @@
 
 		public function setView($view)
 		{
-			if(file_exists(SH_WWW_ROOT_APP . "/View/{$view}.php"))
-				include_once(SH_WWW_ROOT_APP . "/View/{$view}.php");
-			else if(file_exists(SH_WWW_ROOT_SIHT . "/View/{$view}.php"))
+			if(file_exists(SH_WWW_ROOT_SIHT . "/View/{$view}.php"))
 				include_once(SH_WWW_ROOT_SIHT . "/View/{$view}.php");
+			else if(file_exists(SH_WWW_ROOT_APP . "/View/{$view}.php"))
+				include_once(SH_WWW_ROOT_APP . "/View/{$view}.php");
 			else{
 				$errorController = new ErrorController();
 				$errorController->setAlert(new Alert("WARNING:","View {$view} does not exist in folder View!",Alert::$DANGER));
@@ -39,11 +39,24 @@
  		}
 
 		public function setAlert(Alert $alert){
- 			$this->alerts[] = $alert;
+ 			$_SESSION["SH_ALERTS"][] = $alert;
  		}
 
- 		public function getAlerts(){
- 			return $this->alerts;
+ 		public function getAlerts(){ 			
+ 			return isset($_SESSION["SH_ALERTS"]) ? $_SESSION["SH_ALERTS"] : array();;
+ 		}
+
+ 		public function clearAlerts(){ 			
+ 			$_SESSION["SH_ALERTS"] = array();
+ 		}		
+
+ 		public function showAlerts()
+ 		{ 			
+			if(is_array($this->getAlerts()))
+            	foreach ($this->getAlerts() as $alert)
+              		echo $alert->getHtml();
+	            
+	        $this->clearAlerts();
  		}
 	}
 

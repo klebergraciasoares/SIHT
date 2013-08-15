@@ -87,8 +87,5 @@
       <div class="container">
 
       <?php
-        if(is_object($this))
-          if(is_array($this->getAlerts()))
-            foreach ($this->getAlerts() as $alert)
-              echo $alert->getHtml();
+        $this->showAlerts();
       ?>

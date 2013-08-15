@@ -2,9 +2,7 @@
   	$this->setView("Header");
 
   	$REG_PG 	= 10;
-	$NUM_PG 	= defined("HTA_PARAM3") && is_numeric(HTA_PARAM3)? HTA_PARAM3 : 1;
-	$FIL_NOME 	= isset($_POST["filNome"]) ? $_POST["filNome"] : "";
-
+	$NUM_PG 	= HTA_PARAM2=="listar" && defined("HTA_PARAM3") && is_numeric(HTA_PARAM3)? HTA_PARAM3 : 1;
 ?>
 
 	
@@ -22,30 +20,74 @@
 	</script>		
       
 		  <fieldset>
-		    <legend>Lista de Cliente(s)</legend>
+		    <legend>Lista de Cliente(s)</legend>	
 
-		    <form action="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" method="POST">
-			    <div class="row">
-			    	<div class="col-xs-9">
-			    		<div class="row">
-				    		<div class="input-group col-xs-8">						
-				    			<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-								<input name="filNome" type="text" class="form-control" placeholder="Nome do Cliente" value="<?php echo $FIL_NOME?>">
-							</div>
-							<div class="input-group col-xs-4">						
-								<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-							</div>
+		    <div class="row">
+		    	<div class="col-lg-12">
+					<a href="#myModal" data-toggle="modal" class="btn btn btn-primary"><i class="glyphicon glyphicon-filter"></i> Filtrar</a>
+		          	<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Limpar</a>
+		    		<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/cadastrar" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Novo Cliente</a>
+		    	</div>
+		    </div>
+
+			<form  class="form-horizontal" action="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" method="POST"> 
+			  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			          <h4 class="modal-title"><i class="glyphicon glyphicon-filter"></i> Busca de clientes</h4>
+			        </div>
+			        <div class="modal-body">
+			        	<div class="form-group">
+							<label class="col-lg-2" for="filCpf">CPF</label>
+							<div class="col-lg-10">
+						      <input name="filCpf" id="filCpf" type="text" class="form-control maskCpf" placeholder="Número do CPF" value="<?php echo $this->filtros["filCpf"]?>">							
+						    </div>
 						</div>
-			    	</div>		    	
-			    	<div class="col-xs-3">
-			    		<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/cadastrar" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Novo Cliente</a>
-			    	</div>
+						<div class="form-group">
+							<label class="col-lg-2" for="filNome">Nome</label>
+							<div class="col-lg-10">
+						      <input name="filNome" id="filNome" type="text" class="form-control" placeholder="Nome do Cliente" value="<?php echo $this->filtros["filNome"]?>">
+						    </div>
+						</div>
+						<div class="form-group">							
+							<label class="col-lg-2" for="filCidade">Cidade</label>
+							<div class="col-lg-10">
+						      <input name="filCidade" id="filCidade" type="text" class="form-control" placeholder="Nome do Cliente" value="<?php echo $this->filtros["filNome"]?>">
+						    </div>
+						</div>
+						<div class="form-group">							
+							<label class="col-lg-2" for="filEstado">Estado</label>
+							<div class="col-lg-10">
+						      <select name="filEstado" class="form-control">
+							      	<option></option>
+								      <?php
+								      	if(is_array(Util::$estados))
+								      	{
+									      	foreach (Util::$estados as $estado => $nome) 
+									      	{
+									      		$selected = $estado == $this->cliente->getEstado() ? "selected" : "";
+									      		echo "<option value='{$estado}' {$selected}>{$nome}</option>";
+									      	}			      	
+									    }
+								      ?>		      			      	
+							      </select>
+						    </div>
+						</div>						
+				    </div>
+			        <div class="modal-footer">
+			        	<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-search"></i> Buscar</button>
+			          	<button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Fechar</button>
+			        </div>
+			      </div>
 			    </div>
-		    </form>
+			  </div>
+			</form>
 
-		    <hr>
+		    <hr>		   
 
-			<div class="bs-table-scrollable">      
+			<div class="bs-table-scrollable">
 			 <table class="table table-hover table-striped" id="tableList">
 		        <thead>
 		          <tr>

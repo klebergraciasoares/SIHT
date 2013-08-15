@@ -6,8 +6,13 @@
 	
 	if(defined(constant("SH_HTA_PARAM_NAME")."1"))	$class 	= constant(constant("SH_HTA_PARAM_NAME")."1")."Controller";
 	if(defined(constant("SH_HTA_PARAM_NAME")."2"))	$method = constant(constant("SH_HTA_PARAM_NAME")."2");
-	
-	if(!defined(constant("SH_HTA_PARAM_NAME")."1"))
+
+	if(!in_array('mod_rewrite', apache_get_modules()))
+	{
+		$errorController = new ErrorController();
+		$errorController->setAlert(new Alert("WARNING: ","Active module \"rewrite_module\" in apache!",Alert::$DANGER));
+		$errorController->show();
+	}else if(!defined(constant("SH_HTA_PARAM_NAME")."1"))
 	{
 		$errorController = new ErrorController();
 		$errorController->setAlert(new Alert("WARNING: ","Class not sent!",Alert::$DANGER));

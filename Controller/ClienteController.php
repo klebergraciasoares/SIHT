@@ -25,9 +25,12 @@
 		}
 
 		public function listar()
-		{				
+		{	
+			$this->filtros["filNome"] = isset($_POST["filNome"]) ? $_POST["filNome"] : false;
+			$this->filtros["filCpf"] = isset($_POST["filCpf"]) ? $_POST["filCpf"] : false;			
+
 			$clienteDAO = new ClienteDAO();
-			$this->clientes = $clienteDAO->listar();
+			$this->clientes = $clienteDAO->listar($this->filtros);
 			$this->setView("ClienteLista");
 		}
 
@@ -45,7 +48,7 @@
 				$this->cadastrar();
 			}else{
 				$this->setAlert(new Alert("ATENÇÃO:","Cliente não encontrado!",Alert::$DANGER));
-				$this->listar();
+				$this->redirectView("Cliente/listar");
 			}			
 		}
 
@@ -56,11 +59,9 @@
 				$this->setAlert(new Alert("ATENÇÃO:","Dados não enviados!",Alert::$DANGER));
 				$this->cadastrar();
 			}else{
-
 				$clienteDAO = new ClienteDAO();
-
 				//exit(Utility::dateFormat($_POST["dataNascimento"], "d/m/Y"));
-
+				
 				$this->cliente->setIdCliente($_POST["idCliente"]);
 				$this->cliente->setNome($_POST["nome"]);
 				$this->cliente->setCpf($_POST["cpf"]);
@@ -82,7 +83,7 @@
 				if($clienteDAO->salvar($this->cliente))
 				{
 					$this->setAlert(new Alert("ATENÇÃO:","Cliente '".$this->cliente->getNome()."' cadastrado com sucesso!",Alert::$SUCESS));
-					$this->listar();
+					$this->redirectView("Cliente/listar");
 				}else{
 					$this->setAlert(new Alert("ATENÇÃO:","Erro ao salvar cliente!",Alert::$DANGER));	
 					$this->cadastrar();
@@ -100,9 +101,9 @@
 				$this->setAlert(new Alert("ATENÇÃO:","Cliente excluido com sucesso!",Alert::$SUCESS));				
 			}else{	
 				$this->setAlert(new Alert("ATENÇÃO:","Erro ao excluir cliente!",Alert::$DANGER));
-			}
+			}		
 
-			$this->listar();
+			$this->redirectView("Cliente/listar");
 		}
 	}
 

@@ -9,55 +9,132 @@
 
 		public function salvar(Cliente $cliente)
 		{
-			return true;
+			if(!$cliente->getIdCliente())
+			{
+				$sql =
+					"INSERT INTO cliente (nome, email, cpf, rg, dataExpedicao, orgaoEmissor, dataNascimento, cep, logradouro, numero, complemento, bairro, estado, cidade, telefone, celular, status) 
+					VALUES(
+							'" . $cliente->getNome() 			. "',
+							'" . $cliente->getEmail() 			. "',
+							'" . $cliente->getCpf() 			. "',
+							'" . $cliente->getRg() 				. "',
+							'" . $cliente->getDataExpedicao() 	. "',
+							'" . $cliente->getOrgaoEmissor() 	. "',
+							'" . $cliente->getDataNascimento() 	. "',
+							'" . $cliente->getCep() 			. "',
+							'" . $cliente->getLogradouro() 		. "',
+							'" . $cliente->getNumero() 			. "',
+							'" . $cliente->getComplemento() 	. "',
+							'" . $cliente->getBairro() 			. "',
+							'" . $cliente->getEstado() 			. "',
+							'" . $cliente->getCidade() 			. "',
+							'" . $cliente->getTelefone() 		. "',
+							'" . $cliente->getCelular() 		. "',
+							'" . $cliente->getStatus() 			. "'
+						)";
+			}else{
+				$sql = 
+					"UPDATE cliente SET					
+						nome='" . $cliente->getNome() 			. "',
+						email='" . $cliente->getEmail() 			. "',
+						cpf='" . $cliente->getCpf() 			. "',
+						rg='" . $cliente->getRg() 				. "',
+						dataExpedicao='" . $cliente->getDataExpedicao() 	. "',
+						orgaoEmissor='" . $cliente->getOrgaoEmissor() 	. "',
+						dataNascimento='" . $cliente->getDataNascimento() 	. "',
+						cep='" . $cliente->getCep() 			. "',
+						logradouro='" . $cliente->getLogradouro() 		. "',
+						numero='" . $cliente->getNumero() 			. "',
+						complemento='" . $cliente->getComplemento() 	. "',
+						bairro='" . $cliente->getBairro() 			. "',
+						estado='" . $cliente->getEstado() 			. "',
+						cidade='" . $cliente->getCidade() 			. "',
+						telefone='" . $cliente->getTelefone() 		. "',
+						celular='" . $cliente->getCelular() 		. "',
+						status='" . $cliente->getStatus() 			. "'
+					WHERE idCliente = " . $cliente->getIdCliente();
+
+
+			}			
+
+			return $this->pdo->exec($sql) == 1;
 		}
 
 		public function excluir($idCliente)
 		{
-			return true;
+			$sql = "DELETE FROM cliente WHERE idCliente={$idCliente}";	
+			return $this->pdo->exec($sql) == 1;
 		}
 
 		public function recuperar($idCliente)
 		{
-			//return false;
+			$sql = "SELECT * FROM cliente WHERE idCliente={$idCliente}";
+			$dados = $this->pdo->query($sql)->fetchObject();
 
-			$cliente = new Cliente();
-			$cliente->setIdCliente($idCliente);
-			$cliente->setNome("Luiz Henrique de Angeli");
-			$cliente->setCpf("111.111.111-11");
-			$cliente->setRg("1.111.555-20");
-			$cliente->setEmail("luizdeangeli@gmail.com");
-			$cliente->setDataExpedicao("2013-01-01");
-			$cliente->setOrgaoEmissor("SSP/PR");
-			$cliente->setDataNascimento("1985-10-06");
-			$cliente->setCep("87005-250");
-			$cliente->setLogradouro("Rua XYZ");
-			$cliente->setNumero("123456");
-			$cliente->setBairro("Centro");
-			$cliente->setEstado("PR");
-			$cliente->setCidade("Maringá");
-			$cliente->setTelefone("44-3333-4444");
-			$cliente->setCelular("44-9999-4444");
-			$cliente->setStatus("A");
+			if($dados)
+			{
+				$cliente = new Cliente();
+				$cliente->setIdCliente($dados->idCliente);
+				$cliente->setNome($dados->nome);
+				$cliente->setCpf($dados->cpf);
+				$cliente->setRg($dados->rg);
+				$cliente->setEmail($dados->email);
+				$cliente->setDataExpedicao($dados->dataExpedicao);
+				$cliente->setOrgaoEmissor($dados->orgaoEmissor);
+				$cliente->setDataNascimento($dados->dataNascimento);
+				$cliente->setCep($dados->cep);
+				$cliente->setLogradouro($dados->logradouro);
+				$cliente->setNumero($dados->numero);
+				$cliente->setBairro($dados->bairro);
+				$cliente->setEstado($dados->estado);
+				$cliente->setCidade($dados->cidade);
+				$cliente->setTelefone($dados->telefone);
+				$cliente->setCelular($dados->celular);
+				$cliente->setStatus($dados->status);
 
-			return $cliente;
+				return $cliente;
+			}else{
+				return false;
+			}
 		}
 
 		public function listar($filtros = array())
 		{
 			$clientes = array();
-			for($i=0;$i<50;$i++)
-			{
+
+			$sql = 
+				"SELECT * 
+				FROM cliente 
+				WHERE 1=1
+					" . ($filtros["filNome"] 	? "AND nome like '%{$filtros["filNome"]}%'" : "") . "
+					" . ($filtros["filCpf"] 	? "AND cpf = '{$filtros["filCpf"]}'" 		: "") . "
+				ORDER BY nome";
+			$fetch = $this->pdo->query($sql)->fetchAll(PDO::FETCH_CLASS);
+
+			foreach ($fetch as $dados) 
+			{			
 				$cliente = new Cliente();
-				$cliente->setIdCliente($i+1);
-				$cliente->setNome("Luiz Henrique de Angeli");
-				$cliente->setCpf("111.111.111-11");
-				$cliente->setEstado("PR");
-				$cliente->setCidade("Maringá");
-				$cliente->setStatus("A");
+				$cliente->setIdCliente($dados->idCliente);
+				$cliente->setNome($dados->nome);
+				$cliente->setCpf($dados->cpf);
+				$cliente->setRg($dados->rg);
+				$cliente->setEmail($dados->email);
+				$cliente->setDataExpedicao($dados->dataExpedicao);
+				$cliente->setOrgaoEmissor($dados->orgaoEmissor);
+				$cliente->setDataNascimento($dados->dataNascimento);
+				$cliente->setCep($dados->cep);
+				$cliente->setLogradouro($dados->logradouro);
+				$cliente->setNumero($dados->numero);
+				$cliente->setBairro($dados->bairro);
+				$cliente->setEstado($dados->estado);
+				$cliente->setCidade($dados->cidade);
+				$cliente->setTelefone($dados->telefone);
+				$cliente->setCelular($dados->celular);
+				$cliente->setStatus($dados->status);
 
 				$clientes[] = $cliente;
 			}
+			
 			return $clientes;
 		}
 	}
