@@ -27,11 +27,18 @@
     <nav  id="navbar-example" role="navigation" class="navbar navbar-inverse navbar-static-top">
         <div class="container">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">            
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+            <?php
+                  if($this->getSession("S_LOGADO"))
+                  {
+            ?>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">            
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            <?php
+                  }
+            ?>
             <a class="navbar-brand" href="<?php echo SH_WEB_ROOT_APP ?>/Principal/inicio">Project Name</a>
           </div>
 

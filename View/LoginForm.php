@@ -7,9 +7,9 @@
 		    <legend>Acesso</legend>
 
 			<div class="row">
-			    <div class="col-lg-4 col-lg-offset-4">
+			    <div class="col-sm-4 col-sm-offset-4">
 					<div class="form-group">
-					  <label for="usuario">Usuário</label>			      
+					  <label for="usuario">Usuário</label>
 						<div class="input-group">						
 							<input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usuário">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
