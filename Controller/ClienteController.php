@@ -41,6 +41,10 @@
 
 			if(defined('HTA_PARAM3') && is_numeric(HTA_PARAM3) && $this->cliente = $clienteDAO->recuperar(HTA_PARAM3))
 			{
+				if($this->cliente->getStatus() == "I")
+				{
+					$this->setAlert(new Alert("ATENÇÃO:","Cliente está inativo!",Alert::$DANGER));
+				}
 				$this->cadastrar();
 			}else{
 				$this->setAlert(new Alert("ATENÇÃO:","Cliente não encontrado!",Alert::$DANGER));
