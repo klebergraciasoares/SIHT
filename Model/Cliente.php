@@ -206,7 +206,26 @@
 			return $this->status;
 		}
 
-
+		public function setAllObj($object)
+		{			
+			$this->setIdCliente($object->idCliente);
+			$this->setNome($object->nome);
+			$this->setCpf($object->cpf);
+			$this->setRg($object->rg);
+			$this->setEmail($object->email);
+			$this->setDataExpedicao($object->dataExpedicao);
+			$this->setOrgaoEmissor($object->orgaoEmissor);
+			$this->setDataNascimento($object->dataNascimento);
+			$this->setCep($object->cep);
+			$this->setLogradouro($object->logradouro);
+			$this->setNumero($object->numero);
+			$this->setBairro($object->bairro);
+			$this->setEstado($object->estado);
+			$this->setCidade($object->cidade);
+			$this->setTelefone($object->telefone);
+			$this->setCelular($object->celular);
+			$this->setStatus($object->status);
+		}
 	}
 
 ?>  

@@ -13,85 +13,79 @@
 			{
 				$sql =
 					"INSERT INTO cliente (nome, email, cpf, rg, dataExpedicao, orgaoEmissor, dataNascimento, cep, logradouro, numero, complemento, bairro, estado, cidade, telefone, celular, status) 
-					VALUES(
-							'" . $cliente->getNome() 			. "',
-							'" . $cliente->getEmail() 			. "',
-							'" . $cliente->getCpf() 			. "',
-							'" . $cliente->getRg() 				. "',
-							'" . $cliente->getDataExpedicao() 	. "',
-							'" . $cliente->getOrgaoEmissor() 	. "',
-							'" . $cliente->getDataNascimento() 	. "',
-							'" . $cliente->getCep() 			. "',
-							'" . $cliente->getLogradouro() 		. "',
-							'" . $cliente->getNumero() 			. "',
-							'" . $cliente->getComplemento() 	. "',
-							'" . $cliente->getBairro() 			. "',
-							'" . $cliente->getEstado() 			. "',
-							'" . $cliente->getCidade() 			. "',
-							'" . $cliente->getTelefone() 		. "',
-							'" . $cliente->getCelular() 		. "',
-							'" . $cliente->getStatus() 			. "'
-						)";
+					VALUES(:nome, :email, :cpf, :rg, :dataExpedicao, :orgaoEmissor, :dataNascimento, :cep, :logradouro, :numero, :complemento, :bairro, :estado, :cidade, :telefone, :celular, :status)";
+
+				$query = $this->pdo->prepare($sql);				
+						
 			}else{
 				$sql = 
 					"UPDATE cliente SET					
-						nome='" . $cliente->getNome() 			. "',
-						email='" . $cliente->getEmail() 			. "',
-						cpf='" . $cliente->getCpf() 			. "',
-						rg='" . $cliente->getRg() 				. "',
-						dataExpedicao='" . $cliente->getDataExpedicao() 	. "',
-						orgaoEmissor='" . $cliente->getOrgaoEmissor() 	. "',
-						dataNascimento='" . $cliente->getDataNascimento() 	. "',
-						cep='" . $cliente->getCep() 			. "',
-						logradouro='" . $cliente->getLogradouro() 		. "',
-						numero='" . $cliente->getNumero() 			. "',
-						complemento='" . $cliente->getComplemento() 	. "',
-						bairro='" . $cliente->getBairro() 			. "',
-						estado='" . $cliente->getEstado() 			. "',
-						cidade='" . $cliente->getCidade() 			. "',
-						telefone='" . $cliente->getTelefone() 		. "',
-						celular='" . $cliente->getCelular() 		. "',
-						status='" . $cliente->getStatus() 			. "'
-					WHERE idCliente = " . $cliente->getIdCliente();
+						nome=:nome,
+						email=:email,
+						cpf=:cpf,
+						rg=:rg,
+						dataExpedicao=:dataExpedicao,
+						orgaoEmissor=:orgaoEmissor,
+						dataNascimento=:dataNascimento,
+						cep=:cep,
+						logradouro=:logradouro,
+						numero=:numero,
+						complemento=:complemento,
+						bairro=:bairro,
+						estado=:estado,
+						cidade=:cidade,
+						telefone=:telefone,
+						celular=:celular,
+						status=:status
+					WHERE idCliente = :idCliente";
 
+				$query = $this->pdo->prepare($sql);
+				$query->bindParam(":idCliente", $cliente->getIdCliente(),PDO::PARAM_INT);
+			}
 
-			}			
+			$query->bindParam(":nome", $cliente->getNome(),PDO::PARAM_STR);
+			$query->bindParam(":email", $cliente->getEmail(),PDO::PARAM_STR);
+			$query->bindParam(":cpf", $cliente->getCpf(),PDO::PARAM_STR);
+			$query->bindParam(":rg", $cliente->getRg(),PDO::PARAM_STR);
+			$query->bindParam(":dataExpedicao", $cliente->getDataExpedicao(),PDO::PARAM_STR);
+			$query->bindParam(":orgaoEmissor", $cliente->getOrgaoEmissor(),PDO::PARAM_STR);
+			$query->bindParam(":dataNascimento", $cliente->getDataNascimento(),PDO::PARAM_STR);
+			$query->bindParam(":cep", $cliente->getCep(),PDO::PARAM_STR);
+			$query->bindParam(":logradouro", $cliente->getLogradouro(),PDO::PARAM_STR);
+			$query->bindParam(":numero", $cliente->getNumero(),PDO::PARAM_STR);
+			$query->bindParam(":complemento", $cliente->getComplemento(),PDO::PARAM_STR);
+			$query->bindParam(":bairro", $cliente->getBairro(),PDO::PARAM_STR);
+			$query->bindParam(":estado", $cliente->getEstado(),PDO::PARAM_STR);
+			$query->bindParam(":cidade", $cliente->getCidade(),PDO::PARAM_STR);
+			$query->bindParam(":telefone", $cliente->getTelefone(),PDO::PARAM_STR);
+			$query->bindParam(":celular", $cliente->getCelular(),PDO::PARAM_STR);
+			$query->bindParam(":status", $cliente->getStatus(),PDO::PARAM_STR);
 
-			return $this->pdo->exec($sql) == 1;
+			return $query->execute();			
 		}
 
 		public function excluir($idCliente)
 		{
-			$sql = "DELETE FROM cliente WHERE idCliente={$idCliente}";	
-			return $this->pdo->exec($sql) == 1;
+			$sql = "DELETE FROM cliente WHERE idCliente=:idCliente";
+			$query = $this->pdo->prepare($sql);
+			$query->bindParam(":idCliente", $idCliente,PDO::PARAM_INT);
+			$query->execute();
+
+			return $query->rowCount() == 1;
 		}
 
 		public function recuperar($idCliente)
 		{
-			$sql = "SELECT * FROM cliente WHERE idCliente={$idCliente}";
-			$dados = $this->pdo->query($sql)->fetchObject();
+			$sql = "SELECT * FROM cliente WHERE idCliente=:idCliente";
+			$query = $this->pdo->prepare($sql);
+			$query->bindParam(":idCliente", $idCliente,PDO::PARAM_INT);
+			$query->execute();
+			$fetch = $query->fetch(PDO::FETCH_OBJ);
 
-			if($dados)
+			if($fetch)
 			{
 				$cliente = new Cliente();
-				$cliente->setIdCliente($dados->idCliente);
-				$cliente->setNome($dados->nome);
-				$cliente->setCpf($dados->cpf);
-				$cliente->setRg($dados->rg);
-				$cliente->setEmail($dados->email);
-				$cliente->setDataExpedicao($dados->dataExpedicao);
-				$cliente->setOrgaoEmissor($dados->orgaoEmissor);
-				$cliente->setDataNascimento($dados->dataNascimento);
-				$cliente->setCep($dados->cep);
-				$cliente->setLogradouro($dados->logradouro);
-				$cliente->setNumero($dados->numero);
-				$cliente->setBairro($dados->bairro);
-				$cliente->setEstado($dados->estado);
-				$cliente->setCidade($dados->cidade);
-				$cliente->setTelefone($dados->telefone);
-				$cliente->setCelular($dados->celular);
-				$cliente->setStatus($dados->status);
-
+				$cliente->setAllObj($fetch);
 				return $cliente;
 			}else{
 				return false;
@@ -100,43 +94,57 @@
 
 		public function listar($filtros = array())
 		{
-			$clientes = array();
+			$clientes 	= array();
+			$params		= array();
+			$where 		= array();
 
-			$sql = 
-				"SELECT * 
-				FROM cliente 
-				WHERE 1=1
-					" . ($filtros["filNome"] 	? "AND nome like '%{$filtros["filNome"]}%'" : "") . "
-					" . ($filtros["filCpf"] 	? "AND cpf = '{$filtros["filCpf"]}'" 		: "") . "
-				ORDER BY nome";
-			$fetch = $this->pdo->query($sql)->fetchAll(PDO::FETCH_CLASS);
+			if(isset($filtros["filIdCliente"]) && !empty($filtros["filIdCliente"]))
+			{
+			    $params[':idCliente'] = array($filtros["filIdCliente"],PDO::PARAM_INT);
+			 	$where[] = " AND idCliente = :idCliente";
+			}
 
-			foreach ($fetch as $dados) 
+			if(isset($filtros["filNome"]) && !empty($filtros["filNome"]))			
+			{
+			    $params[':nome'] = array("%".$filtros["filNome"]."%",PDO::PARAM_STR);
+			 	$where[] = " AND nome like :nome";
+			}
+			
+			if(isset($filtros["filCidade"]) && !empty($filtros["filCidade"]))			
+			{
+			    $params[':cidade'] = array("%".$filtros["filCidade"]."%",PDO::PARAM_STR);
+			 	$where[] = " AND cidade like :cidade";
+			}
+
+			if(isset($filtros["filEstado"]) && !empty($filtros["filEstado"]))			
+			{
+			    $params[':estado'] = array($filtros["filEstado"],PDO::PARAM_STR);
+			 	$where[] = " AND estado like :estado";
+			}
+
+			if(isset($filtros["filCpf"]) && !empty($filtros["filCpf"]))			
+			{
+			    $params[':cpf'] = array($filtros["filCpf"],PDO::PARAM_STR);
+			 	$where[] = " AND cpf=:cpf";
+			}
+
+			$sql = "SELECT * FROM cliente WHERE 1=1 ".(implode(" ",$where))." ORDER BY nome";
+			$query = $this->pdo->prepare($sql);
+
+			foreach($params as $param=>$value) $query->bindParam($param, $value[0],$value[1]);			
+			
+			$query->execute();
+			$fetch = $query->fetchAll(PDO::FETCH_CLASS);
+
+			foreach ($fetch as $dados)
 			{			
 				$cliente = new Cliente();
-				$cliente->setIdCliente($dados->idCliente);
-				$cliente->setNome($dados->nome);
-				$cliente->setCpf($dados->cpf);
-				$cliente->setRg($dados->rg);
-				$cliente->setEmail($dados->email);
-				$cliente->setDataExpedicao($dados->dataExpedicao);
-				$cliente->setOrgaoEmissor($dados->orgaoEmissor);
-				$cliente->setDataNascimento($dados->dataNascimento);
-				$cliente->setCep($dados->cep);
-				$cliente->setLogradouro($dados->logradouro);
-				$cliente->setNumero($dados->numero);
-				$cliente->setBairro($dados->bairro);
-				$cliente->setEstado($dados->estado);
-				$cliente->setCidade($dados->cidade);
-				$cliente->setTelefone($dados->telefone);
-				$cliente->setCelular($dados->celular);
-				$cliente->setStatus($dados->status);
-
+				$cliente->setAllObj($dados);
 				$clientes[] = $cliente;
 			}
 			
 			return $clientes;
-		}
+		}		
 	}
 
 ?>  

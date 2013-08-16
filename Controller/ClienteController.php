@@ -4,7 +4,6 @@
 	{	
 		protected $cliente;
 		protected $clientes = array();
-		protected $filtros  = array();
 
 		public function __construct()
 		{
@@ -12,7 +11,7 @@
 
 			$this->cliente = new Cliente();
 
-			if(!$this->getSession("S_LOGADO")) //Permissão logado
+			if(!$this->getSession("S_LOGADO"))
 				$this->redirectView("Login/expirou");
 
 			if(false) //Permissão do Módulo
@@ -26,11 +25,8 @@
 
 		public function listar()
 		{	
-			$this->filtros["filNome"] = isset($_POST["filNome"]) ? $_POST["filNome"] : false;
-			$this->filtros["filCpf"] = isset($_POST["filCpf"]) ? $_POST["filCpf"] : false;			
-
 			$clienteDAO = new ClienteDAO();
-			$this->clientes = $clienteDAO->listar($this->filtros);
+			$this->clientes = $clienteDAO->listar($this->post);
 			$this->setView("ClienteLista");
 		}
 
@@ -54,31 +50,30 @@
 
 		public function salvar()
 		{			
-			if(!$_POST)
+			if(!$this->post)
 			{
 				$this->setAlert(new Alert("ATENÇÃO:","Dados não enviados!",Alert::$DANGER));
 				$this->cadastrar();
 			}else{
-				$clienteDAO = new ClienteDAO();
-				//exit(Utility::dateFormat($_POST["dataNascimento"], "d/m/Y"));
+				$clienteDAO = new ClienteDAO();				
 				
-				$this->cliente->setIdCliente($_POST["idCliente"]);
-				$this->cliente->setNome($_POST["nome"]);
-				$this->cliente->setCpf($_POST["cpf"]);
-				$this->cliente->setRg($_POST["rg"]);
-				$this->cliente->setEmail($_POST["email"]);
+				$this->cliente->setIdCliente($this->post["idCliente"]);
+				$this->cliente->setNome($this->post["nome"]);
+				$this->cliente->setCpf($this->post["cpf"]);
+				$this->cliente->setRg($this->post["rg"]);
+				$this->cliente->setEmail($this->post["email"]);
 				$this->cliente->setDataExpedicao("2013-01-01");
-				$this->cliente->setOrgaoEmissor($_POST["orgaoEmissor"]);
+				$this->cliente->setOrgaoEmissor($this->post["orgaoEmissor"]);
 				$this->cliente->setDataNascimento("1985-10-06");
-				$this->cliente->setCep($_POST["cep"]);
-				$this->cliente->setLogradouro($_POST["logradouro"]);
-				$this->cliente->setNumero($_POST["numero"]);
-				$this->cliente->setBairro($_POST["bairro"]);
-				$this->cliente->setEstado($_POST["estado"]);
-				$this->cliente->setCidade($_POST["cidade"]);
-				$this->cliente->setTelefone($_POST["telefone"]);
-				$this->cliente->setCelular($_POST["celular"]);
-				$this->cliente->setStatus($_POST["status"]);
+				$this->cliente->setCep($this->post["cep"]);
+				$this->cliente->setLogradouro($this->post["logradouro"]);
+				$this->cliente->setNumero($this->post["numero"]);
+				$this->cliente->setBairro($this->post["bairro"]);
+				$this->cliente->setEstado($this->post["estado"]);
+				$this->cliente->setCidade($this->post["cidade"]);
+				$this->cliente->setTelefone($this->post["telefone"]);
+				$this->cliente->setCelular($this->post["celular"]);
+				$this->cliente->setStatus($this->post["status"]);
 
 				if($clienteDAO->salvar($this->cliente))
 				{
@@ -98,10 +93,10 @@
 
 			if(defined('HTA_PARAM3') && is_numeric(HTA_PARAM3) && $clienteDAO->excluir(HTA_PARAM3))
 			{
-				$this->setAlert(new Alert("ATENÇÃO:","Cliente excluido com sucesso!",Alert::$SUCESS));				
+				$this->setAlert(new Alert("ATENÇÃO:","Cliente excluido com sucesso!",Alert::$SUCESS));
 			}else{	
 				$this->setAlert(new Alert("ATENÇÃO:","Erro ao excluir cliente!",Alert::$DANGER));
-			}		
+			}
 
 			$this->redirectView("Cliente/listar");
 		}

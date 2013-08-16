@@ -2,16 +2,36 @@
 	
 	class Controller
 	{	
+		protected $get 	= false;
+		protected $post = false;
+
 		private $alerts = array();
 
-		public function __construct()
-		{
+		public function __construct(){
 			if(!session_id())
 				session_start();
+
+			$this->getPost();
+			$this->getGet();
 		}
 
-		public function setView($view)
+		public function getPost()
+		{		
+			//**verificar se o POST está vindo da mesma página
+
+			if(is_array($_POST))
+				foreach ($_POST as $key => $value) 					
+					$this->post[$key] = $value;	
+		}
+
+		public function getGet()
 		{
+			if(is_array($_GET))
+				foreach ($_GET as $key => $value) 					
+					$this->get[$key] = $value;	
+		}
+
+		public function setView($view){
 			if(file_exists(SH_WWW_ROOT_SIHT . "/View/{$view}.php"))
 				include_once(SH_WWW_ROOT_SIHT . "/View/{$view}.php");
 			else if(file_exists(SH_WWW_ROOT_APP . "/View/{$view}.php"))
@@ -24,8 +44,7 @@
 			}
 		}
 
-		public function redirectView($view)
-		{
+		public function redirectView($view){
 			header("location:" . SH_WEB_ROOT_APP . "/" . $view);
 			exit();
 		}
@@ -50,13 +69,15 @@
  			$_SESSION["SH_ALERTS"] = array();
  		}		
 
- 		public function showAlerts()
- 		{ 			
+ 		public function showAlerts(){ 			
+ 			$html="";
 			if(is_array($this->getAlerts()))
             	foreach ($this->getAlerts() as $alert)
-              		echo $alert->getHtml();
+              		$html.=$alert->getHtml();
 	            
 	        $this->clearAlerts();
+
+	        return $html;
  		}
 	}
 

@@ -87,5 +87,5 @@
       <div class="container">
 
       <?php
-        $this->showAlerts();
+        echo $this->showAlerts();
       ?>

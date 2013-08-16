@@ -2,7 +2,7 @@
   	$this->setView("Header");
 
   	$REG_PG 	= 10;
-	$NUM_PG 	= HTA_PARAM2=="listar" && defined("HTA_PARAM3") && is_numeric(HTA_PARAM3)? HTA_PARAM3 : 1;
+	$NUM_PG 	= defined("HTA_PARAM3") && is_numeric(HTA_PARAM3)? HTA_PARAM3 : 1;
 ?>
 
 	
@@ -24,14 +24,14 @@
 
 		    <div class="row">
 		    	<div class="col-lg-12">
-					<a href="#myModal" data-toggle="modal" class="btn btn btn-primary"><i class="glyphicon glyphicon-filter"></i> Filtrar</a>
+					<a href="#filter" data-toggle="modal" class="btn btn btn-primary"><i class="glyphicon glyphicon-filter"></i> Filtrar</a>
 		          	<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Limpar</a>
 		    		<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/cadastrar" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Novo Cliente</a>
 		    	</div>
 		    </div>
 
-			<form  class="form-horizontal" action="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" method="POST"> 
-			  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<form  class="form-horizontal" action="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" method="POST">
+			  <div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="filterLabel" aria-hidden="true">
 			    <div class="modal-dialog">
 			      <div class="modal-content">
 			        <div class="modal-header">
@@ -40,21 +40,21 @@
 			        </div>
 			        <div class="modal-body">
 			        	<div class="form-group">
+							<label class="col-lg-2" for="filIdCliente">Código</label>
+							<div class="col-lg-4">
+						      <input name="filIdCliente" id="filIdCliente" type="text" class="form-control" placeholder="Código do Cliente" value="<?php echo isset($this->post["filIdCliente"]) ? $this->post["filIdCliente"] : ""?>">							
+						    </div>
+						</div>
+			        	<div class="form-group">
 							<label class="col-lg-2" for="filCpf">CPF</label>
-							<div class="col-lg-10">
-						      <input name="filCpf" id="filCpf" type="text" class="form-control maskCpf" placeholder="Número do CPF" value="<?php echo $this->filtros["filCpf"]?>">							
+							<div class="col-lg-4">
+						      <input name="filCpf" id="filCpf" type="text" class="form-control maskCpf" placeholder="Número do CPF" value="<?php echo isset($this->post["filCpf"]) ? $this->post["filCpf"] : ""?>">							
 						    </div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2" for="filNome">Nome</label>
 							<div class="col-lg-10">
-						      <input name="filNome" id="filNome" type="text" class="form-control" placeholder="Nome do Cliente" value="<?php echo $this->filtros["filNome"]?>">
-						    </div>
-						</div>
-						<div class="form-group">							
-							<label class="col-lg-2" for="filCidade">Cidade</label>
-							<div class="col-lg-10">
-						      <input name="filCidade" id="filCidade" type="text" class="form-control" placeholder="Nome do Cliente" value="<?php echo $this->filtros["filNome"]?>">
+						      <input name="filNome" id="filNome" type="text" class="form-control" placeholder="Nome do Cliente" value="<?php echo isset($this->post["filNome"]) ? $this->post["filNome"] : ""?>">
 						    </div>
 						</div>
 						<div class="form-group">							
@@ -67,14 +67,20 @@
 								      	{
 									      	foreach (Util::$estados as $estado => $nome) 
 									      	{
-									      		$selected = $estado == $this->cliente->getEstado() ? "selected" : "";
+									      		$selected = $estado == $this->post["filEstado"] ? "selected" : "";
 									      		echo "<option value='{$estado}' {$selected}>{$nome}</option>";
 									      	}			      	
 									    }
 								      ?>		      			      	
 							      </select>
 						    </div>
-						</div>						
+						</div>
+						<div class="form-group">							
+							<label class="col-lg-2" for="filCidade">Cidade</label>
+							<div class="col-lg-10">
+						      <input name="filCidade" id="filCidade" type="text" class="form-control" placeholder="Cidade do Cliente" value="<?php echo isset($this->post["filCidade"]) ? $this->post["filCidade"] : ""?>">
+						    </div>
+						</div>												
 				    </div>
 			        <div class="modal-footer">
 			        	<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-search"></i> Buscar</button>
@@ -100,13 +106,11 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-		        	<?php
+		        	<?php		        		
 
-		        		$clientes = $this->clientes;
-
-		        		for($i=(($NUM_PG-1) * $REG_PG);$i<($REG_PG * ($NUM_PG)) && $i<count($clientes);$i++)
+		        		for($i=(($NUM_PG-1) * $REG_PG);$i<($REG_PG * ($NUM_PG)) && $i<count($this->clientes);$i++)
 		        		{
-		        			$cliente = $clientes[$i];
+		        			$cliente = $this->clientes[$i];
 
 		        			$urlAlterar = SH_WEB_ROOT_APP . "/Cliente/alterar/" . $cliente->getIdCliente();
 		        			$urlExcluir = SH_WEB_ROOT_APP . "/Cliente/excluir/" . $cliente->getIdCliente();
@@ -131,7 +135,7 @@
 		      </div>
 
 		      <?php
-					if(count($clientes) == 0)
+					if(count($this->clientes) == 0)
 	          		{
 	          			$alert = new Alert("ATENÇÃO:","Nenhum registro encontrado!",Alert::$INFO);
 						echo $alert->getHtml();
@@ -142,42 +146,9 @@
 
 		      <div class="text-center">
 		      	<?php
-		      		$pagination = new Pagination(SH_WEB_ROOT_APP."/Cliente/listar",$clientes,$REG_PG,$NUM_PG);
+		      		$pagination = new Pagination(SH_WEB_ROOT_APP."/Cliente/listar",$this->clientes,$REG_PG,$NUM_PG);
 		      		echo $pagination->getHtml();
-		      	?>
-	      		<ul class="pagination pagination">
-					<?php
-						/*$PAG_INI = 0;
-						$PAG_FIM = ceil(count($clientes) / $REG_PG);
-
-						if($NUM_PG == 0){
-							echo "<li class='disabled'><a >&laquo;</a></li>";
-							echo "<li class='disabled'><a>&lsaquo;</a></li>";
-						}
-						else{
-							echo "<li><a href='".SH_WEB_ROOT_APP."/Cliente/listar/1'>&laquo;</a></li>";
-							echo "<li><a href='".SH_WEB_ROOT_APP."/Cliente/listar/".($NUM_PG - 1)."'>&lsaquo;</a></li>";
-						}
-
-						for($i=$PAG_INI;$i<$PAG_FIM;$i++)
-	        			{
-	        				if($i == $NUM_PG)
-	        					echo "<li class='disabled'><a>".($i+1)."</a></li>";
-	        				else
-	        					echo "<li><a href='".SH_WEB_ROOT_APP."/Cliente/listar/".($i+1)."'>".($i+1)."</a></li>";
-	        			}
-
-	        			if($NUM_PG == $PAG_FIM-1){
-							echo "<li class='disabled'><a>&rsaquo;</a></li>";		        		
-							echo "<li class='disabled'><a>&raquo;</a></li>";
-	        			}
-						else{
-							echo "<li><a href='".SH_WEB_ROOT_APP."/Cliente/listar/".($NUM_PG + 2)."'>&rsaquo;</a></li>";
-							echo "<li><a href='".SH_WEB_ROOT_APP."/Cliente/listar/".($PAG_FIM)."'>&raquo;</a></li>";
-						}
-						*/						
-					?>						
-				</ul>				    
+		      	?>      				    
 			</div>
 		</fieldset>
 		
