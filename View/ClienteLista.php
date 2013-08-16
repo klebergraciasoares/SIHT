@@ -40,26 +40,26 @@
 			        </div>
 			        <div class="modal-body">
 			        	<div class="form-group">
-							<label class="col-lg-2" for="filIdCliente">Código</label>
-							<div class="col-lg-4">
+							<label class="col-sm-2" for="filIdCliente">Código</label>
+							<div class="col-sm-4">
 						      <input name="filIdCliente" id="filIdCliente" type="text" class="form-control" placeholder="Código do Cliente" value="<?php echo isset($this->post["filIdCliente"]) ? $this->post["filIdCliente"] : ""?>">							
 						    </div>
 						</div>
 			        	<div class="form-group">
-							<label class="col-lg-2" for="filCpf">CPF</label>
-							<div class="col-lg-4">
+							<label class="col-sm-2" for="filCpf">CPF</label>
+							<div class="col-sm-4">
 						      <input name="filCpf" id="filCpf" type="text" class="form-control maskCpf" placeholder="Número do CPF" value="<?php echo isset($this->post["filCpf"]) ? $this->post["filCpf"] : ""?>">							
 						    </div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2" for="filNome">Nome</label>
-							<div class="col-lg-10">
+							<label class="col-sm-2" for="filNome">Nome</label>
+							<div class="col-sm-10">
 						      <input name="filNome" id="filNome" type="text" class="form-control" placeholder="Nome do Cliente" value="<?php echo isset($this->post["filNome"]) ? $this->post["filNome"] : ""?>">
 						    </div>
 						</div>
 						<div class="form-group">							
-							<label class="col-lg-2" for="filEstado">Estado</label>
-							<div class="col-lg-10">
+							<label class="col-sm-2" for="filEstado">Estado</label>
+							<div class="col-sm-10">
 						      <select name="filEstado" class="form-control">
 							      	<option></option>
 								      <?php
@@ -76,13 +76,13 @@
 						    </div>
 						</div>
 						<div class="form-group">							
-							<label class="col-lg-2" for="filCidade">Cidade</label>
-							<div class="col-lg-10">
+							<label class="col-sm-2" for="filCidade">Cidade</label>
+							<div class="col-sm-10">
 						      <input name="filCidade" id="filCidade" type="text" class="form-control" placeholder="Cidade do Cliente" value="<?php echo isset($this->post["filCidade"]) ? $this->post["filCidade"] : ""?>">
 						    </div>
 						</div>												
 				    </div>
-			        <div class="modal-footer">
+			        <div class="modal-footer" >
 			        	<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-search"></i> Buscar</button>
 			          	<button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Fechar</button>
 			        </div>
@@ -93,7 +93,7 @@
 
 		    <hr>		   
 
-			<div class="bs-table-scrollable">
+			<div class="col-sm-12 scrollable">
 			 <table class="table table-hover table-striped" id="tableList">
 		        <thead>
 		          <tr>

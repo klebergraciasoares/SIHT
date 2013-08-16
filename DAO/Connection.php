@@ -14,17 +14,19 @@
 			$host 		= "localhost";
 			$dbname 	= "sample";
 			$user 		= "root";
-			$password 	= "";
+			$password 	= "root";
 
-			$this->pdo = new PDO("mysql:host={$host};dbname={$dbname}", $user, $password);	
-
-			if(!$this->pdo)
+			try{
+				$this->pdo = new PDO("mysql:host={$host};dbname={$dbname}", $user, $password);	
+			}catch(Exception $e)
 			{
 				$errorController = new ErrorController();
 				$errorController->setAlert(new Alert("ATENÇÃO:","Erro ao connectar no banco de dados!",Alert::$DANGER));
+				$errorController->setAlert(new Alert("ATENÇÃO:",$e->getMessage(),Alert::$DANGER));
 				$errorController->show();
-				exit();					
+				exit();	
 			}
+			
 
 		}
 	}
