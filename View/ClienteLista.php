@@ -1,7 +1,7 @@
 <?php
   	$this->setView("Header");
 
-  	$REG_PG 	= 10;
+  	$REG_PG 	= 5;
 	$NUM_PG 	= defined("HTA_PARAM3") && is_numeric(HTA_PARAM3)? HTA_PARAM3 : 1;
 ?>
 
@@ -20,12 +20,12 @@
 	</script>		
       
 		  <fieldset>
-		    <legend>Lista de Cliente(s)</legend>	
+		    <legend>Lista de Cliente(s)</legend>
 
 		    <div class="row">
 		    	<div class="col-lg-12">
 					<a href="#filter" data-toggle="modal" class="btn btn btn-primary"><i class="glyphicon glyphicon-filter"></i> Filtrar</a>
-		          	<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Limpar</a>
+		          	<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" class="btn btn-danger" <?php if(!$this->post) echo "disabled" ?>><i class="glyphicon glyphicon-remove"></i> Limpar</a>
 		    		<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/cadastrar" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Novo Cliente</a>
 		    	</div>
 		    </div>
@@ -44,6 +44,19 @@
 							<div class="col-sm-4">
 						      <input name="filIdCliente" id="filIdCliente" type="text" class="form-control" placeholder="Código do Cliente" value="<?php echo isset($this->post["filIdCliente"]) ? $this->post["filIdCliente"] : ""?>">							
 						    </div>
+						    <div class="col-sm-6">
+						    <div class="input-group">
+						      <input type="text" class="form-control">
+						      <div class="input-group-btn">
+						        <select name="filEstado" class="form-control">
+						        	<option>Contenha</option>
+						        	<option>Igual</option>
+						        	<option>Maior</option>
+						        	<option>Menor</option>
+						        </select>
+						      </div>
+						    </div>
+						  </div>
 						</div>
 			        	<div class="form-group">
 							<label class="col-sm-2" for="filCpf">CPF</label>

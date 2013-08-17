@@ -27,7 +27,7 @@
 
 		public function validar()
 		{
-			if($_POST["usuario"] == "admin" && $_POST["senha"] == "admin")
+			if($this->post["usuario"] == "admin" && $this->post["senha"] == "admin")
 			{
 				$this->setSession("S_LOGADO",true);
 				$this->redirectView("Principal/inicio");

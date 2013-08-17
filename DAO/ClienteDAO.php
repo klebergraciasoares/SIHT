@@ -96,47 +96,22 @@
 		{
 			$clientes 	= array();
 			$params		= array();
-			$where 		= array();
+			$where 		= array();			
 
-			if(isset($filtros["filIdCliente"]) && !empty($filtros["filIdCliente"]))
-			{
-			    $params[':idCliente'] = array($filtros["filIdCliente"],PDO::PARAM_INT);
-			 	$where[] = " AND idCliente = :idCliente";
-			}
+			$PDOFilter = new PDOFilter();
+			if($filtros["filIdCliente"])	$PDOFilter->setFilter(":idCliente"	,"AND idCliente = :idCliente"	,$filtros["filIdCliente"]		,PDO::PARAM_INT);
+			if($filtros["filCpf"]) 			$PDOFilter->setFilter(":cpf"		,"AND cpf = :cpf"				,$filtros["filCpf"]				,PDO::PARAM_STR);
+			if($filtros["filNome"]) 		$PDOFilter->setFilter(":nome"		,"AND nome like :nome"			,"%{$filtros["filNome"]}%"		,PDO::PARAM_STR);
+			if($filtros["filCidade"]) 		$PDOFilter->setFilter(":cidade"		,"AND cidade like :cidade"		,"%{$filtros["filCidade"]}%"	,PDO::PARAM_STR);
 
-			if(isset($filtros["filNome"]) && !empty($filtros["filNome"]))			
-			{
-			    $params[':nome'] = array("%".$filtros["filNome"]."%",PDO::PARAM_STR);
-			 	$where[] = " AND nome like :nome";
-			}
-			
-			if(isset($filtros["filCidade"]) && !empty($filtros["filCidade"]))			
-			{
-			    $params[':cidade'] = array("%".$filtros["filCidade"]."%",PDO::PARAM_STR);
-			 	$where[] = " AND cidade like :cidade";
-			}
-
-			if(isset($filtros["filEstado"]) && !empty($filtros["filEstado"]))			
-			{
-			    $params[':estado'] = array($filtros["filEstado"],PDO::PARAM_STR);
-			 	$where[] = " AND estado like :estado";
-			}
-
-			if(isset($filtros["filCpf"]) && !empty($filtros["filCpf"]))			
-			{
-			    $params[':cpf'] = array($filtros["filCpf"],PDO::PARAM_STR);
-			 	$where[] = " AND cpf=:cpf";
-			}
-
-			$sql = "SELECT * FROM cliente WHERE 1=1 ".(implode(" ",$where))." ORDER BY nome";
+			$sql = "SELECT * FROM cliente WHERE 1=1 ".($PDOFilter->getSql())." ORDER BY nome";
 			$query = $this->pdo->prepare($sql);
-
-			foreach($params as $param=>$value) $query->bindParam($param, $value[0],$value[1]);			
 			
-			$query->execute();
-			$fetch = $query->fetchAll(PDO::FETCH_CLASS);
-
-			foreach ($fetch as $dados)
+			$PDOFilter->bindParamAll($query);
+			
+			$query->execute();			
+			
+			while ($dados = $query->fetch(PDO::FETCH_OBJ))
 			{			
 				$cliente = new Cliente();
 				$cliente->setAllObj($dados);

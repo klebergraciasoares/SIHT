@@ -81,7 +81,7 @@
 
 				if($clienteDAO->salvar($this->cliente))
 				{
-					$this->setAlert(new Alert("ATENÇÃO:","Cliente '".$this->cliente->getNome()."' cadastrado com sucesso!",Alert::$SUCESS));
+					$this->setAlert(new Alert("ATENÇÃO:","Cliente '".$this->cliente->getNome()."' foi salvo com sucesso!",Alert::$SUCESS));
 					$this->redirectView("Cliente/listar");
 				}else{
 					$this->setAlert(new Alert("ATENÇÃO:","Erro ao salvar cliente!",Alert::$DANGER));	

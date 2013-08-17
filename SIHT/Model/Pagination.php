@@ -45,8 +45,8 @@
 				$this->curPg 	= ($this->curPg > ($this->totPg - $pageLinks)) ? $this->totPg-($pageLinks*2) : $this->curPg-$pageLinks;							
 				//echo $this->iniPg."<br>";
 				//echo $this->curPg + $this->endPg;
-				for($i=$this->iniPg;$i<=$this->curPg + $this->endPg;$i++)*/
-
+				for($i=$this->iniPg;$i<=$this->curPg + $this->endPg;$i++)
+				*/
 				
 				for($i=$this->iniPg;$i<=$this->endPg;$i++)
 				{
