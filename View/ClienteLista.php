@@ -44,19 +44,21 @@
 							<div class="col-sm-4">
 						      <input name="filIdCliente" id="filIdCliente" type="text" class="form-control" placeholder="Código do Cliente" value="<?php echo isset($this->post["filIdCliente"]) ? $this->post["filIdCliente"] : ""?>">							
 						    </div>
+						    <!--
 						    <div class="col-sm-6">
-						    <div class="input-group">
-						      <input type="text" class="form-control">
-						      <div class="input-group-btn">
-						        <select name="filEstado" class="form-control">
-						        	<option>Contenha</option>
-						        	<option>Igual</option>
-						        	<option>Maior</option>
-						        	<option>Menor</option>
-						        </select>
-						      </div>
-						    </div>
-						  </div>
+							    <div class="input-group">
+							      <input type="text" class="form-control">
+							      <div class="input-group-btn">
+							        <select name="filEstado" class="form-control">
+							        	<option>Contenha</option>
+							        	<option>Igual</option>
+							        	<option>Maior</option>
+							        	<option>Menor</option>
+							        </select>
+							      </div>
+							    </div>						    
+						  	</div>
+						  -->
 						</div>
 			        	<div class="form-group">
 							<label class="col-sm-2" for="filCpf">CPF</label>

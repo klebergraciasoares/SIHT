@@ -95,9 +95,7 @@
 		public function listar($filtros = array())
 		{
 			$clientes 	= array();
-			$params		= array();
-			$where 		= array();			
-
+			
 			$PDOFilter = new PDOFilter();
 			if($filtros["filIdCliente"])	$PDOFilter->setFilter(":idCliente"	,"AND idCliente = :idCliente"	,$filtros["filIdCliente"]		,PDO::PARAM_INT);
 			if($filtros["filCpf"]) 			$PDOFilter->setFilter(":cpf"		,"AND cpf = :cpf"				,$filtros["filCpf"]				,PDO::PARAM_STR);

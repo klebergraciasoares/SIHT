@@ -79,7 +79,7 @@
 	//recursive function for list directory
 	function getDirRec($dir)
 	{
-		$_folders = array();
+		$folders = array();
 
 		if(is_dir($dir))
 		{
@@ -88,13 +88,13 @@
 				if(is_dir($dir ."/". $object)  && $object!="." && $object!="..")
 				{				
 					foreach (getDirRec($dir ."/". $object) as $folder)
-						$_folders[] = $folder;					
+						$folders[] = $folder;					
 
-					$_folders[] = $dir ."/". $object;
+					$folders[] = $dir ."/". $object;
 				}
 			}
 		}
 
-		return $_folders;
+		return $folders;
 	}
 ?>  
