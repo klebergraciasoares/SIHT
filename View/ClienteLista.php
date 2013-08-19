@@ -20,11 +20,11 @@
 	</script>		
       
 		  <fieldset>
-		    <legend>Lista de Cliente(s)</legend>
+		    <legend><i class="glyphicon glyphicon-list"></i> Lista de cliente(s)</legend>
 
 		    <div class="row">
 		    	<div class="col-lg-12">
-					<a href="#filter" data-toggle="modal" class="btn btn btn-primary btn-sm"><i class="glyphicon glyphicon-filter"></i> Filtrar</a>
+					<a href="#filter" data-toggle="modal" class="btn btn btn-primary btn-sm"><i class="glyphicon glyphicon-search"></i> Buscar</a>
 		          	<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" class="btn btn-danger btn-sm" <?php if(!$this->post) echo "disabled" ?>><i class="glyphicon glyphicon-remove"></i> Limpar</a>
 		    		<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/cadastrar" class="btn btn-primary pull-right btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Cliente</a>
 		    	</div>
@@ -36,7 +36,7 @@
 			      <div class="modal-content">
 			        <div class="modal-header">
 			          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			          <h4 class="modal-title"><i class="glyphicon glyphicon-filter"></i> Busca de clientes</h4>
+			          <h4 class="modal-title"><i class="glyphicon glyphicon-search"></i> Busca de clientes</h4>
 			        </div>
 			        <div class="modal-body">
 			        	<div class="form-group">
@@ -99,7 +99,7 @@
 				    </div>
 			        <div class="modal-footer" >
 			        	<button type="submit" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-			          	<button type="button" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Fechar</button>
+			          	<button type="button" class="btn btn-danger btn-sm" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove"></i> Fechar</button>
 			        </div>
 			      </div>
 			    </div>

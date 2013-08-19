@@ -5,7 +5,7 @@
 	<form id="form" name='form' action="<?php echo SH_WEB_ROOT_APP ?>/Cliente/salvar" method="POST">  	  
 
 	  <fieldset>
-	    <legend>Cadastro de Cliente</legend>
+	    <legend><i class="glyphicon glyphicon-pencil"></i> Cadastro de cliente</legend>
 
 		 <div class="row">
 		 	<div class="form-group col-lg-2 col-sm-2">

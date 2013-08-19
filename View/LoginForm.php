@@ -1,13 +1,14 @@
 <?php
   $this->setView("Header");
 ?>	
-    <form method="POST" action="<?php echo SH_WEB_ROOT_APP ?>/Login/validar" class="form-horizontal">
+    <form method="POST" action="<?php echo SH_WEB_ROOT_APP ?>/Login/validar">
 
       	<fieldset>
 		    <legend>Acesso</legend>
 
 			<div class="row">
 			    <div class="col-sm-4 col-sm-offset-4">
+			    
 					<div class="form-group">
 					  <label for="usuario">Usuário</label>
 						<div class="input-group">						
