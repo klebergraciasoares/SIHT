@@ -129,7 +129,7 @@
 		    <div class="form-group col-lg-6 col-sm-6">
 		      <label for="telefone">Telefone</label>
 		      	<div class="input-group">						
-					<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>						
+					<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>						
 					<input type="text" name="telefone" id="telefone" value="<?php echo $this->cliente->getTelefone();?>" class="form-control maskTelefone" placeholder="(99)9999-9999">						
 				</div>
 		    </div>
@@ -147,10 +147,10 @@
 		      <label for="status">Status</label>
 		      	<div class="input-group">						
 				<div class="btn-group" data-toggle="buttons">
-				  <label class="btn btn-primary <?php echo $this->cliente->getStatus()=="A" ? "active" : ""; ?>">
+				  <label class="btn btn-primary btn-sm <?php echo $this->cliente->getStatus()=="A" ? "active" : ""; ?>">
 				    <input type="radio" name="status" id="ativo" value="A" <?php echo $this->cliente->getStatus()=="A" ? "checked" : ""; ?>> Ativo
 				  </label>
-				  <label class="btn btn-primary <?php echo $this->cliente->getStatus()=="I" ? "active" : ""; ?>">
+				  <label class="btn btn-primary btn-sm <?php echo $this->cliente->getStatus()=="I" ? "active" : ""; ?>">
 				    <input type="radio" name="status" id="inativo" value="I" <?php echo $this->cliente->getStatus()=="I" ? "checked" : ""; ?>> Inativo
 				  </label>				 
 				</div>
@@ -161,8 +161,8 @@
 
 		<div class="row pull-right">
 			<div class="form-group col-lg-12 col-sm-12">
-				<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Salvar</button>
-		    	<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+				<button type="submit" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-ok"></i> Salvar</button>
+		    	<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
 			</div>
 		</div>
 

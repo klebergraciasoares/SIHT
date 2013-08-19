@@ -24,9 +24,9 @@
 
 		    <div class="row">
 		    	<div class="col-lg-12">
-					<a href="#filter" data-toggle="modal" class="btn btn btn-primary"><i class="glyphicon glyphicon-filter"></i> Filtrar</a>
-		          	<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" class="btn btn-danger" <?php if(!$this->post) echo "disabled" ?>><i class="glyphicon glyphicon-remove"></i> Limpar</a>
-		    		<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/cadastrar" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i> Novo Cliente</a>
+					<a href="#filter" data-toggle="modal" class="btn btn btn-primary btn-sm"><i class="glyphicon glyphicon-filter"></i> Filtrar</a>
+		          	<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" class="btn btn-danger btn-sm" <?php if(!$this->post) echo "disabled" ?>><i class="glyphicon glyphicon-remove"></i> Limpar</a>
+		    		<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/cadastrar" class="btn btn-primary pull-right btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Cliente</a>
 		    	</div>
 		    </div>
 
@@ -98,8 +98,8 @@
 						</div>												
 				    </div>
 			        <div class="modal-footer" >
-			        	<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-			          	<button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Fechar</button>
+			        	<button type="submit" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-search"></i> Buscar</button>
+			          	<button type="button" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Fechar</button>
 			        </div>
 			      </div>
 			    </div>
@@ -108,16 +108,17 @@
 
 		    <hr>		   
 
-			<div class="col-sm-12 scrollable">
+			<div>
 			 <table class="table table-hover table-striped" id="tableList">
 		        <thead>
 		          <tr>
-		            <th class="col-lg-1 text-center">Código</th>
-		            <th class="col-lg-4">Nome</th>
-		            <th class="col-lg-1">Estado</th>
-		            <th class="col-lg-2">Cidade</th>		            
-		            <th class="col-lg-2">CPF</th>
-		            <th class="col-lg-2">&nbsp;</th>
+		            <th class="col-md-1 text-center">Cód.</th>
+		            <th class="col-md-5">Nome</th>
+		            <th class="col-md-1 visible-md">Estado</th>
+		            <th class="col-md-2 visible-md">Cidade</th>		            
+		            <th class="col-md-2 visible-md">CPF</th>
+		            <th class="col-md-1 text-center">Ações</th>
+		           
 		          </tr>
 		        </thead>
 		        <tbody>
@@ -133,12 +134,12 @@
 				          <tr class="<?php echo $cliente->getStatus()=="I" ? "danger" : "" ?>">
 				            <td class="text-center"><?php echo $cliente->getIdCliente() ?></td>
 				            <td><?php echo $cliente->getNome() ?></td>
-				            <td><?php echo $cliente->getEstado() ?></td>
-				            <td><?php echo $cliente->getCidade() ?></td>
-				            <td><?php echo $cliente->getCpf() ?></td>				            
-				            <td class="text-right">
-				            	<a href="<?php echo $urlAlterar?>" class="btn btn-warning btn-xs"><i class="glyphicon glyphicon-edit"></i> Alterar</a>				            	
-								<button type="button" class="btn btn-danger btn-xs" onclick="if(confirm('Deseja remover o cliente?')) { document.location.href='<?php echo $urlExcluir?>' }"><i class="glyphicon glyphicon-trash"></i> Excluir</button>								
+				            <td class="visible-md"><?php echo $cliente->getEstado() ?></td>
+				            <td class="visible-md"><?php echo $cliente->getCidade() ?></td>
+				            <td class="visible-md"><?php echo $cliente->getCpf() ?></td>				            
+				            <td class="text-right" nowrap>
+				            	<a href="<?php echo $urlAlterar?>" class="btn btn-warning btn-xs" title="Alterar"><i class="glyphicon glyphicon-edit"></i> </a>				            	
+				            	<button type="button" class="btn btn-danger btn-xs" title="Excluir" onclick="if(confirm('Deseja remover o cliente?')) { document.location.href='<?php echo $urlExcluir?>' }"><i class="glyphicon glyphicon-trash"></i> </button>								
 				            </td>
 				          </tr>
 		          <?php

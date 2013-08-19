@@ -11,7 +11,7 @@
     <!-- Bootstrap core CSS -->
     
     <link href="<?php echo SH_WEB_ROOT_LIB ?>/Lib/css/bootstrap.css" rel="stylesheet">
-    <link href="<?php echo SH_WEB_ROOT_LIB ?>/Lib/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <!--<link href="<?php echo SH_WEB_ROOT_LIB ?>/Lib/css/bootstrap-glyphicons.css" rel="stylesheet">-->
     <link href="<?php echo SH_WEB_ROOT_LIB ?>/Lib/css/local.css" rel="stylesheet">
 
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/jquery.js"></script>

@@ -25,7 +25,7 @@
 
  			if($this->totPg > 1)
  			{
-	 			$html= "<ul class=\"pagination pagination\">";
+	 			$html= "<ul class=\"pagination pagination-sm\">";
 
 	 			$this->iniPg = 1;
 				$this->endPg = $this->totPg;
@@ -54,7 +54,7 @@
 					if ( $i > $this->totPg ) break;
 
 					if($i == $this->curPg)
-						$html.= "<li class='disabled'><a>".($i)."</a></li>";
+						$html.= "<li class='active'><a>".($i)."</a></li>";
 					else
 						$html.= "<li><a href='{$this->urlPg}/".($i)."'>".($i)."</a></li>";
 				}
