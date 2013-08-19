@@ -92,6 +92,24 @@
 			}
 		}
 
+		public function buscaCpf($cpf)
+		{
+			$sql = "SELECT * FROM cliente WHERE cpf=:cpf";
+			$query = $this->pdo->prepare($sql);
+			$query->bindParam(":cpf", $cpf,PDO::PARAM_STR);
+			$query->execute();
+			$fetch = $query->fetch(PDO::FETCH_OBJ);
+
+			if($fetch)
+			{
+				$cliente = new Cliente();
+				$cliente->setAllObj($fetch);
+				return $cliente;
+			}else{
+				return false;
+			}
+		}
+
 		public function listar($filtros = array())
 		{
 			$clientes 	= array();

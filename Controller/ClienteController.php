@@ -15,7 +15,7 @@
 				$this->redirectView("Login/expirou");
 
 			if(false) //Permissão do Módulo
-			{				
+			{
 				$errorController = new ErrorController();
 				$errorController->setAlert(new Alert("ATENÇÃO:","Acesso Negado ao Módulo de CLIENTE!",Alert::$DANGER));
 				$errorController->show();
@@ -59,8 +59,9 @@
 				$this->setAlert(new Alert("ATENÇÃO:","Dados não enviados!",Alert::$DANGER));
 				$this->cadastrar();
 			}else{
+
 				$clienteDAO = new ClienteDAO();				
-				
+					
 				$this->cliente->setIdCliente($this->post["idCliente"]);
 				$this->cliente->setNome($this->post["nome"]);
 				$this->cliente->setCpf($this->post["cpf"]);
@@ -79,13 +80,20 @@
 				$this->cliente->setCelular($this->post["celular"]);
 				$this->cliente->setStatus($this->post["status"]);
 
-				if($clienteDAO->salvar($this->cliente))
+				if($clienteCPF = $clienteDAO->buscaCpf($this->cliente->getCpf()))
 				{
-					$this->setAlert(new Alert("ATENÇÃO:","Cliente '".$this->cliente->getNome()."' foi salvo com sucesso!",Alert::$SUCESS));
-					$this->redirectView("Cliente/listar");
-				}else{
-					$this->setAlert(new Alert("ATENÇÃO:","Erro ao salvar cliente!",Alert::$DANGER));	
+					$this->setAlert(new Alert("ATENÇÃO:","CPF já cadastrado para o cliente: '".$clienteCPF->getNome()."'!",Alert::$DANGER));	
 					$this->cadastrar();
+				}else{					
+
+					if($clienteDAO->salvar($this->cliente))
+					{
+						$this->setAlert(new Alert("ATENÇÃO:","Cliente '".$this->cliente->getNome()."' foi salvo com sucesso!",Alert::$SUCESS));
+						$this->redirectView("Cliente/listar");
+					}else{
+						$this->setAlert(new Alert("ATENÇÃO:","Erro ao salvar cliente!",Alert::$DANGER));	
+						$this->cadastrar();
+					}
 				}
 				
 			}
