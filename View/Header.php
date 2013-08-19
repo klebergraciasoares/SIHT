@@ -39,7 +39,7 @@
             <?php
                   }
             ?>
-            <a class="navbar-brand" href="<?php echo SH_WEB_ROOT_APP ?>/Principal/inicio"><i class="glyphicon glyphicon-road"></i> Project Name</a>
+            <a class="navbar-brand" href="<?php echo SH_WEB_ROOT_APP ?>/Principal/inicio"><i class="glyphicon glyphicon-globe"></i> Project Name</a>
           </div>
 
             <?php

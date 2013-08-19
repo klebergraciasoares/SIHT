@@ -114,11 +114,10 @@
 		          <tr>
 		            <th class="col-md-1 text-center">Cód.</th>
 		            <th class="col-md-5">Nome</th>
-		            <th class="col-md-1 visible-md">Estado</th>
-		            <th class="col-md-2 visible-md">Cidade</th>		            
-		            <th class="col-md-2 visible-md">CPF</th>
-		            <th class="col-md-1 text-center">Ações</th>
-		           
+		            <th class="col-md-1 hidden-xs">Estado</th>
+		            <th class="col-md-2 hidden-xs">Cidade</th>		            
+		            <th class="col-md-2 hidden-xs">CPF</th>
+		            <th class="col-md-1 text-center">Ações</th>		           
 		          </tr>
 		        </thead>
 		        <tbody>
@@ -134,9 +133,9 @@
 				          <tr class="<?php echo $cliente->getStatus()=="I" ? "danger" : "" ?>">
 				            <td class="text-center"><?php echo $cliente->getIdCliente() ?></td>
 				            <td><?php echo $cliente->getNome() ?></td>
-				            <td class="visible-md"><?php echo $cliente->getEstado() ?></td>
-				            <td class="visible-md"><?php echo $cliente->getCidade() ?></td>
-				            <td class="visible-md"><?php echo $cliente->getCpf() ?></td>				            
+				            <td class="hidden-xs"><?php echo $cliente->getEstado() ?></td>
+				            <td class="hidden-xs"><?php echo $cliente->getCidade() ?></td>
+				            <td class="hidden-xs"><?php echo $cliente->getCpf() ?></td>				            
 				            <td class="text-right" nowrap>
 				            	<a href="<?php echo $urlAlterar?>" class="btn btn-warning btn-xs" title="Alterar"><i class="glyphicon glyphicon-edit"></i> </a>				            	
 				            	<button type="button" class="btn btn-danger btn-xs" title="Excluir" onclick="if(confirm('Deseja remover o cliente?')) { document.location.href='<?php echo $urlExcluir?>' }"><i class="glyphicon glyphicon-trash"></i> </button>								
