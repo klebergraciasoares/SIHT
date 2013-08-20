@@ -2,16 +2,13 @@
 <html lang="pt">
   <head>
     <title>Project Name</title>
-    <!-- Meta, title, CSS, favicons, etc. -->
+    
     <meta charset="iso-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content=""> 
-
-    <!-- Bootstrap core CSS -->
+    <meta name="author" content="">    
     
-    <link href="<?php echo SH_WEB_ROOT_LIB ?>/Lib/css/bootstrap.css" rel="stylesheet">
-    <!--<link href="<?php echo SH_WEB_ROOT_LIB ?>/Lib/css/bootstrap-glyphicons.css" rel="stylesheet">-->
+    <link href="<?php echo SH_WEB_ROOT_LIB ?>/Lib/css/bootstrap.css" rel="stylesheet">    
     <link href="<?php echo SH_WEB_ROOT_LIB ?>/Lib/css/local.css" rel="stylesheet">
 
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/jquery.js"></script>

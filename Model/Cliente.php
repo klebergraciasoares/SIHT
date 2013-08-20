@@ -23,7 +23,7 @@
 
 		function __construct()
 		{
-			$this->setStatus("A");
+			$this->setStatus("A");			
 		}
 
 		public function setIdCliente($idCliente)

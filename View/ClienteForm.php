@@ -4,8 +4,8 @@
 	
 	<form id="form" name='form' action="<?php echo SH_WEB_ROOT_APP ?>/Cliente/salvar" method="POST">  	  
 
-	  <fieldset>
-	    <legend><i class="glyphicon glyphicon-pencil"></i> Cadastro de cliente</legend>
+	   <h3><i class="glyphicon glyphicon-pencil"></i> Cadastro de cliente</h3>
+		<hr>
 
 		 <div class="row">
 		 	<div class="form-group col-lg-2 col-sm-2">
@@ -165,8 +165,6 @@
 		    	<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
 			</div>
 		</div>
-
-	  </fieldset>
 	</form>
 
 
