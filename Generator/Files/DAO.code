@@ -1,0 +1,35 @@
+<<?php
+/**
+* Data Access Object for {{classname}}
+* @package       DAO
+*/
+  class {{classname}}DAO extends Connection
+  {
+    public function __construct()
+    {  
+    }
+
+    public function save({{classname}} <span style="text-transform: lowercase;">${{classname}}</span>)
+    {
+
+    }
+
+    public function bind($id)
+    {
+      <span style="text-transform: lowercase;">${{classname}}</span> = new ${{classname}}();
+      <div ng-repeat="atr in atributes"><span style="text-transform: lowercase;">      ${{classname}}</span>->set{{atr.nameUpc}}(${{atr.nameAtr}});</div>
+      return <span style="text-transform: lowercase;">${{classname}}</span>;
+    }
+
+    public function delete($id)
+    {
+      return true;
+    }
+
+    public function list()
+    {
+      <span style="text-transform: lowercase;">${{classname}}s</span> = array();
+      return <span style="text-transform: lowercase;">${{classname}}s</span>;
+    }
+  }
+?>>

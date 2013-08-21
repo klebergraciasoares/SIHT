@@ -1,0 +1,10 @@
+<<?php
+  //$this->setView("Header");
+?>>
+
+  <<h3>><<i class="glyphicon glyphicon-list">><</i>> {{classname}}View<</h3>>
+  <<hr>>
+
+<<?php
+  //$this->setView("Footer");
+?>>
