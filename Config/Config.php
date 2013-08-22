@@ -9,6 +9,7 @@
 	define("SH_WEB_ROOT_LIB", "http://{$_SERVER["HTTP_HOST"]}/SIHT");
 	
 	define("SH_CLASS_METHOD_INIT", "Principal/inicio");
+	//define("SH_METHOD_INIT", "index");
 
 	define("SY_REG_PAG_GRID", 10);
 ?>  

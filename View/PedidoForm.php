@@ -9,8 +9,20 @@
 
 		 <div class="row">
 		 	<div class="form-group col-lg-2 col-sm-2">
-		      <label for="idCliente">Código</label>
-		      <input type="text" name="idCliente" id="idCliente" value="" readonly="readonly" class="form-control" placeholder="AUTO">
+		      <label for="idProduto">Produto</label>
+		      <input type="text" name="idProduto" id="idProduto" class="form-control">
+		    </div>
+		    <div class="form-group col-lg-5 col-sm-5">
+		      <label for="idProduto">Produto</label>
+		      <input type="text" name="idProduto" id="idProduto" class="form-control">
+		    </div>
+		    <div class="form-group col-lg-2 col-sm-2">
+		      <label for="quantidade">Quantidade</label>
+		      <input type="number" name="quantidade" id="quantidade" class="form-control">
+		    </div>
+		    <div class="form-group col-lg-2 col-sm-2">
+		      <label for="preco">Valor Unitário</label>
+		      <input type="text" name="preco" id="preco" class="form-control">
 		    </div>
 		</div>    
 
@@ -23,29 +35,24 @@
 		          <tr>
 		            <th class="col-md-1 text-center">Cód.</th>
 		            <th class="col-md-5">Nome</th>
-		            <th class="col-md-1 hidden-xs text-center">Qtde</th>
+		            <th class="col-md-1 text-center">Qtde</th>
 		            <th class="col-md-2 hidden-xs text-right">Preço</th>		            
-		            <th class="col-md-2 hidden-xs text-right">Total</th>
+		            <th class="col-md-2 text-right">Total</th>
 		            <th class="col-md-1">&nbsp;</th>		            	           
 		          </tr>
 		        </thead>
 		        <tbody ng-repeat="produto in produtos">
 		        	<tr>
-		        		<td>{{produto.idProduto}}</td>
+		        		<td class="text-center">{{produto.idProduto}}</td>
 		        		<td>{{produto.nome}}</td>
-		        		<td class="hidden-xs text-center">{{produto.qtde}}</td>
+		        		<td class="text-center"><input class="form-control" type="number" min="1" ng-model="produto.qtde" value="{{produto.qtde}}"></td>
 		        		<td class="hidden-xs text-right">{{produto.preco | currency:"R$ "}}</td>
-		        		<td class="text-right">{{produto.subtotal | currency:"R$ "}}</td>
-		        		<td><button type="button" class="btn btn-link btn-xs" title="Excluir" onclick="if(confirm('Deseja remover o cliente?')) { }"><i class="glyphicon glyphicon-trash"></i> </button></td>
+		        		<td class="text-right">{{produto.preco*produto.qtde | currency:"R$ "}}</td>
+		        		<td><button type="button" class="btn btn-link btn-xs" title="Excluir" ng:click="produtos.splice($index, 1)"><i class="glyphicon glyphicon-trash"></i> </button></td>
 		        	</tr>
 		        </tbody>
-		        	<tr>
-		        		<td></td>
-		        		<td></td>
-		        		<td class="hidden-xs text-center"></td>
-		        		<td class="hidden-xs text-right"></td>
-		        		<td class="text-right"><h3><span class="label label-success">{{total | currency:"R$ "}}</span></h3></td>
-		        		<td></td>
+		        	<tr>		        		
+		        		<td colspan="5" class="text-right"><h3><span class="label label-success">{{sumProduto() | currency:"R$ "}}</span></h3></td>		        		
 		        	</tr>
 		      </table>
 		    </div>
@@ -61,25 +68,26 @@
 
 <script>
 
-  function CtrlApp($scope) {
-      $scope.produtos 	= [];  
-      $scope.total 		= 0;
 
-      $scope.addProduto = function() { 
-        $scope.produtos.push({idProduto : 1, nome: "Mouse",qtde:1,preco:10.00,subtotal:10.00});
-        $scope.atualizaTotal();    
-      }
 
-      $scope.removeProduto = function() {
-        $scope.produtos = [];
-      }
+	function CtrlApp($scope) {
+		$scope.produtos 	= [];
 
-      $scope.atualizaTotal = function() {
-      	$scope.total = 0;
-      	for(var i=0;i<$scope.produtos.length;i++)
-            $scope.total= $scope.total + $scope.produtos[i].subtotal;
-      }
-  }
+		$scope.addProduto = function() { 
+			$scope.produtos.push({idProduto : 1, nome: "Mouse",qtde:2,preco:10.00});		
+		}
+
+		$scope.delProduto = function(index) {
+		}
+
+		$scope.sumProduto = function() 
+		{
+		   	var total = 0;
+			for(var i=0;i<$scope.produtos.length;i++)
+		    	total += $scope.produtos[i].qtde * $scope.produtos[i].preco;
+		   	return total;	   	
+		}        
+	}
 
 </script>
   

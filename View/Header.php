@@ -13,6 +13,7 @@
 
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/jquery.js"></script>
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/angular.js"></script>
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/angular-locale_pt-br.js"></script>
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/jquery.tablesorter.min.js"></script>    
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/jquery.maskedinput.min.js"></script>    
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/jquery.validate.min.js"></script>

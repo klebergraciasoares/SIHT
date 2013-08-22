@@ -17,12 +17,12 @@
 		$errorController = new ErrorController();
 		$errorController->setAlert(new Alert("WARNING: ","Class not sent!",Alert::$DANGER));
 		$errorController->show();
-	}elseif(!defined(constant("SH_HTA_PARAM_NAME")."2"))
+	}/*elseif(!defined(constant("SH_HTA_PARAM_NAME")."2"))
 	{
 		$errorController = new ErrorController();
 		$errorController->setAlert(new Alert("WARNING: ","Method not sent!",Alert::$DANGER));
 		$errorController->show();
-	}elseif(!class_exists($class))
+	}*/elseif(!class_exists($class))
 	{	
 		$errorController = new ErrorController();
 		$errorController->setAlert(new Alert("WARNING: ","Class '{$class}' does not exist!",Alert::$DANGER));		
@@ -74,6 +74,13 @@
 		for($i=0;$i<count($uri);$i++)
 			if(isset($uri[$i]) && !empty($uri[$i]))
 				define(constant("SH_HTA_PARAM_NAME") . ($i+1), $uri[$i]);
+
+		if(defined(constant("SH_HTA_PARAM_NAME")."1") && !defined(constant("SH_HTA_PARAM_NAME")."2"))
+			if(defined("SH_METHOD_INIT"))
+				define(constant("SH_HTA_PARAM_NAME") . "2", constant("SH_METHOD_INIT"));
+			else
+				define(constant("SH_HTA_PARAM_NAME") . "2", "index");
+
 	}
 
 	//recursive function for list directory
