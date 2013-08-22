@@ -109,7 +109,7 @@
 	    <hr>
 
 		<div class="table-responsive">
-		 <table class="table" id="tableList">
+		 <table class="table table-hover" id="tableList">
 	        <thead>
 	          <tr>
 	            <th class="col-md-1 text-center">Cód.</th>
