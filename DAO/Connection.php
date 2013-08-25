@@ -14,7 +14,7 @@
 			$host 		= "localhost";
 			$dbname 	= "sample";
 			$user 		= "root";
-			$password 	= "";
+			$password 	= "root";
 
 			try{
 				$this->pdo = new PDO("mysql:host={$host};dbname={$dbname}", $user, $password);	
