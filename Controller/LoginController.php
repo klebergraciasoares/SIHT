@@ -26,11 +26,11 @@
 		}
 
 		public function validar()
-		{
+		{			
 			if($this->post["usuario"] == "admin" && $this->post["senha"] == "admin")
 			{
 				$this->setSession("S_LOGADO",true);
-				$this->redirectView("Principal/inicio");
+				$this->redirectView("Principal");
 			}else{
 				$this->setAlert(new Alert("ATENÇÃO:","Usuário ou senha inválidos!",Alert::$DANGER));
 				$this->acessar();

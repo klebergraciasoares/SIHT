@@ -1,4 +1,12 @@
 <?php
+/**
+* ....
+* 
+* @package Model
+* @author getsiht <www.getsiht.com>
+* @version 1.0
+* @copyright getsiht project 2013 
+*/	
  	class Alert
  	{
  		public static $DANGER 	= "danger";

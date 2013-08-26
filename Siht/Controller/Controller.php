@@ -1,12 +1,42 @@
 <?php	
-	
+/**
+* ....
+* 
+* @package 		Siht.Controller
+* @author 		getsiht <www.getsiht.com>
+* @version 		1.0
+* @copyright 	getsiht project 2013
+* @link        	http://getsiht.com Siht Project
+*/	
 	class Controller
 	{	
+		/**
+		* Atores the variable global $_GET
+		* @access protected
+		* @var array
+		*/
 		protected $get 	= false;
+		
+		/**
+		* Atores the variable global $_POST
+		* @access protected
+		* @var array
+		*/
 		protected $post = false;
-
+		
+		/**
+		* Class stores the alerts Alert
+		* @access protected
+		* @var array
+		*/
 		private $alerts = array();
 
+		/** 
+		* ....
+		* 
+		* @access public 
+		* @return void 
+		*/
 		public function __construct(){
 			if(!session_id())
 				session_start();
@@ -15,6 +45,12 @@
 			$this->getGet();
 		}
 
+		/** 
+		* ....
+		* 
+		* @access public 
+		* @return void 
+		*/
 		public function getPost()
 		{		
 			//**verificar se o POST está vindo da mesma página
@@ -24,6 +60,12 @@
 					$this->post[$key] = $value;	
 		}
 
+		/** 
+		* ....
+		* 
+		* @access public 
+		* @return void 
+		*/
 		public function getGet()
 		{
 			if(is_array($_GET))
@@ -31,6 +73,13 @@
 					$this->get[$key] = $value;	
 		}
 
+		/** 
+		* open view in folder View
+		* 
+		* @access public 
+		* @param string $view		
+		* @return void 
+		*/
 		public function setView($view){
 			if(file_exists(SH_WWW_ROOT_SIHT . "/View/{$view}.php"))
 				include_once(SH_WWW_ROOT_SIHT . "/View/{$view}.php");
@@ -44,8 +93,24 @@
 			}
 		}
 
+		/** 
+		* redirect page for view
+		* 
+		* @access public 
+		* @param string $view class/method		
+		* @return void 
+		*/		
 		public function redirectView($view){
-			header("location:" . SH_WEB_ROOT_APP . "/" . $view);
+			if(defined("SH_HTA_USE") && constant("SH_HTA_USE")){
+				$url = $view;
+			}else{
+				$classMethod = explode("/", $view);
+				if(isset($classMethod[0]))
+					$url = "index.php?c={$classMethod[0]}";		
+				if(isset($classMethod[1]))				
+					$url.= "&m={$classMethod[1]}"; 	
+			}
+			header("location:" . SH_WEB_ROOT_APP . "/" . $url);
 			exit();
 		}
 

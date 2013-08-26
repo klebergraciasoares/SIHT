@@ -2,9 +2,11 @@
   $this->setView("Header");
 ?>
 	<div ng-app ng-controller="CtrlApp">
-	<form id="form" name='form' action="<?php echo SH_WEB_ROOT_APP ?>/Cliente/salvar" method="POST" >  	  
+	<form id="form" name='form' action="<?php echo SH_WEB_ROOT_APP ?>/Pedido/salvar" method="POST" >  	  
 
-	   <h3><i class="glyphicon glyphicon-shopping-cart"></i> Pedido de Compra</h3>
+		<input type="text" name="prodPedidos" value="{{prodPedidos}}"/>
+
+	   	<h3><i class="glyphicon glyphicon-shopping-cart"></i> Pedido de Compra</h3>
 		<hr>
 		 <div class="row">
 		 	<div class="form-group col-sm-1">
@@ -66,7 +68,7 @@
 		<div class="row pull-right">
 			<div class="form-group col-lg-12 col-sm-12">
 				<button type="submit" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-ok"></i> Salvar</button>
-		    	<a href="<?php echo SH_WEB_ROOT_APP ?>/Pedido/listar" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+				<a href="<?php echo SH_WEB_ROOT_APP ?>/Pedido/listar" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
 			</div>
 		</div>
 	</form>

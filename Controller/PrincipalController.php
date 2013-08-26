@@ -7,8 +7,8 @@
 		{
 			parent::__construct();
 		}
-
-		public function inicio()
+		
+		public function index()
 		{			
 			if($this->getSession("S_LOGADO"))
 				$this->setView("Principal");

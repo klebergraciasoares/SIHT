@@ -23,6 +23,11 @@
 			}	
 		}
 
+		public function index()
+		{
+			$this->listar();
+		}
+
 		public function listar()
 		{	
 			$clienteDAO = new ClienteDAO();
