@@ -8,16 +8,16 @@
     <meta name="description" content="">
     <meta name="author" content="">    
     
-    <link href="<?php echo SH_WEB_ROOT_LIB ?>/css/bootstrap.css" rel="stylesheet">    
+    <link href="<?php echo SH_WEB_ROOT_LIB ?>/css/bootstrap.min.css" rel="stylesheet">    
     <link href="<?php echo SH_WEB_ROOT_LIB ?>/css/local.css" rel="stylesheet">
 
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular-locale_pt-br.js"></script>
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.min.js"></script>
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular.min.js"></script>
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular.locale.pt-br.min.js"></script>
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.tablesorter.min.js"></script>    
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.maskedinput.min.js"></script>    
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.validate.min.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/bootstrap.js"></script>    
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/bootstrap.min.js"></script>    
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/local.js"></script>
 
   </head>

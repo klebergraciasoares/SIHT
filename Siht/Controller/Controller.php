@@ -130,7 +130,7 @@
 				$classMethod = explode("/", $view);
 				if(isset($classMethod[0]))
 					$url = "index.php?c={$classMethod[0]}";		
-				if(isset($classMethod[1]))				
+				if(isset($classMethod[1]))
 					$url.= "&m={$classMethod[1]}"; 	
 			}
 			header("location:" . SH_WEB_ROOT_APP . "/" . $url);
