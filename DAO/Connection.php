@@ -9,12 +9,17 @@
 			
 		}
 
+		public function __destruct()
+		{
+			$this->pdo = null;
+		}
+
 		protected function connect()
 		{
 			$host 		= "localhost";
 			$dbname 	= "sample";
 			$user 		= "root";
-			$password 	= "root";
+			$password 	= "";
 
 			try{
 				$this->pdo = new PDO("mysql:host={$host};dbname={$dbname}", $user, $password);	
@@ -26,9 +31,9 @@
 				$errorController->show();
 				exit();	
 			}
-			
-
 		}
+
+
 	}
 
 ?>  

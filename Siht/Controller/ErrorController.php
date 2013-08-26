@@ -2,10 +2,11 @@
 /**
 * ....
 * 
-* @package Controller
-* @author getsiht <www.getsiht.com>
-* @version 1.0
-* @copyright getsiht project 2013 
+* @package Siht.Controller
+* @author 		getsiht <www.getsiht.com>
+* @version 		1.0
+* @link        	http://getsiht.com Siht Project
+* @copyright 	getsiht project 2013
 */			
 	class ErrorController extends Controller
 	{	

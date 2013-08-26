@@ -32,7 +32,8 @@
 		private $alerts = array();
 
 		/** 
-		* ....
+		* Classes which have a constructor method call this method on each newly-created object, so it is suitable 
+		* for any initialization that the object may need before it is used.
 		* 
 		* @access public 
 		* @return void 
@@ -46,13 +47,36 @@
 		}
 
 		/** 
-		* ....
+		* The destructor method will be called as soon as there are no other references to a particular object, 
+		* or in any order during the shutdown sequence.
 		* 
 		* @access public 
 		* @return void 
 		*/
-		public function getPost()
-		{		
+		public function __destruct(){			
+		}
+
+		/** 
+		* Is triggered when invoking inaccessible methods in an object context.
+		* 
+		* @access public 
+		* @param string $function The name of the function to call.
+		* @param array $function An array of the arguments to pass to the function.
+		* @return void 
+		*/
+		public function __call($function, $args){
+			$errorController = new ErrorController();
+			$errorController->setAlert(new Alert("WARNING: ","Method '{$function}' does not exist!",Alert::$DANGER));
+			$errorController->show();
+		}
+
+		/** 
+		* ....
+		* 
+		* @access public 		
+		* @return void 
+		*/
+		public function getPost(){		
 			//**verificar se o POST está vindo da mesma página
 
 			if(is_array($_POST))
@@ -66,8 +90,7 @@
 		* @access public 
 		* @return void 
 		*/
-		public function getGet()
-		{
+		public function getGet(){
 			if(is_array($_GET))
 				foreach ($_GET as $key => $value) 					
 					$this->get[$key] = $value;	

@@ -8,17 +8,17 @@
     <meta name="description" content="">
     <meta name="author" content="">    
     
-    <link href="<?php echo SH_WEB_ROOT_LIB ?>/Lib/css/bootstrap.css" rel="stylesheet">    
-    <link href="<?php echo SH_WEB_ROOT_LIB ?>/Lib/css/local.css" rel="stylesheet">
+    <link href="<?php echo SH_WEB_ROOT_LIB ?>/css/bootstrap.css" rel="stylesheet">    
+    <link href="<?php echo SH_WEB_ROOT_LIB ?>/css/local.css" rel="stylesheet">
 
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/jquery.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/angular.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/angular-locale_pt-br.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/jquery.tablesorter.min.js"></script>    
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/jquery.maskedinput.min.js"></script>    
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/jquery.validate.min.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/bootstrap.js"></script>    
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/Lib/js/local.js"></script>
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.js"></script>
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular.js"></script>
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular-locale_pt-br.js"></script>
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.tablesorter.min.js"></script>    
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.maskedinput.min.js"></script>    
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.validate.min.js"></script>
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/bootstrap.js"></script>    
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/local.js"></script>
 
   </head>
   <body>
