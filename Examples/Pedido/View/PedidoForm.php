@@ -1,7 +1,17 @@
 <?php
   $this->setView("Header");
 ?>
+
 	<div ng-app ng-controller="CtrlApp">
+	
+	<div ng-repeat="alert in alerts">
+		<div class="alert alert-dismissable alert-{{alert.type}}">
+			<button ng-if="alert.close" type="button" class="close" data-dismiss="alert">&times;</button>
+			<strong>{{alert.title}}</strong>
+			{{alert.text}}
+		</div>
+	</div>
+
 	<form id="form" name='form' action="<?php echo SH_WEB_ROOT_APP ?>/Pedido/salvar" method="POST" >  	  
 
 		<input type="text" name="prodPedidos" value="{{prodPedidos}}"/>
@@ -80,6 +90,10 @@
 
 	function CtrlApp($scope) {
 		
+		$scope.alerts = [
+			{type : "danger", title : "titulo", text : "texto", close : true}
+		];
+
 		$scope.prodPedidos 	= [];
 		$scope.produtos 	= [
 			{idProduto : 1, nome : "Mouse", preco : 10.00},
