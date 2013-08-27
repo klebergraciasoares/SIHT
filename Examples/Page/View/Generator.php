@@ -1,8 +1,5 @@
 <?php
-  $this->setView("Header");
-?>
-
-  <?php  
+    $this->setView("Header");
 
     function replaceTags(&$tags){
       $tags = str_replace("<<", "&lt", $tags);
@@ -24,12 +21,11 @@
     replaceTags($DAO);
     replaceTags($view);
     replaceTags($model);
-    replaceTags($sql);
+    replaceTags($sql);   
 
-  ?>
-  
+  ?>  
 
-      <div ng-controller="CtrlApp">
+  <div ng-controller="CtrlApp">
 
       <h1>Code Generator</h1>
       <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>

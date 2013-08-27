@@ -23,7 +23,7 @@
   </head>
   <body>
 
-    <nav  id="navbar-example" role="navigation" class="navbar navbar-inverse navbar-static-top">
+    <nav id="navbar-example" role="navigation" class="navbar navbar-inverse navbar-static-top">
         <div class="container">
           <div class="navbar-header">
             <?php
