@@ -73,7 +73,7 @@
 	* required : yes
 	* example: http://mydomain.com/APP
 	*/
-	define("SH_WEB_ROOT_APP", "http://{$_SERVER["HTTP_HOST"]}/SIHTEXAMPLES/Pedido");
+	define("SH_WEB_ROOT_APP", "http://{$_SERVER["HTTP_HOST"]}/SIHT/MyProject/Pedido");
 
 	/**
 	* define SH_WEB_ROOT_LIB constant: where is the Lib application folder;
@@ -81,7 +81,7 @@
 	* required : yes
 	* example: http://mydomain.com/APP/Lib
 	*/
-	define("SH_WEB_ROOT_LIB", "http://{$_SERVER["HTTP_HOST"]}/SIHTEXAMPLES/Pedido/Lib");
+	define("SH_WEB_ROOT_LIB", "http://{$_SERVER["HTTP_HOST"]}/SIHT/MyProject/Lib");
 	
 	/**
 	* define SH_INIT_CLASS constant: defines the class that will be executed when there is no parameter {SH_HTA_PARAM_NAME}1
