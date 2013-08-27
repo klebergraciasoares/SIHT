@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app lang="pt">
   <head>
-    <title>Project Name</title>
+    <title>Project Name X</title>
     
     <meta charset="iso-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
