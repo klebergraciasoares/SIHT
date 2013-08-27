@@ -1,0 +1,23 @@
+<<?php<span ng-if="documentation">
+/**
+* Controller for Class {{classname}}
+* @package       Controller
+*/</span>
+  class {{firstUpper(classname)}}Controller extends Controller
+  {
+    protected ${{firstLower(classname)}};
+    protected ${{firstLower(classname)}}s = array();    
+
+    public function __construct()
+    {
+      parent::__construct();
+
+      $this->{{firstLower(classname)}} = new {{firstUpper(classname)}}();
+    }
+
+    public function index()
+    {
+      $this->setView("{{firstUpper(classname)}}View");
+    }
+  }
+?>>

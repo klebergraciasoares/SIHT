@@ -1,0 +1,8 @@
+<span ng-if="sqlSelect">$sql = "SELECT <span ng-repeat="atr in atributes">{{atr.name}}<span ng-if="!$last">,</span></span> FROM {{firstUpper(classname)}} WHERE <span ng-repeat="atr in atributes | filter:{pk : true}"><span ng-if="atr.pk"><span ng-if="$index > 0"> AND </span>{{atr.name}} = <span ng-if="sqlPDO">:{{atr.name}}</span><span ng-if="!sqlPDO"><span ng-if="sqlGetSet">".${{firstLower(classname)}}->get{{firstUpper(atr.name)}}()."</span><span ng-if="!sqlGetSet">{${{atr.name}}}</span></span></span></span>";
+<span ng-if="sqlPDO">$query = $this->pdo->prepare($sql);
+$query->execute();
+$fetch = $query->fetch(PDO::<span ng-if="sqlFetch=='A'">FETCH_ASSOC</span><span ng-if="sqlFetch=='O'">FETCH_OBJ</span><span ng-if="sqlFetch=='R'">FETCH_NUM</span>);
+<div ng-repeat="atr in atributes | filter:{pk:true}"><span ng-if="sqlPDOBindParam">$query->bindParam(":{{atr.name}}",<span ng-if="sqlGetSet">${{firstLower(classname)}}->get{{firstUpper(atr.name)}}()</span><span ng-if="!sqlGetSet">${{(atr.name)}}</span>,PDO::PARAM_STR);</span></span></div></span>
+<span ng-if="sqlGetSet">${{firstLower(classname)}} = new {{firstUpper(classname)}}();
+<div ng-repeat="atr in atributes">${{firstLower(classname)}}->set{{firstUpper(atr.name)}}(<span ng-if="sqlFetch=='A'">$fetch["{{atr.name}}"]</span><span ng-if="sqlFetch=='O'">$fetch->{{atr.name}}</span><span ng-if="sqlFetch=='R'">$fetch[{{$index}}]</span>);</div></span><span ng-if="!sqlGetSet"><div ng-repeat="atr in atributes">${{atr.name}} = <span ng-if="sqlFetch=='A'">$fetch["{{atr.name}}"]</span><span ng-if="sqlFetch=='O'">$fetch->{{atr.name}}</span><span ng-if="sqlFetch=='R'">$fetch[{{$index}}]</span>;</div></span>
+</span>

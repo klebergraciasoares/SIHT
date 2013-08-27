@@ -1,0 +1,22 @@
+<<?php<span ng-if="documentation">
+/**
+* Model Class {{firstUpper(classname)}}
+* @package       Model
+*/</span>
+  class {{firstUpper(classname)}}
+  {<div ng-repeat="atr in atributes">    private ${{firstLower(atr.name)}};</div>
+    public function __construct()
+    {
+
+    }<div ng-repeat="atr in atributes">
+    public function set{{firstUpper(atr.name)}}(${{firstLower(atr.name)}})
+    {
+      $this->{{firstLower(atr.name)}} = ${{firstLower(atr.name)}};
+    }
+
+    public function get{{firstUpper(atr.name)}}()
+    {
+      return $this->{{firstLower(atr.name)}};
+    }</div>
+  }
+?>>
