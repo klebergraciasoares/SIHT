@@ -4,7 +4,7 @@
 	{		
 		private $idCliente;
 		private $nome;
-		private $email;		
+		private $email;
 		private $cpf;
 		private $rg;
 		private $dataExpedicao;
