@@ -54,59 +54,34 @@
             <th class="col-md-1 hidden-xs">Preço</th>            
             <th class="col-md-1 text-center">Ações</th>		           
           </tr>
-          <tr ng-repeat="prod in produtos">
-          	<td class="text-center">{{prod.idProduto}}</td>
-          	<td>{{prod.nome}}</td>
-          	<td>{{prod.preco| currency:"R$ "}}</td>   
-          	<td class="text-right" nowrap>
-            	<a href="" class="btn btn-warning btn-xs" title="Alterar"><i class="glyphicon glyphicon-edit"></i> </a>				            	
-            	<button type="button" class="btn btn-danger btn-xs" title="Excluir" onclick="if(confirm('Deseja remover o cliente?')) { document.location.href='#' }"><i class="glyphicon glyphicon-trash"></i> </button>								
-            </td>       	
-          </tr>
+          <tbody>
+	          <tr ng-repeat="prod in produtos">
+	          	<td class="text-center">{{prod.idProduto}}</td>
+	          	<td>{{prod.nome}}</td>
+	          	<td>{{prod.preco| currency:"R$ "}}</td>   
+	          	<td class="text-right" nowrap>
+	            	<a href="" class="btn btn-warning btn-xs" title="Alterar"><i class="glyphicon glyphicon-edit"></i> </a>				            	
+	            	<button type="button" class="btn btn-danger btn-xs" title="Excluir" onclick="if(confirm('Deseja remover o cliente?')) { document.location.href='#' }"><i class="glyphicon glyphicon-trash"></i> </button>								
+	            </td>       	
+	          </tr>
+          </tbody>
         </thead>
-        <tbody>
-        	<?php		        		
-
-        		/*for($i=(($NUM_PG-1) * $REG_PG);$i<($REG_PG * ($NUM_PG)) && $i<count($this->clientes);$i++)
-        		{
-        			$cliente = $this->clientes[$i];
-
-        			$urlAlterar = SH_WEB_ROOT_APP . "/Cliente/alterar/" . $cliente->getIdCliente();
-        			$urlExcluir = SH_WEB_ROOT_APP . "/Cliente/excluir/" . $cliente->getIdCliente();
-        	?>
-		          <tr class="<?php echo $cliente->getStatus()=="I" ? "danger" : "" ?>">
-		            <td class="text-center"><?php echo $cliente->getIdCliente() ?></td>
-		            <td><?php echo $cliente->getNome() ?></td>
-		            <td class="hidden-xs"><?php echo $cliente->getEstado() ?></td>
-		            <td class="hidden-xs"><?php echo $cliente->getCidade() ?></td>
-		            <td class="hidden-xs"><?php echo $cliente->getCpf() ?></td>				            
-		            <td class="text-right" nowrap>
-		            	<a href="<?php echo $urlAlterar?>" class="btn btn-warning btn-xs" title="Alterar"><i class="glyphicon glyphicon-edit"></i> </a>				            	
-		            	<button type="button" class="btn btn-danger btn-xs" title="Excluir" onclick="if(confirm('Deseja remover o cliente?')) { document.location.href='<?php echo $urlExcluir?>' }"><i class="glyphicon glyphicon-trash"></i> </button>								
-		            </td>
-		          </tr>
-          <?php
-          		}*/
-          ?>
-          
-        </tbody>
       </table>		      
-      </div>
+    </div>
 
-      <?php
-			/*if(count($this->clientes) == 0)
-      		{
-      			$alert = new Alert("ATENÇÃO:","Nenhum registro encontrado!",Alert::$INFO);
-				echo $alert->getHtml();
-      		}*/
-      ?>
+	<div ng-if="produtos.length == 0" class="alert alert-dismissable alert-info">
+       <button ng-if="alert.close" type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Atenção</strong>
+        Nenhum registro encontrado!
+    </div>     
 
-      <hr>
-
-      {{produtos.length}}
-
+    <hr>
+	
+	<div class="pull-right">
+		<h4><span class="label label-default">Produtos: {{produtos.length}}</span></h4>      
+	</div>
       
-      <button ng-click="atualizar()">atualizar</button>
+    <button ng-click="atualizar()">atualizar</button>
 
     <div class="text-center">
       	<?php
@@ -122,7 +97,7 @@
 
 		function CtrlApp($scope,$http, $templateCache) 
 		{
-			$scope.produtos = [];			
+			$scope.produtos = [];
 
 			$scope.init = function (){
 				$scope.atualizar();
@@ -134,7 +109,6 @@
 			      success(function(data, status) {
 			      	$scope.produtos = data.produtos;
 			      	$scope.setAlerts(data.alerts);
-
 			      }).
 			      error(function(data, status) {
 			       alert('erro');

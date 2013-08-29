@@ -51,6 +51,13 @@
       $produtos[] = $produto->jsonSerialize();     
       $produtos[] = $produto->jsonSerialize();     
       $produtos[] = $produto->jsonSerialize();
+      $produtos[] = $produto->jsonSerialize();
+      $produtos[] = $produto->jsonSerialize();
+      $produtos[] = $produto->jsonSerialize();
+      $produtos[] = $produto->jsonSerialize();
+      $produtos[] = $produto->jsonSerialize();
+      $produtos[] = $produto->jsonSerialize();
+      $produtos[] = $produto->jsonSerialize();
 
       $retorno = array(
           "sucess"  => true,
