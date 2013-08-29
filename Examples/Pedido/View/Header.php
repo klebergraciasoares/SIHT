@@ -21,7 +21,7 @@
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/local.js"></script>
 
   </head>
-  <body>
+  <body ng-app>
 
     <nav id="navbar-example" role="navigation" class="navbar navbar-inverse navbar-static-top">
         <div class="container">
@@ -83,7 +83,28 @@
         </div>        
       </nav>
 
-      <div class="container">
+      <div class="container" ng-controller="CtrlSystem">
+
+        <div ng-repeat="alert in alerts">
+          <div class="alert alert-dismissable alert-{{alert.type}}">
+            <button ng-if="alert.close" type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>{{alert.title}}</strong>
+            {{alert.text}}
+          </div>
+        </div>
+
+        <script type="text/javascript">
+
+          function CtrlSystem($scope,$http, $templateCache) 
+          {       
+              $scope.alerts = [];
+
+              $scope.setAlerts = function (alerts){
+                $scope.alerts = alerts;
+              }
+          }
+
+        </script>
 
       <?php
         echo $this->showAlerts();
