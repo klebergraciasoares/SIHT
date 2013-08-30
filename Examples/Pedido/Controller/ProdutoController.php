@@ -31,7 +31,28 @@
       $this->setView("ProdutoLista");
     }
 
-    public function JSONList()
+    public function RequestExcluir()
+    {      
+      $produto = isset($_POST["produto"]) ? (object) $_POST["produto"]  : new stdClass();
+
+      $produtoDAO = new ProdutoDAO();
+
+      $sucess = $produtoDAO->delete($produto->idProduto);
+
+      if($sucess)
+          $alert = array("type"=>"success","title"=>"Atenção:","text"=>"Produto excluido com sucesso!","close"=>true);
+      else
+          $alert = array("type"=>"warning","title"=>"Atenção:","text"=>"Erro ao excluir produto: {$produto->idProduto}!","close"=>true);
+
+      $retorno = array(
+          "sucess"  => true,          
+          "alerts"  => array($alert)
+      );
+
+      echo json_encode($retorno);
+    }
+
+    public function RequestList()
     {
       //if(!$_POST) exit();
 
@@ -46,29 +67,14 @@
           "sucess"  => true,
           "produtos"=> $produtos,
           "alerts"  => array(
-              //array("type"=>"danger","title"=>"teste","text"=>"ol� mundo","close"=>true),
-              //array("type"=>"warning","title"=>"teste","text"=>"ol� mundo","close"=>true)
-              array("type"=>"warning","title"=>"teste","text"=>print_r($filter,true),"close"=>true)
+              //array("type"=>"danger","title"=>"teste","text"=>"olá mundo","close"=>true),
+              //array("type"=>"warning","title"=>"teste","text"=>"olá mundo","close"=>true)
+              //array("type"=>"warning","title"=>"teste","text"=>print_r($filter,true),"close"=>true)
           )
       );
 
       echo json_encode($retorno);
       
     }
-
-    /*private function reflect($object)
-    {
-      $o = new stdClass();
-      $reflect = new ReflectionClass($object);
-      $props   = $reflect->getProperties();
-
-      foreach ($props as $prop) {        
-        $reflectionProperty = $reflect->getProperty($prop->getName());        
-        $reflectionProperty->setAccessible(true);        
-        $o->{$prop->getName()} = $reflectionProperty->getValue($object);        
-      }
-
-      return $o;
-    }*/
   }
 ?>

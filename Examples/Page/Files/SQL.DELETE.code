@@ -1,4 +1,4 @@
 <span ng-if="sqlDelete">$sql = "DELETE FROM {{firstUpper(classname)}} WHERE <span ng-repeat="atr in atributes | filter:{pk : true}"><span ng-if="atr.pk"><span ng-if="$index > 0"> AND </span>{{atr.name}} = <span ng-if="sqlPDO">:{{atr.name}}</span><span ng-if="!sqlPDO"><span ng-if="sqlGetSet">".${{firstLower(classname)}}->get{{firstUpper(atr.name)}}()."</span><span ng-if="!sqlGetSet">{${{atr.name}}}</span></span></span></span>";
 <span ng-if="sqlPDO">$query = $this->pdo->prepare($sql);
-<span ng-repeat="atr in atributes | filter:{pk : true}"><span ng-if="sqlPDOBindParam">$query->bindParam(":{{atr.name}}", <span ng-if="sqlGetSet">${{firstLower(classname)}}->get{{firstUpper(atr.name)}}()</span><span ng-if="!sqlGetSet">${{(atr.name)}}</span>,PDO::PARAM_STR);</span>
+<span ng-repeat="atr in atributes | filter:{pk : true}"><span ng-if="sqlPDOBindParam">$query->bindParam(":{{atr.name}}", <span ng-if="sqlGetSet">${{firstLower(classname)}}->get{{firstUpper(atr.name)}}()</span><span ng-if="!sqlGetSet">${{(atr.name)}}</span>,PDO::PARAM_INT);</span>
 </span>$query->execute();</span></span>

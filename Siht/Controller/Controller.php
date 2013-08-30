@@ -38,10 +38,7 @@
 		* @access public 
 		* @return void 
 		*/
-		public function __construct(){
-			if(!session_id())
-				session_start();
-
+		public function __construct(){			
 			$this->getPost();
 			$this->getGet();
 		}
@@ -135,26 +132,18 @@
 			}
 			header("location:" . SH_WEB_ROOT_APP . "/" . $url);
 			exit();
-		}
-
-		public function setSession($index, $value){
- 			$_SESSION[$index] = $value;
- 		}
-
- 		public function getSession($index){
- 			return isset($_SESSION[$index]) ? $_SESSION[$index] : null;
- 		}
+		}		
 
 		public function setAlert(Alert $alert){
- 			$_SESSION["SH_ALERTS"][] = $alert;
+ 			Session::setValue("SH_ALERTS",$alert,true);
  		}
 
  		public function getAlerts(){ 			
- 			return isset($_SESSION["SH_ALERTS"]) ? $_SESSION["SH_ALERTS"] : array();;
+ 			return Session::getValue("SH_ALERTS");
  		}
 
  		public function clearAlerts(){ 			
- 			$_SESSION["SH_ALERTS"] = array();
+ 			Session::setValue("SH_ALERTS",array());
  		}		
 
  		public function showAlerts(){ 			

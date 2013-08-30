@@ -14,7 +14,7 @@
 
 		public function acessar()
 		{
-			$this->setSession("S_LOGADO",false);
+			Session::setValue("S_LOGADO",false);
 			$this->setView("LoginForm");
 		}
 
@@ -34,7 +34,7 @@
 		{			
 			if($this->post["usuario"] == "admin" && $this->post["senha"] == "admin")
 			{
-				$this->setSession("S_LOGADO",true);
+				Session::setValue("S_LOGADO",true);
 				$this->redirectView("Principal");
 			}else{
 				$this->setAlert(new Alert("ATENÇÃO:","Usuário ou senha inválidos!",Alert::$DANGER));

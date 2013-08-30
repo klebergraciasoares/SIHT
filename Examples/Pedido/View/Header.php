@@ -27,7 +27,7 @@
         <div class="container">
           <div class="navbar-header">
             <?php
-                  if($this->getSession("S_LOGADO"))
+                  if(Session::getValue("S_LOGADO"))
                   {
             ?>
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">            
@@ -42,7 +42,7 @@
           </div>
 
             <?php
-                  if($this->getSession("S_LOGADO"))
+                  if(Session::getValue("S_LOGADO"))
                   {
             ?>
 
@@ -100,8 +100,16 @@
               $scope.alerts = [];
 
               $scope.setAlerts = function (alerts){
-                $scope.alerts = alerts;
+                for(var i=0;i<alerts.length;i++)
+                  $scope.alerts.push(alerts[i]);
               }
+
+              $scope.range = function(min, max, step){
+                step = (step == undefined) ? 1 : step;
+                var input = [];
+                for (var i=min; i<=max; i=i+step) input.push(i);
+                return input;
+              };
           }
 
         </script>

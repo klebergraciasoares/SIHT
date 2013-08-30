@@ -39,9 +39,14 @@
       return $produto;
     }
 
-    public function delete($id)
+    public function delete($idProduto)
     {
-      return true;
+      $sql = "DELETE FROM produto WHERE idProduto = :idProduto";
+      $query = $this->pdo->prepare($sql);
+      $query->bindParam(":idProduto", $idProduto,PDO::PARAM_INT);
+      $query->execute();
+
+      return $query->rowCount() == 1;
     }
 
     public function lista($filtros)
@@ -54,7 +59,7 @@
         WHERE 1=1 
           " . ( isset($filtros->idProduto)  ? " AND idProduto = :idProduto " : "" ). "
           " . ( isset($filtros->nome)       ? " AND nome like :nome " : "" ). "
-          ";
+        ORDER BY nome";
 
       $query = $this->pdo->prepare($sql);
 

@@ -17,7 +17,7 @@
 		* @static
 		* @return void
 		*/
-		public static function start(){
+		public static function run(){
 			if(defined(constant("SH_HTA_PARAM_NAME")."1"))	$class 	= constant(constant("SH_HTA_PARAM_NAME")."1")."Controller";
 			if(defined(constant("SH_HTA_PARAM_NAME")."2"))	$method = constant(constant("SH_HTA_PARAM_NAME")."2");
 

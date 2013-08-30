@@ -10,7 +10,8 @@
 		
 		public function index()
 		{			
-			if($this->getSession("S_LOGADO"))
+			if(Session::getValue("S_LOGADO"))
+			if(Session::getValue("S_LOGADO"))
 				$this->setView("Principal");
 			else
 				$this->redirectView("Login/acessar");

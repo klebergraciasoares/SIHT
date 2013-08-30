@@ -11,7 +11,7 @@
 
 			$this->cliente = new Cliente();
 
-			if(!$this->getSession("S_LOGADO"))
+			if(!Session::getValue("S_LOGADO"))
 				$this->redirectView("Login/expirou");
 
 			if(false) //Permissão do Módulo

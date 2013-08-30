@@ -5,5 +5,5 @@
 	Load::defineAutoLoad();	
 	Load::defineDirLoad();
 	Load::defineUriLoad($_GET);
-	Load::start();
+	Load::run();
 ?>  
