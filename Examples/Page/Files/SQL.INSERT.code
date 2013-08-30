@@ -1,4 +1,4 @@
 <span ng-if="sqlInsert">$sql = "INSERT INTO {{firstUpper(classname)}}(<span ng-repeat="atr in atributes | filter:isNotPk">{{atr.name}}<span ng-if="!$last">,</span></span>) 
-	VALUES(<span ng-repeat="atr in atributes | filter:isNotPk"><span ng-if="sqlPDO">:{{atr.name}}</span><span ng-if="!sqlPDO"><span ng-if="sqlGetSet">'".${{firstLower(classname)}}->get{{firstUpper(atr.name)}}()."'</span><span ng-if="!sqlGetSet">'{${{(atr.name)}}}'</span></span><span ng-if="!$last">,</span></span>);
+	VALUES(<span ng-repeat="atr in atributes | filter:isNotPk"><span ng-if="sqlPDO">:{{atr.name}}</span><span ng-if="!sqlPDO"><span ng-if="sqlGetSet">'".${{firstLower(classname)}}->get{{firstUpper(atr.name)}}()."'</span><span ng-if="!sqlGetSet">'{${{(atr.name)}}}'</span></span><span ng-if="!$last">,</span></span>");
 <span ng-if="sqlPDO">$query = $this->pdo->prepare($sql);
 <span ng-if="sqlPDOBindParam"><div ng-repeat="atr in atributes | filter:isNotPk">$query->bindParam(":{{atr.name}}",<span ng-if="sqlGetSet">${{firstLower(classname)}}->get{{firstUpper(atr.name)}}()</span><span ng-if="!sqlGetSet">${{(atr.name)}}</span>,PDO::PARAM_STR);</div></span>$query->execute();</span></span></span>

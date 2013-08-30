@@ -35,36 +35,20 @@
     {
       //if(!$_POST) exit();
 
+      $filter = isset($_POST["filter"]) ? (object) $_POST["filter"]  : new stdClass();
+      
       $produtos = array();
 
-      $produto = new Produto();
-      $produto->setIdProduto("1");
-      //$produto->setIdSubGrupo("Mouse");
-      $produto->setNome("Mouse");
-      $produto->setPreco("10.00");
-      $produto->setDetalhes("teste");
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();     
-      $produtos[] = $produto->jsonSerialize();     
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();
-      $produtos[] = $produto->jsonSerialize();
+      $produtoDAO = new ProdutoDAO();
+      $produtos = $produtoDAO->lista($filter);
 
       $retorno = array(
           "sucess"  => true,
           "produtos"=> $produtos,
           "alerts"  => array(
-              array("type"=>"danger","title"=>"teste","text"=>"olá mundo","close"=>true),
-              array("type"=>"warning","title"=>"teste","text"=>"olá mundo","close"=>true)
+              //array("type"=>"danger","title"=>"teste","text"=>"olá mundo","close"=>true),
+              //array("type"=>"warning","title"=>"teste","text"=>"olá mundo","close"=>true)
+              array("type"=>"warning","title"=>"teste","text"=>print_r($filter,true),"close"=>true)
           )
       );
 

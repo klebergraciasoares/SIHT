@@ -1,8 +1,5 @@
 <?php
   	$this->setView("Header");
-
-  	$REG_PG 	= 5;
-	$NUM_PG 	= defined("HTA_PARAM3") && is_numeric(HTA_PARAM3)? HTA_PARAM3 : 1;
 ?>
 
 <div ng-controller="CtrlApp" ng-init="init()">	
@@ -13,39 +10,45 @@
     <div class="row">
     	<div class="col-lg-12">
 			<a href="#filter" data-toggle="modal" class="btn btn btn-primary btn-sm"><i class="glyphicon glyphicon-search"></i> Buscar</a>
-          	<a href="<?php echo SH_WEB_ROOT_APP ?>/Produto/listar" class="btn btn-danger btn-sm" <?php if(!$this->post) echo "disabled" ?>><i class="glyphicon glyphicon-remove"></i> Limpar</a>
-    		<a href="<?php echo SH_WEB_ROOT_APP ?>/Produto/cadastrar" class="btn btn-primary pull-right btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Produto</a>
+    		<button type="button" ng-click="busca={};listar()" data-dismiss="modal" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Limpar</button>
+		    <a href="<?php echo SH_WEB_ROOT_APP ?>/Produto/cadastrar" class="btn btn-primary pull-right btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Produto</a>
     	</div>
     </div>
 
-	<form  class="form-horizontal" action="<?php echo SH_WEB_ROOT_APP ?>/Produto/listar" method="POST">
-	  <div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="filterLabel" aria-hidden="true">
-	    <div class="modal-dialog">
-	      <div class="modal-content">
-	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	          <h4 class="modal-title"><i class="glyphicon glyphicon-search"></i> Busca de produtos</h4>
-	        </div>
-	        <div class="modal-body">
-	        	<div class="form-group">
-					<label class="col-sm-2" for="filIdCliente">Código</label>
-					<div class="col-sm-4">
-				      <input name="filIdCliente" id="filIdCliente" type="text" class="form-control" placeholder="Código do Cliente" value="<?php echo isset($this->post["filIdCliente"]) ? $this->post["filIdCliente"] : ""?>">							
-				    </div>				    
-				</div>									
-		    </div>
-	        <div class="modal-footer" >
-	        	<button type="submit" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-	          	<button type="button" class="btn btn-danger btn-sm" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove"></i> Fechar</button>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
+    <form  class="form-horizontal">
+		<div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="filterLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			  <div class="modal-content">
+			    <div class="modal-header">
+			      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			      <h4 class="modal-title"><i class="glyphicon glyphicon-search"></i> Busca de produtos</h4>
+			    </div>
+			    <div class="modal-body">
+			    	<div class="form-group">
+						<label class="col-sm-2">Código</label>
+						<div class="col-sm-4">
+					      <input ng-model="busca.idProduto" type="text" class="form-control" placeholder="Código do Produto">							
+					    </div>    
+					</div>	
+					<div class="form-group">
+						<label class="col-sm-2">Nome</label>
+						<div class="col-sm-10">
+					      <input ng-model="busca.nome" type="text" class="form-control" placeholder="Nome do Produto">							
+					    </div>    
+					</div>									
+			    </div>
+			    <div class="modal-footer" >
+			    	<button type="button" ng-click="listar()" data-dismiss="modal" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-search"></i> Buscar</button>
+			      	<button type="button" class="btn btn-danger btn-sm" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove"></i> Fechar</button>
+			    </div>
+			  </div>
+			</div>
+		</div>
 	</form>
 
     <hr>
 
-	<div class="table-responsive">
+	<div ng-if="produtos.length > 0" class="table-responsive">
 	 <table class="table table-hover" id="tableList">
         <thead>
           <tr>
@@ -78,16 +81,15 @@
     <hr>
 	
 	<div class="pull-right">
-		<h4><span class="label label-default">Produtos: {{produtos.length}}</span></h4>      
+		<h4><span class="label label-primary">Produtos: {{produtos.length}}</span></h4>		
 	</div>
       
-    <button ng-click="atualizar()">atualizar</button>
-
     <div class="text-center">
-      	<?php
-      		//$pagination = new Pagination(SH_WEB_ROOT_APP."/Cliente/listar",$this->clientes,$REG_PG,$NUM_PG);
-      		//echo $pagination->getHtml();
-      	?>      				    
+      	<ul class="pagination">
+        <li class="disabled"><a href="#">&laquo;</a></li>        
+        <li ng-repeat="i in range(1,(produtos.length),2)"><a href="#">{{$index+1}}</a></li>  
+        <li><a href="#">&raquo;</a></li>     
+     </ul>				    
 	</div>
 </div>
 
@@ -98,22 +100,35 @@
 		function CtrlApp($scope,$http, $templateCache) 
 		{
 			$scope.produtos = [];
+			$scope.busca 	= {};
+			$scope.page 	= 1;
 
 			$scope.init = function (){
-				$scope.atualizar();
+				$scope.listar();
 			}
 			
-			$scope.atualizar = function (){				
+			$scope.listar = function (){
 
-				$http({method: "POST", url: "http://127.0.0.1/SIHT/Examples/Pedido/Produto/JSONList", cache: $templateCache}).
-			      success(function(data, status) {
+				$http({
+					method	: "POST", 
+					url		: "http://localhost/SIHT/Examples/Pedido/Produto/JSONList", 
+					cache 	: $templateCache,
+					data 	: $.param({filter : $scope.busca}),
+					headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+				}).success(function(data, status) {
 			      	$scope.produtos = data.produtos;
 			      	$scope.setAlerts(data.alerts);
-			      }).
-			      error(function(data, status) {
-			       alert('erro');
+			    }).error(function(data, status) {
+			       $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
 			    });
 			};
+
+			 $scope.range = function(min, max, step){
+			    step = (step == undefined) ? 1 : step;
+			    var input = [];
+			    for (var i=min; i<=max; i=i+step) input.push(i);
+			    return input;
+			  };
 
 		  
 		}
