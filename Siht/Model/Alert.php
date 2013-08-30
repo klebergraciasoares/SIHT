@@ -7,7 +7,7 @@
 * @version 1.0
 * @copyright getsiht project 2013 
 */	
- 	class Alert
+ 	class Alert implements JsonSerializable
  	{
  		public static $DANGER 	= "danger";
  		public static $SUCESS 	= "success";
@@ -26,6 +26,11 @@
  			$this->setType($type);
  			$this->setClose($close);
  		}
+
+ 		public function jsonSerialize()
+	    {
+	        return get_object_vars($this);
+	    }
 
  		public function setTitle($title){
  			$this->title = $title;

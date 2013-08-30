@@ -80,7 +80,7 @@
         $produto->setPreco($fetch["preco"]);
         $produto->setDetalhes($fetch["detalhes"]);
 
-        $produtos[] = $produto->jsonSerialize();
+        $produtos[] = $produto;
       }
 
       return $produtos;

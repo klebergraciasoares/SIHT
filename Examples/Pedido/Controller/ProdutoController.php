@@ -32,21 +32,18 @@
     }
 
     public function RequestExcluir()
-    {      
+    { 
+      $retorno = new stdClass();     
+
       $produto = isset($_POST["produto"]) ? (object) $_POST["produto"]  : new stdClass();
 
       $produtoDAO = new ProdutoDAO();
-      $sucess = $produtoDAO->delete($produto->idProduto);
-
-      $retorno = new stdClass();
-
-      if($sucess)
-          $alert = array("type"=>"success","title"=>"Atenção:","text"=>"Produto excluido com sucesso!","close"=>true);
+      $retorno->sucess = $produtoDAO->delete($produto->idProduto);
+            
+      if($retorno->sucess)          
+          $retorno->alerts[] = new Alert("ATENÇÃO:","Produto excluido com sucesso",Alert::$SUCESS);
       else
-          $alert = array("type"=>"warning","title"=>"Atenção:","text"=>"Erro ao excluir produto: {$produto->idProduto}!","close"=>true);
-
-      $retorno->sucess = true;  
-      $retorno->alerts[] = $alert;  
+          $retorno->alerts[] = new Alert("ATENÇÃO:","Produto excluido com sucesso",Alert::$DANGER);          
 
       echo json_encode($retorno);
     }
