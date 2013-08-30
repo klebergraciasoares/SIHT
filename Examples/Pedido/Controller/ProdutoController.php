@@ -36,18 +36,17 @@
       $produto = isset($_POST["produto"]) ? (object) $_POST["produto"]  : new stdClass();
 
       $produtoDAO = new ProdutoDAO();
-
       $sucess = $produtoDAO->delete($produto->idProduto);
+
+      $retorno = new stdClass();
 
       if($sucess)
           $alert = array("type"=>"success","title"=>"Atenção:","text"=>"Produto excluido com sucesso!","close"=>true);
       else
           $alert = array("type"=>"warning","title"=>"Atenção:","text"=>"Erro ao excluir produto: {$produto->idProduto}!","close"=>true);
 
-      $retorno = array(
-          "sucess"  => true,          
-          "alerts"  => array($alert)
-      );
+      $retorno->sucess = true;  
+      $retorno->alerts[] = $alert;  
 
       echo json_encode($retorno);
     }
