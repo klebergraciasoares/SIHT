@@ -69,7 +69,7 @@
 	          	<td>{{prod.nome}}</td>
 	          	<td nowrap class="text-right">{{prod.preco| currency:"R$ "}}</td>   
 	          	<td class="text-right" nowrap>
-	            	<a href="<?php echo SH_WEB_ROOT_APP ?>/Produto/alterar/{{prod.idProduto}}" class="btn btn-warning btn-xs" title="Alterar"><i class="glyphicon glyphicon-edit"></i> </a>				            	
+	            	<a ng-href="<?php echo SH_WEB_ROOT_APP ?>/Produto/alterar/{{prod.idProduto}}" class="btn btn-warning btn-xs" title="Alterar"><i class="glyphicon glyphicon-edit"></i> </a>				            	
 	            	<button type="button" class="btn btn-danger btn-xs" title="Excluir" ng-click="excluir(prod)"><i class="glyphicon glyphicon-trash"></i> </button>								
 	            </td>       	
 	          </tr>
@@ -131,7 +131,7 @@
 					headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
 				}).success(function(data, status) {
 			      	$scope.produtos = data.produtos;
-			      	$scope.setAlerts(data.alerts);
+			      	$scope.showAlerts();
 			    }).error(function(data, status) {
 			       $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
 			    });
@@ -140,15 +140,15 @@
 			$scope.excluir = function (object){
 				if(!confirm("Confirma exclusão do Produto:" + object.nome +  "?"))
 					return;
-
+				
 				$http({
 					method	: "POST",
-					url		: "http://localhost/SIHT/Examples/Pedido/Produto/RequestExcluir",
+					url		: "http://localhost/SIHT/Examples/Pedido/Produto/RequestDelete",
 					cache 	: $templateCache,
 					data 	: $.param({produto : object}),
 					headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=ISO8859-1'}
 				}).success(function(data, status) {					
-			      	$scope.setAlerts(data.alerts);
+			      	$scope.showAlerts();
 			      	if(data.sucess) 
 			      		$scope.listar();
 			    }).error(function(data, status) {

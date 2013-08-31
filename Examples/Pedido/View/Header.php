@@ -83,7 +83,7 @@
         </div>        
       </nav>
 
-      <div class="container" ng-controller="CtrlSystem">
+      <div class="container" ng-controller="CtrlSystem" ng-init="init()">
 
         <div ng-repeat="alert in alerts">
           <div class="alert alert-dismissable alert-{{alert.type}}">
@@ -99,9 +99,8 @@
           {       
               $scope.alerts = [];
 
-              $scope.setAlerts = function (alerts){
-                for(var i=0;i<alerts.length;i++)
-                  $scope.alerts.push(alerts[i]);
+              $scope.init = function (){               
+                  $scope.showAlerts();
               }
 
               $scope.range = function(min, max, step){
@@ -110,10 +109,30 @@
                 for (var i=min; i<=max; i=i+step) input.push(i);
                 return input;
               };
+
+              /**
+              *  Function for Control Alerts
+              */
+
+              $scope.setAlerts = function (alerts){
+                for(var i=0;i<alerts.length;i++)
+                  $scope.alerts.push(alerts[i]);
+              }
+
+              $scope.showAlerts = function (){
+                $http({
+                  method  : "POST",
+                  url     : "http://localhost/SIHT/Examples/Pedido/Alert/RequestAlerts", 
+                  cache   : $templateCache,
+                  headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+                }).success(function(data, status) {                   
+                      $scope.setAlerts(data.alerts);
+                });
+              };
           }
 
         </script>
 
       <?php
-        echo $this->showAlerts();
+        //echo $this->showAlerts();
       ?>

@@ -35,10 +35,36 @@
       return $query->execute();
     }
 
-    public function bind($id)
+    public function bind($idProduto)
     {
-      $produto = new Produto();      
-      return $produto;
+      $produto = new Produto();
+    
+      $sql = 
+        "SELECT a.idProduto,a.nome,a.preco,a.detalhes 
+        FROM 
+          produto as a
+        WHERE a.idProduto = :idProduto";
+
+      $query = $this->pdo->prepare($sql);
+   
+      $query->bindParam(":idProduto", $idProduto,PDO::PARAM_INT);
+
+      $query->execute();
+      $fetch = $query->fetch(PDO::FETCH_OBJ);
+
+      if($fetch)
+      {
+        $produto = new Produto();
+        $produto->setIdProduto($fetch->idProduto);
+        //$produto->setSubGrupo($fetch["idSubGrupo"]);
+        $produto->setNome($fetch->nome);
+        $produto->setPreco($fetch->preco);
+        $produto->setDetalhes($fetch->detalhes);
+        
+        return $produto;
+      }else{        
+        return false;
+      }
     }
 
     public function delete($idProduto)
@@ -73,14 +99,14 @@
 
       $query->execute();
 
-      while($fetch = $query->fetch(PDO::FETCH_ASSOC))
+      while($fetch = $query->fetch(PDO::FETCH_OBJ))
       {
         $produto = new Produto();
-        $produto->setIdProduto($fetch["idProduto"]);
+        $produto->setIdProduto($fetch->idProduto);
         //$produto->setSubGrupo($fetch["idSubGrupo"]);
-        $produto->setNome($fetch["nome"]);
-        $produto->setPreco($fetch["preco"]);
-        $produto->setDetalhes($fetch["detalhes"]);
+        $produto->setNome($fetch->nome);
+        $produto->setPreco($fetch->preco);
+        $produto->setDetalhes($fetch->detalhes);
 
         $produtos[] = $produto;
       }

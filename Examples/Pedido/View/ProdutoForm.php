@@ -40,7 +40,7 @@
 	<div class="row pull-right">
 		<div class="form-group col-lg-12 col-sm-12">
 			<button type="button" ng-click="salvar()" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-ok"></i> Salvar</button>
-	    	<a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+	    	<a ng-href="<?php echo SH_WEB_ROOT_APP ?>/Produto/listar" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
 		</div>
 	</div>
 </div>
@@ -50,11 +50,12 @@
 
 		function CtrlApp($scope,$http, $templateCache) 
 		{
-			$scope.produto = {};
+			$scope.produto 	 = {};
 			$scope.subGrupos = [{idSubGrupo : 1, idGrupo : 1, descricao: "Desktop"},{idSubGrupo : 2, idGrupo : 1, descricao: "Tablets"}];
 			
 			$scope.init = function (){
-				
+				//if(true)
+					$scope.recuperar();
 			}
 
 			$scope.salvar = function (){
@@ -64,10 +65,9 @@
 					cache 	: $templateCache,
 					data 	: $.param({produto : $scope.produto}),
 					headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-				}).success(function(data, status) {
-			      	$scope.setAlerts(data.alerts);
+				}).success(function(data, status) {			      	
 			      	if(data.sucess) 
-			      		document.location.href="http://localhost/SIHT/Examples/Pedido/Produto/Listar";
+			      		window.location="http://localhost/SIHT/Examples/Pedido/Produto/Listar";
 			    }).error(function(data, status) {
 			       $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
 			    });
@@ -76,12 +76,12 @@
 			$scope.recuperar = function (){
 				$http({
 					method	: "POST",
-					url		: "http://localhost/SIHT/Examples/Pedido/Produto/RequestBind", 
-					cache 	: $templateCache,
-					//data 	: $.param({produto : $scope.produto}),
+					url		: "http://localhost/SIHT/Examples/Pedido/Produto/RequestEdit/47", 
+					cache 	: $templateCache,					
 					headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
 				}).success(function(data, status) {
-			      	$scope.produto = data.produto;			      	
+					$scope.showAlerts();
+			      	$scope.produto = data.produto;
 			    }).error(function(data, status) {
 			       $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
 			    });
