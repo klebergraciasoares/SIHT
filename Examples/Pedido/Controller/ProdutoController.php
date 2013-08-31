@@ -33,14 +33,14 @@
 
     public function RequestExcluir()
     { 
-      $retorno = new stdClass();     
-
+      $retorno = new stdClass();
+      
       $produto = isset($_POST["produto"]) ? (object) $_POST["produto"]  : new stdClass();
 
       $produtoDAO = new ProdutoDAO();
       $retorno->sucess = $produtoDAO->delete($produto->idProduto);
             
-      if($retorno->sucess)          
+      if($retorno->sucess)
           $retorno->alerts[] = new Alert("ATENÇÃO:","Produto excluido com sucesso",Alert::$SUCESS);
       else
           $retorno->alerts[] = new Alert("ATENÇÃO:","Produto excluido com sucesso",Alert::$DANGER);          

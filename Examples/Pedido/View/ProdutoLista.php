@@ -54,17 +54,17 @@
 
     <hr>
 
-	<div ng-if="(produtos | filter:busca).length > 0" class="table-responsive" style="height:400px;overflow:auto">
+	<div ng-if="(produtos | filter:busca).length > 0" class="table-responsive">
 	 <table class="table table-hover" id="tableList">
         <thead>
-          <tr>
+          <tr>            
             <th class="col-md-1 text-center">Cód.</th>
             <th class="col-md-9">Nome</th>
-            <th class="col-md-1 hidden-xs">Preço</th>            
+            <th class="col-md-1 text-right hidden-xs">Preço</th>            
             <th class="col-md-1 text-center">Ações</th>		           
           </tr>
           <tbody>
-	          <tr ng-repeat="prod in produtos | filter:busca">
+	          <tr ng-repeat="prod in listPagination(produtos) | filter:busca">	          	
 	          	<td class="text-center">{{prod.idProduto}}</td>
 	          	<td>{{prod.nome}}</td>
 	          	<td nowrap class="text-right">{{prod.preco| currency:"R$ "}}</td>   
@@ -87,18 +87,19 @@
     <hr>
 	
 	<div class="pull-right">
-		<h4><span class="label label-primary">Produtos: {{produtos.length}}</span></h4>		
+		<h4><span class="label label-primary">Produtos: {{(produtos | filter:busca).length}}</span></h4>		
 	</div>
       
     <div class="text-center">
       	<ul class="pagination">
         <li class="disabled"><a href="#">&laquo;</a></li>        
-        <li ng-repeat="i in range(1,((produtos | filter:busca).length),5)">
-        	<a href="#" ng-click="setPage($index+1)">{{$index+1}}</a>
+        <li ng-repeat="i in range(1,((produtos | filter:busca).length),regPage)">
+        	<a href ng-click="setPage($index+1)">{{$index+1}}</a>
         </li>
         <li><a href="#">&raquo;</a></li>     
      </ul>				    
 	</div>
+	
 </div>
 
 
@@ -109,7 +110,8 @@
 		{
 			$scope.produtos = [];
 			$scope.busca 	= {};
-			$scope.page 	= 1;
+			$scope.numPage 	= 1;
+			$scope.regPage 	= 5;
 
 			$scope.init = function (){
 				$scope.listar();
@@ -118,7 +120,7 @@
 			$scope.listar = function (){
 				$http({
 					method	: "POST",
-					url		: "http://127.0.0.1/SIHT/Examples/Pedido/Produto/RequestList", 
+					url		: "http://localhost/SIHT/Examples/Pedido/Produto/RequestList", 
 					cache 	: $templateCache,
 					//data 	: $.param({filter : $scope.busca}),
 					headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
@@ -129,6 +131,13 @@
 			       $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
 			    });
 			};
+
+			$scope.listPagination = function (list){
+                var newList = [];
+                for (var i=(($scope.numPage-1) * $scope.regPage); i<($scope.numPage * $scope.regPage) && i<list.length; i++) 
+                	newList.push(list[i]);
+                return newList;
+			}
 
 			$scope.limpar = function (){
 				$scope.busca={};
@@ -141,7 +150,7 @@
 
 				$http({
 					method	: "POST",
-					url		: "http://127.0.0.1/SIHT/Examples/Pedido/Produto/RequestExcluir",
+					url		: "http://localhost/SIHT/Examples/Pedido/Produto/RequestExcluir",
 					cache 	: $templateCache,
 					data 	: $.param({produto : object}),
 					headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=ISO8859-1'}
@@ -155,8 +164,8 @@
 				
 			}
 
-			$scope.setPage= function (page){
-				$scope.page = page;
+			$scope.setPage= function (numPage){
+				$scope.numPage = numPage;
 			}
 		  
 		}
