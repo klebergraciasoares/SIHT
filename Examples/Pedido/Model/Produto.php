@@ -6,7 +6,7 @@
   class Produto implements JsonSerializable
   {
     private $idProduto;
-    private $idSubGrupo;
+    private $subGrupo;
     private $nome;
     private $preco;
     private $detalhes;
@@ -31,14 +31,14 @@
       return $this->idProduto;
     }
 
-    public function setIdSubGrupo($idSubGrupo)
+    public function setSubGrupo($subGrupo)
     {
-      $this->idSubGrupo = $idSubGrupo;
+      $this->subGrupo = $subGrupo;
     }
 
-    public function getIdSubGrupo()
+    public function getSubGrupo()
     {
-      return $this->idSubGrupo;
+      return $this->subGrupo;
     }
 
     public function setNome($nome)

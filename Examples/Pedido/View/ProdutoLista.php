@@ -64,7 +64,7 @@
             <th class="col-md-1 text-center">Ações</th>		           
           </tr>
           <tbody>
-	          <tr ng-repeat="prod in listPagination(produtos) | filter:busca">	          	
+	          <tr ng-repeat="prod in produtos | filter:busca">	          	
 	          	<td class="text-center">{{prod.idProduto}}</td>
 	          	<td>{{prod.nome}}</td>
 	          	<td nowrap class="text-right">{{prod.preco| currency:"R$ "}}</td>   
@@ -116,6 +116,11 @@
 			$scope.init = function (){
 				$scope.listar();
 			}
+
+			$scope.limpar = function (){
+				$scope.busca={};
+				$scope.listar();
+			}
 			
 			$scope.listar = function (){
 				$http({
@@ -131,18 +136,6 @@
 			       $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
 			    });
 			};
-
-			$scope.listPagination = function (list){
-                var newList = [];
-                for (var i=(($scope.numPage-1) * $scope.regPage); i<($scope.numPage * $scope.regPage) && i<list.length; i++) 
-                	newList.push(list[i]);
-                return newList;
-			}
-
-			$scope.limpar = function (){
-				$scope.busca={};
-				$scope.listar();
-			}
 
 			$scope.excluir = function (object){
 				if(!confirm("Confirma exclusão do Produto:" + object.nome +  "?"))
@@ -162,6 +155,13 @@
 			       $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
 			    });
 				
+			}
+
+			$scope.listPagination = function (list){
+                var newList = [];
+                for (var i=(($scope.numPage-1) * $scope.regPage); i<($scope.numPage * $scope.regPage) && i<list.length; i++) 
+                	newList.push(list[i]);
+                return newList;
 			}
 
 			$scope.setPage= function (numPage){

@@ -25,6 +25,11 @@
       $this->setView("ProdutoForm");
     }
 
+    public function alterar()
+    {
+      $this->cadastrar();
+    }
+
     public function listar()
     {
       //file("http://127.0.0.1/SIHT/Examples/Pedido/Produto/JSONList");
@@ -34,43 +39,55 @@
     public function RequestExcluir()
     { 
       $retorno = new stdClass();
-      
+
       $produto = isset($_POST["produto"]) ? (object) $_POST["produto"]  : new stdClass();
 
       $produtoDAO = new ProdutoDAO();
       $retorno->sucess = $produtoDAO->delete($produto->idProduto);
             
       if($retorno->sucess)
-          $retorno->alerts[] = new Alert("ATENÇÃO:","Produto excluido com sucesso",Alert::$SUCESS);
+          $retorno->alerts[] = new Alert("ATENÇÃO:","Produto excluido com sucesso!",Alert::$SUCESS);
       else
-          $retorno->alerts[] = new Alert("ATENÇÃO:","Produto excluido com sucesso",Alert::$DANGER);          
+          $retorno->alerts[] = new Alert("ATENÇÃO:","Erro ao excluir produto!",Alert::$DANGER);          
 
       echo json_encode($retorno);
     }
 
     public function RequestList()
-    {
-      //if(!$_POST) exit();
+    {      
+      $retorno = new stdClass();
 
       $filter = isset($_POST["filter"]) ? (object) $_POST["filter"]  : new stdClass();
-      
-      $produtos = array();
 
       $produtoDAO = new ProdutoDAO();
-      $produtos = $produtoDAO->lista($filter);
-
-      $retorno = array(
-          "sucess"  => true,
-          "produtos"=> $produtos,
-          "alerts"  => array(
-              //array("type"=>"danger","title"=>"teste","text"=>"olá mundo","close"=>true),
-              //array("type"=>"warning","title"=>"teste","text"=>"olá mundo","close"=>true)
-              //array("type"=>"warning","title"=>"teste","text"=>print_r($filter,true),"close"=>true)
-          )
-      );
+      $retorno->produtos = $produtoDAO->lista($filter);
 
       echo json_encode($retorno);
-      
+
+    }
+
+    public function RequestSave()
+    {
+      $retorno = new stdClass();
+
+      $object = isset($_POST["produto"]) ? (object) $_POST["produto"]  : new stdClass();
+
+      $produto = new Produto();
+        if(isset($object->idProduto)) $produto->setIdProduto($object->idProduto);
+      $produto->setSubGrupo($object->subGrupo);
+      $produto->setNome($object->nome);
+      $produto->setPreco($object->preco);
+      $produto->setDetalhes($object->detalhes);
+
+      $produtoDAO = new ProdutoDAO();
+      $retorno->sucess = $produtoDAO->save($produto);
+
+      if($retorno->sucess)
+          $retorno->alerts[] = new Alert("ATENÇÃO:","Produto registrado com sucesso!",Alert::$SUCESS);
+      else
+          $retorno->alerts[] = new Alert("ATENÇÃO:","Erro ao salvar produto!",Alert::$DANGER);      
+
+      echo json_encode($retorno);
     }
   }
 ?>

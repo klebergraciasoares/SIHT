@@ -12,7 +12,7 @@
 
     public function save(Produto $produto)
     {
-      if($produto->getIdProduto())
+      if(!$produto->getIdProduto())
       {
         $sql = "INSERT INTO produto(idSubGrupo,nome,preco,detalhes) 
                 VALUES(:idSubGrupo,:nome,:preco,:detalhes)";
@@ -25,12 +25,14 @@
           $query->bindParam(":idProduto", $produto->getIdProduto(),PDO::PARAM_INT);
       }
 
-      $query->bindParam(":idSubGrupo", $produto->getIdSubGrupo(),PDO::PARAM_INT);
+      //$query->bindParam(":idSubGrupo", $produto->getIdSubGrupo(),PDO::PARAM_INT);
+      $idSubGrupo = 1;
+      $query->bindParam(":idSubGrupo",$idSubGrupo,PDO::PARAM_INT);
       $query->bindParam(":nome", $produto->getNome(),PDO::PARAM_STR);
       $query->bindParam(":preco", $produto->getPreco(),PDO::PARAM_STR);
       $query->bindParam(":detalhes", $produto->getDetalhes(),PDO::PARAM_STR);
 
-       $query->execute();
+      return $query->execute();
     }
 
     public function bind($id)
@@ -75,7 +77,7 @@
       {
         $produto = new Produto();
         $produto->setIdProduto($fetch["idProduto"]);
-        $produto->setIdSubGrupo($fetch["idSubGrupo"]);
+        //$produto->setSubGrupo($fetch["idSubGrupo"]);
         $produto->setNome($fetch["nome"]);
         $produto->setPreco($fetch["preco"]);
         $produto->setDetalhes($fetch["detalhes"]);
