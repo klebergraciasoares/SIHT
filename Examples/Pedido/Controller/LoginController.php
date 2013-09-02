@@ -20,13 +20,13 @@
 
 		public function sair()
 		{			
-			$this->setAlert(new Alert("ATENÇÃO:","Logout realizado!",Alert::$INFO));
+			AlertController::setAlert(new Alert("ATENÃ‡ÃƒO:","Logout realizado!",Alert::$INFO));
 			$this->acessar();
 		}
 
 		public function expirou()
 		{			
-			$this->setAlert(new Alert("ATENÇÃO:","Sessão expirou!",Alert::$WARNING));
+			AlertController::setAlert(new Alert("ATENÃ‡ÃƒO:","SessÃ£o expirou!",Alert::$WARNING));
 			$this->acessar();
 		}
 
@@ -37,7 +37,7 @@
 				Session::setValue("S_LOGADO",true);
 				$this->redirectView("Principal");
 			}else{
-				$this->setAlert(new Alert("ATENÇÃO:","Usuário ou senha inválidos!",Alert::$DANGER));
+				AlertController::setAlert(new Alert("ATENÃ‡ÃƒO:","UsuÃ¡rio ou senha invÃ¡lidos!",Alert::$DANGER));
 				$this->acessar();
 			}
 		}

@@ -3,7 +3,7 @@
   <head>
     <title>Project Name</title>
     
-    <meta charset="iso-8859-1">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">    
@@ -68,7 +68,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="<?php echo SH_WEB_ROOT_APP ?>/Configuracao/config"><i class="glyphicon glyphicon-cog"></i> Configurações</a></li>
+                    <li><a href="<?php echo SH_WEB_ROOT_APP ?>/Configuracao/config"><i class="glyphicon glyphicon-cog"></i> ConfiguraÃ§Ãµes</a></li>
                     <li><a tabindex="-1" href="<?php echo SH_WEB_ROOT_APP ?>/Sobre"><i class="glyphicon glyphicon-info-sign"></i> Sobre</a></li>                  
                     <li class="divider"></li>                  
                     <li><a tabindex="-1" href="<?php echo SH_WEB_ROOT_APP ?>/Login/sair"><i class="glyphicon glyphicon-off"></i> Sair</a></li>                  

@@ -26,8 +26,8 @@
 			}catch(Exception $e)
 			{
 				$errorController = new ErrorController();
-				$errorController->setAlert(new Alert("ATENÇÃO:","Erro ao connectar no banco de dados!",Alert::$DANGER));
-				$errorController->setAlert(new Alert("ATENÇÃO:",$e->getMessage(),Alert::$DANGER));
+				$errorController->setAlert(new Alert("ATENÃ‡ÃƒO:","Erro ao connectar no banco de dados!",Alert::$DANGER));
+				$errorController->setAlert(new Alert("ATENÃ‡ÃƒO:",$e->getMessage(),Alert::$DANGER));
 				$errorController->show();
 				exit();	
 			}

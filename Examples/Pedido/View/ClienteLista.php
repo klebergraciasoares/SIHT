@@ -40,9 +40,9 @@
 		        </div>
 		        <div class="modal-body">
 		        	<div class="form-group">
-						<label class="col-sm-2" for="filIdCliente">Código</label>
+						<label class="col-sm-2" for="filIdCliente">CÃ³digo</label>
 						<div class="col-sm-4">
-					      <input name="filIdCliente" id="filIdCliente" type="text" class="form-control" placeholder="Código do Cliente" value="<?php echo isset($this->post["filIdCliente"]) ? $this->post["filIdCliente"] : ""?>">							
+					      <input name="filIdCliente" id="filIdCliente" type="text" class="form-control" placeholder="CÃ³digo do Cliente" value="<?php echo isset($this->post["filIdCliente"]) ? $this->post["filIdCliente"] : ""?>">							
 					    </div>
 					    <!--
 					    <div class="col-sm-6">
@@ -63,7 +63,7 @@
 		        	<div class="form-group">
 						<label class="col-sm-2" for="filCpf">CPF</label>
 						<div class="col-sm-4">
-					      <input name="filCpf" id="filCpf" type="text" class="form-control maskCpf" placeholder="Número do CPF" value="<?php echo isset($this->post["filCpf"]) ? $this->post["filCpf"] : ""?>">							
+					      <input name="filCpf" id="filCpf" type="text" class="form-control maskCpf" placeholder="NÃºmero do CPF" value="<?php echo isset($this->post["filCpf"]) ? $this->post["filCpf"] : ""?>">							
 					    </div>
 					</div>
 					<div class="form-group">
@@ -112,12 +112,12 @@
 		 <table class="table table-hover" id="tableList">
 	        <thead>
 	          <tr>
-	            <th class="col-md-1 text-center">Cód.</th>
+	            <th class="col-md-1 text-center">CÃ³d.</th>
 	            <th class="col-md-5">Nome</th>
 	            <th class="col-md-1 hidden-xs">Estado</th>
 	            <th class="col-md-2 hidden-xs">Cidade</th>		            
 	            <th class="col-md-2 hidden-xs">CPF</th>
-	            <th class="col-md-1 text-center">Ações</th>		           
+	            <th class="col-md-1 text-center">AÃ§Ãµes</th>		           
 	          </tr>
 	        </thead>
 	        <tbody>
@@ -152,7 +152,7 @@
 	      <?php
 				if(count($this->clientes) == 0)
           		{
-          			$alert = new Alert("ATENÇÃO:","Nenhum registro encontrado!",Alert::$INFO);
+          			$alert = new Alert("ATENÃ‡ÃƒO:","Nenhum registro encontrado!",Alert::$INFO);
 					echo $alert->getHtml();
           		}
 	      ?>

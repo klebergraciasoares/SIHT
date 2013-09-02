@@ -10,9 +10,9 @@
 			    <div class="col-sm-4 col-sm-offset-4">
 			    
 					<div class="form-group">
-					  <label for="usuario">Usu·rio</label>
+					  <label for="usuario">Usu√°rio</label>
 						<div class="input-group">						
-							<input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usu·rio">
+							<input type="text" name="usuario" id="usuario" class="form-control" placeholder="Usu√°rio">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 						</div>
 					</div>			

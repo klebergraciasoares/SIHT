@@ -25,9 +25,9 @@
 			    </div>
 			    <div class="modal-body">
 			    	<div class="form-group">
-						<label class="col-sm-2">Código</label>
+						<label class="col-sm-2">CÃ³digo</label>
 						<div class="col-sm-4">
-					      <input ng-model="busca.idProduto" type="text" class="form-control" placeholder="Código do Produto">							
+					      <input ng-model="busca.idProduto" type="text" class="form-control" placeholder="CÃ³digo do Produto">							
 					    </div>    
 					</div>	
 					<div class="form-group">
@@ -37,9 +37,9 @@
 					    </div>    
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2">Preço</label>
+						<label class="col-sm-2">PreÃ§o</label>
 						<div class="col-sm-4">
-					      <input ng-model="busca.preco" type="text" class="form-control" placeholder="Preço do Produto">							
+					      <input ng-model="busca.preco" type="text" class="form-control" placeholder="PreÃ§o do Produto">							
 					    </div>    
 					</div>							
 			    </div>
@@ -58,10 +58,10 @@
 	 <table class="table table-hover" id="tableList">
         <thead>
           <tr>            
-            <th class="col-md-1 text-center">Cód.</th>
+            <th class="col-md-1 text-center">CÃ³d.</th>
             <th class="col-md-9">Nome</th>
-            <th class="col-md-1 text-right hidden-xs">Preço</th>            
-            <th class="col-md-1 text-center">Ações</th>		           
+            <th class="col-md-1 text-right hidden-xs">PreÃ§o</th>            
+            <th class="col-md-1 text-center">AÃ§Ãµes</th>		           
           </tr>
           <tbody>
 	          <tr ng-repeat="prod in produtos | filter:busca">	          	
@@ -80,7 +80,7 @@
 
 	<div ng-if="(produtos | filter:busca).length == 0" class="alert alert-dismissable alert-info">
        <button ng-if="alert.close" type="button" class="close" data-dismiss="alert">&times;</button>
-        <strong>Atenção</strong>
+        <strong>AtenÃ§Ã£o</strong>
         Nenhum registro encontrado!
     </div>     
 
@@ -133,12 +133,12 @@
 			      	$scope.produtos = data.produtos;
 			      	$scope.showAlerts();
 			    }).error(function(data, status) {
-			       $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
+			       $scope.setAlerts([{type:"danger",title:"AtenÃ§Ã£o: ",text:"Erro ao Buscar JSON!"}]);
 			    });
 			};
 
 			$scope.excluir = function (object){
-				if(!confirm("Confirma exclusão do Produto:" + object.nome +  "?"))
+				if(!confirm("Confirma exclusÃ£o do Produto:" + object.nome +  "?"))
 					return;
 				
 				$http({
@@ -152,7 +152,7 @@
 			      	if(data.sucess) 
 			      		$scope.listar();
 			    }).error(function(data, status) {
-			       $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
+			       $scope.setAlerts([{type:"danger",title:"AtenÃ§Ã£o: ",text:"Erro ao Buscar JSON!"}]);
 			    });
 				
 			}

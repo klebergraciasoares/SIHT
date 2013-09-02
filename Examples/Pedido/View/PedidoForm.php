@@ -32,7 +32,7 @@
 		      <input type="number" ng-model="quantidade" name="quantidade" id="quantidade" ng-init="quantidade=1" min="1" class="form-control">
 		    </div>
 		    <div class="form-group col-sm-2">
-		     	<label for="preco">Valor Unit·rio</label>	      
+		     	<label for="preco">Valor Unit√°rio</label>	      
 		     	<div class="input-group">
 					<span class="input-group-addon">R$</span>
 					<input type="text" ng-model="preco" class="form-control">
@@ -51,10 +51,10 @@
 			 <table class="table table-hover" id="tableList">
 		        <thead>
 		          <tr>
-		            <th class="col-md-1 text-center">CÛd.</th>
+		            <th class="col-md-1 text-center">C√≥d.</th>
 		            <th class="col-md-5">Nome</th>
 		            <th class="col-md-1 text-center">Qtde</th>
-		            <th class="col-md-2 hidden-xs text-right">PreÁo</th>		            
+		            <th class="col-md-2 hidden-xs text-right">Pre√ßo</th>		            
 		            <th class="col-md-2 text-right">Total</th>
 		            <th class="col-md-1">&nbsp;</th>		            	           
 		          </tr>

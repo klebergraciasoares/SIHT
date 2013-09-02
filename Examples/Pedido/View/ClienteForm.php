@@ -9,7 +9,7 @@
 
 		 <div class="row">
 		 	<div class="form-group col-lg-2 col-sm-2">
-		      <label for="idCliente">Código</label>
+		      <label for="idCliente">CÃ³digo</label>
 		      <input type="text" name="idCliente" id="idCliente" value="<?php echo $this->cliente->getIdCliente();?>" readonly="readonly" class="form-control" placeholder="AUTO">
 		    </div>
 		    <div class="form-group col-lg-5 col-sm-5">
@@ -17,7 +17,7 @@
 		      <input type="text" name="nome" id="nome" value="<?php echo $this->cliente->getNome();?>" class="form-control" placeholder="Nome Completo"		      	
 			      data-required="true"
 			      data-pattern="^[0-9]+$"
-			      data-description-required="O campo NOME é obrigatório!"			      
+			      data-description-required="O campo NOME Ã© obrigatÃ³rio!"			      
 			      data-description-pattern="Campo pattern"
 		      >
 		    </div>
@@ -27,7 +27,7 @@
 					<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>						
 					<input type="email" name="email" id="email" value="<?php echo $this->cliente->getEmail();?>" class="form-control" placeholder="examplo@dominio.com.br"						
 						data-required="true"
-					    data-description-required="O campo EMAIL é obrigatório!"
+					    data-description-required="O campo EMAIL Ã© obrigatÃ³rio!"
 					    data-pattern="\b[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,4}\b"
 					    data-description-pattern="Preencha o EMAIL corretamente!"
 					>
@@ -38,32 +38,32 @@
 		 <div class="row">
 		    <div class="form-group col-lg-3 col-sm-3">
 		      <label for="exampleInputEmail">CPF</label>
-		      <input type="text" name="cpf" value="<?php echo $this->cliente->getCpf();?>" class="form-control maskCpf" id="cpf" placeholder="Número do CPF"
+		      <input type="text" name="cpf" value="<?php echo $this->cliente->getCpf();?>" class="form-control maskCpf" id="cpf" placeholder="NÃºmero do CPF"
 					data-required="true"					
-					data-description-required="O campo CPF é obrigatório!"
+					data-description-required="O campo CPF Ã© obrigatÃ³rio!"
 					data-pattern="^([0-9]){3}\.([0-9]){3}\.([0-9]){3}-([0-9]){2}$"
-					data-description-pattern="O CPF deve conter 11 números!"
+					data-description-pattern="O CPF deve conter 11 nÃºmeros!"
 					data-conditional="cpf"
-					data-description-conditional="Digite um CPF válido!"
+					data-description-conditional="Digite um CPF vÃ¡lido!"
 				>
 		    </div>
 		    <div class="form-group col-lg-3 col-sm-3">
 		      	<label for="rg">RG</label>			      
 				<input type="text" name="rg" id="rg" value="<?php echo $this->cliente->getRg();?>" class="form-control" placeholder="R.G."
-					data-required="true" data-description-required="O campo RG é obrigatório!">
+					data-required="true" data-description-required="O campo RG Ã© obrigatÃ³rio!">
 		    </div>		   
 		    <div class="form-group col-lg-3 col-sm-3">
-		      	<label for="dataExpedicao">Data de expedição</label>			      
+		      	<label for="dataExpedicao">Data de expediÃ§Ã£o</label>			      
 				<input type="date" name="dataExpedicao" id="dataExpedicao" value="<?php echo $this->cliente->getDataExpedicao();?>" class="form-control" 
 					data-required="true" 
-					data-description-required="O campo DATA DE EXPEDIÇÃO é obrigatório!">
+					data-description-required="O campo DATA DE EXPEDIÃ‡ÃƒO Ã© obrigatÃ³rio!">
 					<!--data-pattern="^[0-9]{2}/[0-9]{2}/[0-9]{4}$"
-					data-description-pattern="Digite uma DATA válida!"-->
+					data-description-pattern="Digite uma DATA vÃ¡lida!"-->
 		    </div>		   
 		    <div class="form-group col-lg-3 col-sm-3">
-		      	<label for="orgaoEmissor">Orgão Emissor</label>			      
-				<input type="text" name="orgaoEmissor" id="orgaoEmissor" value="<?php echo $this->cliente->getOrgaoEmissor();?>" class="form-control" placeholder="Orgão Emissor"
-					data-required="true" data-description-required="O campo ORGÃO EMISSOR é obrigatório!">
+		      	<label for="orgaoEmissor">OrgÃ£o Emissor</label>			      
+				<input type="text" name="orgaoEmissor" id="orgaoEmissor" value="<?php echo $this->cliente->getOrgaoEmissor();?>" class="form-control" placeholder="OrgÃ£o Emissor"
+					data-required="true" data-description-required="O campo ORGÃƒO EMISSOR Ã© obrigatÃ³rio!">
 		    </div>		   
 		 </div>
 
@@ -76,9 +76,9 @@
 		      <label for="cep">CEP</label>
 		      <input type="text" name="cep" id="cep" value="<?php echo $this->cliente->getCep();?>" class="form-control maskCep" placeholder="CEP"		      		
 					data-required="true"
-					data-description-required="O campo CEP é obrigatório!"
+					data-description-required="O campo CEP Ã© obrigatÃ³rio!"
 					data-pattern="^[0-9]{5}-[0-9]{3}$"
-					data-description-pattern="Digite um CEP válido!"
+					data-description-pattern="Digite um CEP vÃ¡lido!"
 		      >
 		    </div>
 		    <div class="form-group col-lg-6 col-sm-6">
@@ -86,8 +86,8 @@
 		      <input type="text" name="logradouro" id="logradouro" value="<?php echo $this->cliente->getLogradouro();?>" class="form-control" placeholder="Logradouro">
 		    </div>
 		    <div class="form-group col-lg-2 col-sm-2">
-		      <label for="numero">Número</label>
-		      <input type="text" name="numero" id="numero" value="<?php echo $this->cliente->getNumero();?>" class="form-control" placeholder="Número">
+		      <label for="numero">NÃºmero</label>
+		      <input type="text" name="numero" id="numero" value="<?php echo $this->cliente->getNumero();?>" class="form-control" placeholder="NÃºmero">
 		    </div>
 		 </div>
 

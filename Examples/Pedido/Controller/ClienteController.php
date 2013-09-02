@@ -14,10 +14,10 @@
 			if(!Session::getValue("S_LOGADO"))
 				$this->redirectView("Login/expirou");
 
-			if(false) //Permissão do Módulo
+			if(false) //PermissÃ£o do MÃ³dulo
 			{
 				$errorController = new ErrorController();
-				$errorController->setAlert(new Alert("ATENÇÃO:","Acesso Negado ao Módulo de CLIENTE!",Alert::$DANGER));
+				$errorController->setAlert(new Alert("ATENÃ‡ÃƒO:","Acesso Negado ao MÃ³dulo de CLIENTE!",Alert::$DANGER));
 				$errorController->show();
 				exit();							
 			}	
@@ -48,11 +48,11 @@
 			{
 				if($this->cliente->getStatus() == "I")
 				{
-					$this->setAlert(new Alert("ATENÇÃO:","Cliente está inativo!",Alert::$DANGER));
+					AlertController::setAlert(new Alert("ATENÃ‡ÃƒO:","Cliente estÃ¡ inativo!",Alert::$DANGER));
 				}
 				$this->cadastrar();
 			}else{
-				$this->setAlert(new Alert("ATENÇÃO:","Cliente não encontrado!",Alert::$DANGER));
+				AlertController::setAlert(new Alert("ATENÃ‡ÃƒO:","Cliente nÃ£o encontrado!",Alert::$DANGER));
 				$this->redirectView("Cliente/listar");
 			}			
 		}
@@ -61,7 +61,7 @@
 		{			
 			if(!$this->post)
 			{
-				$this->setAlert(new Alert("ATENÇÃO:","Dados não enviados!",Alert::$DANGER));
+				AlertController::setAlert(new Alert("ATENÃ‡ÃƒO:","Dados nÃ£o enviados!",Alert::$DANGER));
 				$this->cadastrar();
 			}else{
 
@@ -87,16 +87,16 @@
 
 				if($clienteCPF = $clienteDAO->buscaCpf($this->cliente->getCpf()))
 				{
-					$this->setAlert(new Alert("ATENÇÃO:","CPF já cadastrado para o cliente: '".$clienteCPF->getNome()."'!",Alert::$DANGER));	
+					AlertController::setAlert(new Alert("ATENÃ‡ÃƒO:","CPF jÃ¡ cadastrado para o cliente: '".$clienteCPF->getNome()."'!",Alert::$DANGER));	
 					$this->cadastrar();
 				}else{					
 
 					if($clienteDAO->salvar($this->cliente))
 					{
-						$this->setAlert(new Alert("ATENÇÃO:","Cliente '".$this->cliente->getNome()."' foi salvo com sucesso!",Alert::$SUCESS));
+						AlertController::setAlert(new Alert("ATENÃ‡ÃƒO:","Cliente '".$this->cliente->getNome()."' foi salvo com sucesso!",Alert::$SUCESS));
 						$this->redirectView("Cliente/listar");
 					}else{
-						$this->setAlert(new Alert("ATENÇÃO:","Erro ao salvar cliente!",Alert::$DANGER));	
+						AlertController::setAlert(new Alert("ATENÃ‡ÃƒO:","Erro ao salvar cliente!",Alert::$DANGER));	
 						$this->cadastrar();
 					}
 				}
@@ -110,9 +110,9 @@
 
 			if(defined('HTA_PARAM3') && is_numeric(HTA_PARAM3) && $clienteDAO->excluir(HTA_PARAM3))
 			{
-				$this->setAlert(new Alert("ATENÇÃO:","Cliente excluido com sucesso!",Alert::$SUCESS));
+				AlertController::setAlert(new Alert("ATENÃ‡ÃƒO:","Cliente excluido com sucesso!",Alert::$SUCESS));
 			}else{	
-				$this->setAlert(new Alert("ATENÇÃO:","Erro ao excluir cliente!",Alert::$DANGER));
+				AlertController::setAlert(new Alert("ATENÃ‡ÃƒO:","Erro ao excluir cliente!",Alert::$DANGER));
 			}
 
 			$this->redirectView("Cliente/listar");

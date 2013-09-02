@@ -45,7 +45,7 @@
 
       if(!(defined('HTA_PARAM3') && is_numeric(HTA_PARAM3) && $retorno->produto = $produtoDAO->bind(HTA_PARAM3)))
       {
-        $this->setAlert(new Alert("ATENÇÃO:","Produto não encontrado!",Alert::$DANGER));        
+        AlertController::setAlert(new Alert("ATENÇÃO:","Produto não encontrado!",Alert::$DANGER));        
       }
 
       echo json_encode($retorno);
@@ -60,9 +60,9 @@
       $retorno->sucess = $produtoDAO->delete($produto->idProduto);
             
       if($retorno->sucess)
-          $this->setAlert(new Alert("ATENÇÃO:","Produto excluido com sucesso!",Alert::$SUCESS));
+          AlertController::setAlert(new Alert("ATENÇÃO:","Produto excluido com sucesso!",Alert::$SUCESS));
       else
-          $this->setAlert(new Alert("ATENÇÃO:","Erro ao excluir produto!",Alert::$DANGER));          
+          AlertController::setAlert(new Alert("ATENÇÃO:","Erro ao excluir produto!",Alert::$DANGER));          
 
       echo json_encode($retorno);
     }
@@ -99,9 +99,9 @@
       $retorno->sucess = $produtoDAO->save($produto);
 
       if($retorno->sucess)         
-          $this->setAlert(new Alert("ATENÇÃO:","Produto registrado com sucesso!",Alert::$SUCESS));
+          AlertController::setAlert(new Alert("ATENÇÃO:","Produto registrado com sucesso!",Alert::$SUCESS));
       else          
-          $this->setAlert(new Alert("ATENÇÃO:","Erro ao salvar produto!",Alert::$SUCESS));
+          AlertController::setAlert(new Alert("ATENÇÃO:","Erro ao salvar produto!",Alert::$SUCESS));
       echo json_encode($retorno);
     }
   }

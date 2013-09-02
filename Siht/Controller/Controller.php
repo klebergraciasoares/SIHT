@@ -132,30 +132,8 @@
 			}
 			header("location:" . SH_WEB_ROOT_APP . "/" . $url);
 			exit();
-		}		
-
-		public function setAlert(Alert $alert){
- 			Session::setValue("SH_ALERTS",$alert,true);
- 		}
-
- 		public function getAlerts(){ 			
- 			return Session::getValue("SH_ALERTS");
- 		}
-
- 		public function clearAlerts(){ 			
- 			Session::setValue("SH_ALERTS",array());
- 		}		
-
- 		public function showAlerts(){ 			
- 			$html="";
-			if(is_array($this->getAlerts()))
-            	foreach ($this->getAlerts() as $alert)
-              		$html.=$alert->getHtml();
-	            
-	        $this->clearAlerts();
-
-	        return $html;
- 		}
+		}
+ 		
 	}
 
 ?>  
