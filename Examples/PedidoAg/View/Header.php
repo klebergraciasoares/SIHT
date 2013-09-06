@@ -86,7 +86,7 @@
 
       <div class="container">
 
-        <a href="http://localhost/SIHT/Examples/PedidoAg/Teste">Teste</a> |
+        <a href="http://localhost/SIHT/Examples/PedidoAg/Prod">Teste</a> |
 
         <div ng-repeat="alert in alerts">
           <div class="alert alert-dismissable alert-{{alert.type}}">
@@ -104,19 +104,23 @@
 
           angular.module('shApp', ['ngRoute'], function($routeProvider, $locationProvider) {
             
-            $routeProvider.when('/SIHT/Examples/PedidoAg/Teste', {
+            $routeProvider.when('/SIHT/Examples/PedidoAg/Prod', {
                 templateUrl : 'View/ProdutoLista.php',
-                controller  : 'TesteCtrl',
-                controllerAs : 'teste'
+                controller  : 'ProdutoListaCtrl'
+                //controllerAs : 'produto'
               }
             );
 
             $locationProvider.html5Mode(true);
           });
 
-          function TesteCtrl($routeParams) {          	
-              this.name = "TesteCtrl";
-              this.params = $routeParams;              
+          function ProdutoListaCtrl($routeParams) {     
+
+              //alert(1);
+              //$scope.produtos = [];             
+
+              //this.name = "ProdutoCtrl";
+              //this.params = $routeParams;              
           }
 
           function MainCntl($scope,$http, $templateCache) 

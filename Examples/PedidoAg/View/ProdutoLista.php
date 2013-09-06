@@ -102,6 +102,7 @@
 
 	<script type="text/javascript">
 
+		/*
 		function CtrlApp($scope,$http, $templateCache) 
 		{
 			$scope.produtos = [];
@@ -110,6 +111,7 @@
 			$scope.regPage 	= 5;
 
 			$scope.init = function (){
+				alert(1);
 				$scope.listar();
 			}
 
@@ -164,6 +166,6 @@
 				$scope.numPage = numPage;
 			}
 		  
-		}
+		}*/
 
 	</script>	
