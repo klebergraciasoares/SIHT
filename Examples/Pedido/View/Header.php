@@ -13,6 +13,7 @@
 
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.min.js"></script>
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular.min.js"></script>
+    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular-route.min.js"></script>
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular.locale.pt-br.min.js"></script>
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.tablesorter.min.js"></script>    
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.maskedinput.min.js"></script>    
@@ -21,7 +22,7 @@
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/local.js"></script>
 
   </head>
-  <body ng-app>
+  <body ng-app="shApp">
 
     <nav id="navbar-example" role="navigation" class="navbar navbar-inverse navbar-static-top">
         <div class="container">
@@ -83,7 +84,13 @@
         </div>        
       </nav>
 
-      <div class="container" ng-controller="CtrlSystem" ng-init="init()">
+      <div class="container" ng-controller="MainCntl" ng-init="init()">
+
+        <a href="http://localhost/SIHT/Examples/Pedido/Teste">Teste</a> |
+
+        <div style="border:1px solid black;height:100px;">
+          <div ng-view style="border:1px solid red;height:100px;"></div>
+        </div>
 
         <div ng-repeat="alert in alerts">
           <div class="alert alert-dismissable alert-{{alert.type}}">
@@ -95,8 +102,26 @@
 
         <script type="text/javascript">
 
-          function CtrlSystem($scope,$http, $templateCache) 
-          {       
+
+          angular.module('shApp', ['ngRoute'], function($routeProvider, $locationProvider) {
+            
+            $routeProvider.when('/SIHT/Examples/Pedido/Teste', {
+                templateUrl : 'View/Teste.php',
+                controller  : 'TesteCtrl'
+              }
+            );
+
+            $locationProvider.html5Mode(true);
+          });
+
+          function TesteCntl($routeParams) {
+              //this.name = "TesteCntl";
+              //this.params = $routeParams;
+              alert(1);
+            }
+
+          function MainCntl($scope,$http, $templateCache) 
+          {
               $scope.alerts = [];
 
               $scope.init = function (){               
