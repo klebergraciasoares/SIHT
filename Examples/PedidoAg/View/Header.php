@@ -22,7 +22,7 @@
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/local.js"></script>
 
   </head>
-  <body ng-app="shApp">
+  <body ng-app="shApp" ng-controller="MainCntl" ng-init="init()">
 
     <nav id="navbar-example" role="navigation" class="navbar navbar-inverse navbar-static-top">
         <div class="container">
@@ -84,13 +84,9 @@
         </div>        
       </nav>
 
-      <div class="container" ng-controller="MainCntl" ng-init="init()">
+      <div class="container">
 
-        <a href="http://localhost/SIHT/Examples/Pedido/Teste">Teste</a> |
-
-        <div style="border:1px solid black;height:100px;">
-          <div ng-view style="border:1px solid red;height:100px;"></div>
-        </div>
+        <a href="http://localhost/SIHT/Examples/PedidoAg/Teste">Teste</a> |
 
         <div ng-repeat="alert in alerts">
           <div class="alert alert-dismissable alert-{{alert.type}}">
@@ -100,13 +96,16 @@
           </div>
         </div>
 
-        <script type="text/javascript">
+        
+        <div ng-view></div>
+        
 
+        <script type="text/javascript">
 
           angular.module('shApp', ['ngRoute'], function($routeProvider, $locationProvider) {
             
-            $routeProvider.when('/SIHT/Examples/Pedido/Teste', {
-                templateUrl : 'View/Teste.php',
+            $routeProvider.when('/SIHT/Examples/PedidoAg/Teste', {
+                templateUrl : 'View/ProdutoLista.php',
                 controller  : 'TesteCtrl',
                 controllerAs : 'teste'
               }
@@ -156,8 +155,4 @@
               };
           }
 
-        </script>
-
-      <?php
-        //echo $this->showAlerts();
-      ?>
+        </script>   

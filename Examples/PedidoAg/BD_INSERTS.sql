@@ -1,0 +1,33 @@
+INSERT INTO grupo(nome) VALUES('Informática');
+INSERT INTO grupo(nome) VALUES('Móveis');
+INSERT INTO grupo(nome) VALUES('Eletrodoméstico');
+INSERT INTO grupo(nome) VALUES('Telefonia');
+
+INSERT INTO subGrupo(idGrupo,descricao) VALUES(1,'Desktop');
+INSERT INTO subGrupo(idGrupo,descricao) VALUES(1,'Tablets');
+INSERT INTO subGrupo(idGrupo,descricao) VALUES(1,'Notebook');
+INSERT INTO subGrupo(idGrupo,descricao) VALUES(1,'Netbook');
+INSERT INTO subGrupo(idGrupo,descricao) VALUES(1,'Monitor');
+
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(1,'Mouse',10,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(1,'Teclado',10,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(1,'Fonte',10,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(1,'CPU',10,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(1,'Gabinete',10,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(2,'Tablet Sansung',150,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(2,'Tablet Orange',150,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(2,'Tablet 7',150,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(2,'Tablet 10.1',150,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(2,'Tablet 7.1',150,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(2,'IPAD 1',150,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(2,'IPAD 2',200,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(2,'IPAD 3',300,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(2,'IPAD 4',450,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(3,'Notebook Core 2 Duo',1450,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(3,'Notebook Core Duo',1450,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(3,'Notebook Quad Core',1450,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(3,'Notebook Octa Core',1450,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(3,'Notebook Dell 486',1450,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(3,'Notebook Dell 233',1450,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(3,'Notebook HP 233',1450,'descrição');
+INSERT INTO produto(idSubGrupo,nome,preco,detalhes) VALUES(3,'Notebook HP 466',1450,'descrição');
