@@ -1,7 +1,4 @@
-<?php
-  $this->setView("Header");
-?>
-<div ng-controller="CtrlApp" ng-init="init()">	
+<div ng-init="init()">	
    <h3><i class="glyphicon glyphicon-pencil"></i> Cadastro de produto</h3>
 	<hr>
 
@@ -37,7 +34,7 @@
 	<div class="row pull-right">
 		<div class="form-group col-lg-12 col-sm-12">
 			<button type="button" ng-click="salvar()" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-ok"></i> Salvar</button>
-	    	<a ng-href="<?php echo SH_WEB_ROOT_APP ?>/Produto/listar" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+	    	<a ng-href="/Produto/listar" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
 		</div>
 	</div>
 </div>
@@ -45,7 +42,7 @@
 
 <script type="text/javascript">
 
-		function CtrlApp($scope,$http, $templateCache) 
+		/*function CtrlApp($scope,$http, $templateCache) 
 		{
 			$scope.produto 	 = {};
 			$scope.subGrupos = [{idSubGrupo : 1, idGrupo : 1, descricao: "Desktop"},{idSubGrupo : 2, idGrupo : 1, descricao: "Tablets"}];
@@ -84,10 +81,6 @@
 			       $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
 			    });
 			};
-		}
+		}*/
 </script>
-	
   
-<?php
-  $this->setView("Footer");
-?>  

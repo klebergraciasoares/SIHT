@@ -1,5 +1,4 @@
-<div ng-controller="CtrlApp" ng-init="init()">	
-
+<div ng-init="init()">
 	<h3><i class="glyphicon glyphicon-list"></i> Lista de produto(s)</h3>
 	<hr>
 	    
@@ -65,7 +64,7 @@
 	          	<td>{{prod.nome}}</td>
 	          	<td nowrap class="text-right">{{prod.preco| currency:"R$ "}}</td>   
 	          	<td class="text-right" nowrap>
-	            	<a ng-href="/Produto/alterar/{{prod.idProduto}}" class="btn btn-warning btn-xs" title="Alterar"><i class="glyphicon glyphicon-edit"></i> </a>				            	
+	            	<a ng-href="http://localhost/SIHT/Examples/PedidoAg/ProdutoCadastrar/{{prod.idProduto}}" class="btn btn-warning btn-xs" title="Alterar"><i class="glyphicon glyphicon-edit"></i> </a>				            	
 	            	<button type="button" class="btn btn-danger btn-xs" title="Excluir" ng-click="excluir(prod)"><i class="glyphicon glyphicon-trash"></i> </button>								
 	            </td>       	
 	          </tr>

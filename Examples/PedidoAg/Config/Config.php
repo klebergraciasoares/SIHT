@@ -73,7 +73,7 @@
 	* required : yes
 	* example: http://mydomain.com/APP
 	*/
-	define("SH_WEB_ROOT_APP", "http://{$_SERVER["HTTP_HOST"]}/SIHT/Examples/Pedido");
+	define("SH_WEB_ROOT_APP", "http://{$_SERVER["HTTP_HOST"]}/SIHT/Examples/PedidoAg");
 
 	/**
 	* define SH_WEB_ROOT_LIB constant: where is the Lib application folder;

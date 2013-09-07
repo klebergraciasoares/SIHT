@@ -39,7 +39,7 @@
             <?php
                   }
             ?>
-            <a class="navbar-brand" href="<?php echo SH_WEB_ROOT_APP ?>/Principal/inicio"><i class="glyphicon glyphicon-globe"></i> Project Name</a>
+            <a class="navbar-brand" href="<?php echo SH_WEB_ROOT_APP ?>/"><i class="glyphicon glyphicon-globe"></i> Project Name</a>
           </div>
 
             <?php
@@ -86,77 +86,4 @@
 
       <div class="container">
 
-        <a href="http://localhost/SIHT/Examples/PedidoAg/Prod">Teste</a> |
-
-        <div ng-repeat="alert in alerts">
-          <div class="alert alert-dismissable alert-{{alert.type}}">
-            <button ng-if="alert.close" type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>{{alert.title}}</strong>
-            {{alert.text}}
-          </div>
-        </div>
-
         
-        <div ng-view></div>
-        
-
-        <script type="text/javascript">
-
-          angular.module('shApp', ['ngRoute'], function($routeProvider, $locationProvider) {
-            
-            $routeProvider.when('/SIHT/Examples/PedidoAg/Prod', {
-                templateUrl : 'View/ProdutoLista.php',
-                controller  : 'ProdutoListaCtrl'
-                //controllerAs : 'produto'
-              }
-            );
-
-            $locationProvider.html5Mode(true);
-          });
-
-          function ProdutoListaCtrl($routeParams) {     
-
-              //alert(1);
-              //$scope.produtos = [];             
-
-              //this.name = "ProdutoCtrl";
-              //this.params = $routeParams;              
-          }
-
-          function MainCntl($scope,$http, $templateCache) 
-          {
-              $scope.alerts = [];
-
-              $scope.init = function (){               
-                  $scope.showAlerts();
-              }
-
-              $scope.range = function(min, max, step){
-                step = (step == undefined) ? 1 : step;
-                var input = [];
-                for (var i=min; i<=max; i=i+step) input.push(i);
-                return input;
-              };
-
-              /**
-              *  Function for Control Alerts
-              */
-
-              $scope.setAlerts = function (alerts){
-                for(var i=0;i<alerts.length;i++)
-                  $scope.alerts.push(alerts[i]);
-              }
-
-              $scope.showAlerts = function (){
-                $http({
-                  method  : "POST",
-                  url     : "http://localhost/SIHT/Examples/Pedido/Alert/RequestAlerts", 
-                  cache   : $templateCache,
-                  headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-                }).success(function(data, status) {                   
-                      $scope.setAlerts(data.alerts);
-                });
-              };
-          }
-
-        </script>   
