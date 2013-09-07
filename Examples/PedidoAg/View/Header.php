@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt" ng-app="shApp">
   <head>
     <title>Project Name</title>
     
@@ -21,8 +21,13 @@
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/bootstrap.min.js"></script>    
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/local.js"></script>
 
+    <script type="text/javascript">
+    //this is here to make plunkr work with AngularJS routing
+    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+    </script>
+
   </head>
-  <body ng-app="shApp" ng-controller="MainCntl" ng-init="init()">
+  <body ng-controller="MainCntl as main">
 
     <nav id="navbar-example" role="navigation" class="navbar navbar-inverse navbar-static-top">
         <div class="container">
