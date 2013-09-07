@@ -41,9 +41,9 @@
         }
       );
 
-      //.otherwise({redirectTo: '/SIHT/Examples/PedidoAg/ProdutoListar'});
+      //.otherwise({redirectTo: '/SIHT/Examples/PedidoAg/ProdutoListar'})
 
-      $locationProvider.html5Mode(true); assim tem usar
+      //$locationProvider.html5Mode(true); assim tem usar #
     });
 
     function ProdutoCadastrarCtrl($scope,$http) {
