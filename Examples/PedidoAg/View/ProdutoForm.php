@@ -34,7 +34,7 @@
 	<div class="row pull-right">
 		<div class="form-group col-lg-12 col-sm-12">
 			<button type="button" ng-click="salvar()" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-ok"></i> Salvar</button>
-	    	<a ng-href="/Produto/listar" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+	    	<a ng-href="ProdutoListar" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
 		</div>
 	</div>
 </div>

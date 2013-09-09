@@ -1,6 +1,6 @@
-  <a href="ProdutoListar/">Lista</a> |
-  <a href="ProdutoCadastrar/">Cadastro</a> |
-  <a href="ProdutoCadastrar/48">Editar </a>
+  <a href="Produto/Listar">Lista</a> |
+  <a href="Produto/Novo">Cadastro</a> |
+  <a href="Produto/Editar/48">Editar </a>
 
 
   <div ng-repeat="alert in alerts">
@@ -19,78 +19,78 @@
       
     angular.module('shApp', ['ngRoute'], function($routeProvider, $locationProvider) {
 
-      //$routeProvider.when('/ProdutoListar', {
-      $routeProvider.when('/ProdutoListar', {
+      $routeProvider.when('/Produto/Listar', {
           templateUrl : 'View/ProdutoLista.php',
           controller  : 'ProdutoListaCtrl'
           //controllerAs : 'produto'
         }
       );
-
-      //$routeProvider.when('/ProdutoCadastrar', {
-      $routeProvider.when('/ProdutoCadastrar', {
-          templateUrl : 'View/ProdutoForm.php',
-          controller  : ProdutoCadastrarCtrl,
-          controllerAs : 'produto'
-        }
-      );
-
-      //$routeProvider.when('/ProdutoCadastrar/idProduto/:idProduto', {
-       
-      $routeProvider.when('/ProdutoCadastrar/:idProduto', { 
+     
+      $routeProvider.when('/Produto/Novo', {
           templateUrl : 'View/ProdutoForm.php',
           controller  : ProdutoCadastrarCtrl,
           //controllerAs : 'produto'
         }
       );
 
-      //.otherwise({redirectTo: '/SIHT/Examples/PedidoAg/ProdutoListar'})
+      $routeProvider.when('/Produto/Editar/:idProduto', { 
+          templateUrl : 'View/ProdutoForm.php',
+          controller  : ProdutoCadastrarCtrl,
+          //controllerAs : 'produto'
+        }
+      );
+
+      $routeProvider.when('/Home', { 
+          templateUrl : 'View/Principal.php',
+          controller  : ProdutoCadastrarCtrl,
+          //controllerAs : 'produto'
+        }
+      );
+
+      //$routeProvider.otherwise({redirectTo: 'Home'});
+
       $locationProvider.html5Mode(true); //assim tem usar #
     });
 
-    function ProdutoCadastrarCtrl($scope, $routeParams) {
-      // $scope.produto   = $routeParams; 
-      //this = $routeParams;
-      //$scope.produto = $routeParams;
-    }
 
     function ProdutoCadastrarCtrl($scope, $routeParams, $http,$location) 
     {
       $scope.subGrupos = [{idSubGrupo : 1, idGrupo : 1, descricao: "Desktop"},{idSubGrupo : 2, idGrupo : 1, descricao: "Tablets"}];
      
       $scope.init = function (){
-         
+          if($routeParams.idProduto)
+            $scope.recuperar($routeParams.idProduto);
       }
 
       $scope.salvar = function (){
         $http({
-          method  : "POST",
-          url   : "http://localhost/SIHT/Examples/Pedido/Produto/RequestSave", 
-          //cache   : $templateCache,
-          data  : $.param({produto : $scope.produto}),
-          headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-        }).success(function(data, status) {             
-            $location.path( "/ProdutoListar" );
-          }).error(function(data, status) {
-            $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
-          });
-      };
+            method  : "POST",
+            url   : "http://localhost/SIHT/Examples/Pedido/Produto/RequestSave", 
+            //cache   : $templateCache,
+            data  : $.param({produto : $scope.produto}),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+          }).success(function(data, status) {             
+              $location.path( "/ProdutoListar" );
+            }).error(function(data, status) {
+              $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
+            });
+        };
 
       $scope.recuperar = function (idProduto){
         $http({
-          method  : "POST",
-          url   : "http://localhost/SIHT/Examples/Pedido/Produto/RequestEdit/" + idProduto, 
-          //cache   : $templateCache,         
-          //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-        }).success(function(data, status) {
-              $scope.showAlerts();
-              $scope.produto = data.produto;
-          }).error(function(data, status) {
-              $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
-          });
-      };
+            method  : "POST",
+            url   : "http://localhost/SIHT/Examples/Pedido/Produto/RequestEdit/" + idProduto, 
+            //cache   : $templateCache,         
+            //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+          }).success(function(data, status) {
+                $scope.showAlerts();
+                $scope.produto = data.produto;
+            }).error(function(data, status) {
+                $scope.setAlerts([{type:"danger",title:"Atenção: ",text:"Erro ao Buscar JSON!"}]);
+            });
+        };
 
-      $scope.recuperar($routeParams.idProduto);
+     
 
     }
 

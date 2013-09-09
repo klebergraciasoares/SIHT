@@ -6,7 +6,7 @@
     	<div class="col-lg-12">
 			<a href="#filter" data-toggle="modal" class="btn btn btn-primary btn-sm"><i class="glyphicon glyphicon-search"></i> Buscar</a>
     		<button type="button" ng-click="limpar()" data-dismiss="modal" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-remove"></i> Limpar</button>
-		    <a href="/Produto/cadastrar" class="btn btn-primary pull-right btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Produto</a>
+		    <a href="ProdutoCadastrar" class="btn btn-primary pull-right btn-sm"><i class="glyphicon glyphicon-plus"></i> Novo Produto</a>
     	</div>
     </div>
 
@@ -64,7 +64,7 @@
 	          	<td>{{prod.nome}}</td>
 	          	<td nowrap class="text-right">{{prod.preco| currency:"R$ "}}</td>   
 	          	<td class="text-right" nowrap>
-	            	<a ng-href="http://localhost/SIHT/Examples/PedidoAg/ProdutoCadastrar/{{prod.idProduto}}" class="btn btn-warning btn-xs" title="Alterar"><i class="glyphicon glyphicon-edit"></i> </a>				            	
+	            	<a ng-href="ProdutoCadastrar/{{prod.idProduto}}" class="btn btn-warning btn-xs" title="Alterar"><i class="glyphicon glyphicon-edit"></i> </a>				            	
 	            	<button type="button" class="btn btn-danger btn-xs" title="Excluir" ng-click="excluir(prod)"><i class="glyphicon glyphicon-trash"></i> </button>								
 	            </td>       	
 	          </tr>

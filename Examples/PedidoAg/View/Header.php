@@ -21,6 +21,8 @@
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/bootstrap.min.js"></script>    
     <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/local.js"></script>
 
+
+
     <script type="text/javascript">
     //this is here to make plunkr work with AngularJS routing
     angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
@@ -33,6 +35,8 @@
         <div class="container">
           <div class="navbar-header">
             <?php
+                  Session::setValue("S_LOGADO",false);
+
                   if(Session::getValue("S_LOGADO"))
                   {
             ?>
@@ -57,9 +61,9 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar">Cliente</a></li>
-                    <li><a href="<?php echo SH_WEB_ROOT_APP ?>/Produto/listar">Produto</a></li>
-                    <li><a href="<?php echo SH_WEB_ROOT_APP ?>/Grupo/listar">Grupo</a></li>
+                    <li><a href="">Cliente</a></li>
+                    <li><a href="ProdutoListar">Produto</a></li>
+                    <li><a href="">Grupo</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
