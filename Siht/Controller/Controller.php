@@ -24,13 +24,6 @@
 		*/
 		protected $post = false;
 		
-		/**
-		* Class stores the alerts Alert
-		* @access protected
-		* @var array
-		*/
-		private $alerts = array();
-
 		/** 
 		* Classes which have a constructor method call this method on each newly-created object, so it is suitable 
 		* for any initialization that the object may need before it is used.
