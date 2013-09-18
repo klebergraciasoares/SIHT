@@ -9,8 +9,7 @@
 		}
 		
 		public function index()
-		{			
-			if(Session::getValue("S_LOGADO"))
+		{
 			if(Session::getValue("S_LOGADO"))
 				$this->setView("Principal");
 			else
