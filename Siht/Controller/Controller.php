@@ -55,9 +55,10 @@
 		* @return void 
 		*/
 		public function __call($function, $args){
-			$errorController = new ErrorController();
-			$errorController->setAlert(new Alert("WARNING: ","Method '{$function}' does not exist!",Alert::$DANGER));
+			AlertController::setAlert(new Alert("WARNING: ","Method '{$function}' does not exist!",Alert::$DANGER));
+			$errorController = new ErrorController();			
 			$errorController->show();
+			exit();
 		}
 
 		/** 
@@ -99,8 +100,8 @@
 			else if(file_exists(SH_WWW_ROOT_APP . "/View/{$view}.php"))
 				include_once(SH_WWW_ROOT_APP . "/View/{$view}.php");
 			else{
-				$errorController = new ErrorController();
-				$errorController->setAlert(new Alert("WARNING:","View {$view} does not exist in folder View!",Alert::$DANGER));
+				AlertController::setAlert(new Alert("WARNING:","View {$view} does not exist in folder View!",Alert::$DANGER));
+				$errorController = new ErrorController();				
 				$errorController->show();
 				exit();
 			}

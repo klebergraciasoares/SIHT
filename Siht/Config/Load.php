@@ -22,23 +22,18 @@
 			if(defined(constant("SH_HTA_PARAM_NAME")."2"))	$method = constant(constant("SH_HTA_PARAM_NAME")."2");
 
 			if(defined("SH_HTA_USE") && constant("SH_HTA_USE") && !in_array('mod_rewrite', apache_get_modules())){
-				$errorController = new ErrorController();
-				$errorController->setAlert(new Alert("WARNING: ","Active module \"rewrite_module\" in apache!",Alert::$DANGER));
+				AlertController::setAlert(new Alert("WARNING: ","Active module \"rewrite_module\" in apache!",Alert::$DANGER));
+				$errorController = new ErrorController();				
 				$errorController->show();
 			}else if(!defined(constant("SH_HTA_PARAM_NAME")."1")){
-				$errorController = new ErrorController();
-				$errorController->setAlert(new Alert("WARNING: ","Class not sent!",Alert::$DANGER));
+				AlertController::setAlert(new Alert("WARNING: ","Class not sent!",Alert::$DANGER));
+				$errorController = new ErrorController();				
 				$errorController->show();
-			}elseif(!class_exists($class)){	
-				$errorController = new ErrorController();
-				$errorController->setAlert(new Alert("WARNING: ","Class '{$class}' does not exist!",Alert::$DANGER));		
-				$errorController->show();		
-			}/*elseif(!method_exists($class, $method))
-			{
-				$errorController = new ErrorController();
-				$errorController->setAlert(new Alert("WARNING: ","Method '{$method}' does not exist!",Alert::$DANGER));
-				$errorController->show();		
-			}*/else{
+			}elseif(!class_exists($class)){					
+				AlertController::setAlert(new Alert("WARNING: ","Class '{$class}' does not exist!",Alert::$DANGER));
+			    $errorController = new ErrorController();
+				$errorController->show();				
+			}else{
 				$obj = new $class();
 				$obj->$method();
 			}
@@ -75,28 +70,28 @@
 
 			function shErrorHandler($errno, $errstr, $errfile, $errline){
 			    switch ($errno){
-				    case E_USER_ERROR:
-				        echo "<b>My ERROR</b> [$errno] $errstr<br />\n";
-				        echo "  Fatal error on line $errline in file $errfile";
-				        echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
-				        echo "Aborting...<br />\n";
-				        exit(1);
-				        break;
+				    case E_USER_ERROR:				      
+				        AlertController::setAlert(new Alert("ERROR: ","[$errno] $errstr<br>Fatal error on line $errline in file $errfile, PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />",Alert::$DANGER));				        
+				        $errorController = new ErrorController();
+						$errorController->show();
+				    break;
 
-				    case E_USER_WARNING:
-				        echo "<b>My WARNING</b> [$errno] $errstr<br />\n";
-				        break;
+				    case E_USER_WARNING:				        
+				        AlertController::setAlert(new Alert("WARNING: ","[$errno] $errstr",Alert::$WARNING));
+				        $errorController = new ErrorController();
+						$errorController->show();
+				    break;
 
 				    case E_USER_NOTICE:
-				        echo "<b>My NOTICE</b> [$errno] $errstr<br />\n";
-				        break;
+				        AlertController::setAlert(new Alert("NOTICE: ","[$errno] $errstr",Alert::$WARNING));
+				        $errorController = new ErrorController();
+						$errorController->show();
+				    break;
 
 				    default:
+				    	AlertController::setAlert(new Alert("ERROR: ","Unknown error type: [$errno] $errstr",Alert::$DANGER));				    	
 				    	$errorController = new ErrorController();
-						$errorController->setAlert(new Alert("WARNING: ","asdasd",Alert::$DANGER));
 						$errorController->show();
-				        //echo "Unknown error type: [$errno] $errstr<br />\n";
-				        break;
 				    }
 			    
 			    return true;

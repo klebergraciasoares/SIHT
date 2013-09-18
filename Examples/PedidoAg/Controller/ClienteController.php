@@ -17,7 +17,7 @@
 			if(false) //Permissão do Módulo
 			{
 				$errorController = new ErrorController();
-				$errorController->setAlert(new Alert("ATENÇÃO:","Acesso Negado ao Módulo de CLIENTE!",Alert::$DANGER));
+				AlertController::setAlert(new Alert("ATENÇÃO:","Acesso Negado ao Módulo de CLIENTE!",Alert::$DANGER));
 				$errorController->show();
 				exit();							
 			}	
