@@ -64,6 +64,48 @@
 		}
 
 		/** 
+		* 
+		* 
+		* @access public
+		* @param string $class Name of the class to load
+		* @return void 
+		*/
+
+		public static function defineErrorHandler(){
+
+			function shErrorHandler($errno, $errstr, $errfile, $errline){
+			    switch ($errno){
+				    case E_USER_ERROR:
+				        echo "<b>My ERROR</b> [$errno] $errstr<br />\n";
+				        echo "  Fatal error on line $errline in file $errfile";
+				        echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
+				        echo "Aborting...<br />\n";
+				        exit(1);
+				        break;
+
+				    case E_USER_WARNING:
+				        echo "<b>My WARNING</b> [$errno] $errstr<br />\n";
+				        break;
+
+				    case E_USER_NOTICE:
+				        echo "<b>My NOTICE</b> [$errno] $errstr<br />\n";
+				        break;
+
+				    default:
+				    	$errorController = new ErrorController();
+						$errorController->setAlert(new Alert("WARNING: ","asdasd",Alert::$DANGER));
+						$errorController->show();
+				        //echo "Unknown error type: [$errno] $errstr<br />\n";
+				        break;
+				    }
+			    
+			    return true;
+			}
+
+			set_error_handler("shErrorHandler");
+		}
+
+		/** 
 		* Load default constants for siht project
 		* 
 		* @access public
