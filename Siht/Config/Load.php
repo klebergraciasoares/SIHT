@@ -25,18 +25,31 @@
 				AlertController::setAlert(new Alert("WARNING: ","Active module \"rewrite_module\" in apache!",Alert::$DANGER));
 				$errorController = new ErrorController();				
 				$errorController->show();
-			}else if(!defined(constant("SH_HTA_PARAM_NAME")."1")){
-				AlertController::setAlert(new Alert("WARNING: ","Class not sent!",Alert::$DANGER));
-				$errorController = new ErrorController();				
-				$errorController->show();
-			}elseif(!class_exists($class)){					
-				AlertController::setAlert(new Alert("WARNING: ","Class '{$class}' does not exist!",Alert::$DANGER));
-			    $errorController = new ErrorController();
-				$errorController->show();				
-			}else{
+				return false;
+			}
+
+			if(constant("SH_VALIDATE_CLASS")){
+				if(!defined(constant("SH_HTA_PARAM_NAME")."1")){
+					AlertController::setAlert(new Alert("WARNING: ","Class not sent!",Alert::$DANGER));
+					$errorController = new ErrorController();				
+					$errorController->show();
+					return false;
+				}			
+			
+				if(!class_exists($class)){					
+					AlertController::setAlert(new Alert("WARNING: ","Class '{$class}' does not exist!",Alert::$DANGER));
+				    $errorController = new ErrorController();
+					$errorController->show();				
+					return false;
+				}
+			}
+
+			if(class_exists($class))
+			{
 				$obj = new $class();
 				$obj->$method();
 			}
+									
 		}
 
 		/** 
@@ -72,7 +85,7 @@
 
 			    switch ($errno){
 				    case E_USER_ERROR:				      
-				        AlertController::setAlert(new Alert("ERROR: ","[$errno] $errstr<br>Fatal error on line $errline in file $errfile, PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />",Alert::$DANGER));				        
+				        AlertController::setAlert(new Alert("ERROR: ","[$errno] $errstr<br>Fatal error on line $errline in file $errfile, PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />",Alert::$DANGER));
 				        $errorController = new ErrorController();
 						$errorController->show();
 				    break;
@@ -115,6 +128,10 @@
 			if(!defined("SH_GET_CLASS_NAME")) 	define("S H_GET_CLASS_NAME",  "class");
 			if(!defined("SH_GET_METHOD_NAME")) 	define("SH_GET_METHOD_NAME",  "method");	
 			if(!defined("SH_INIT_METHOD")) 		define("SH_INIT_METHOD", "index");
+			
+			if(!defined("SH_VALIDATE_CLASS")) 		define("SH_VALIDATE_CLASS", true);
+			if(!defined("SH_VALIDATE_METHOD")) 		define("SH_VALIDATE_METHOD", true);
+
 		}
 
 		/** 

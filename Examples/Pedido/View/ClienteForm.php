@@ -38,7 +38,7 @@
 		 <div class="row">
 		    <div class="form-group col-lg-3 col-sm-3">
 		      <label for="exampleInputEmail">CPF</label>
-		      <input type="text" name="cpf" value="<?php echo $this->cliente->getCpf();?>" class="form-control maskCpf" id="cpf" placeholder="Número do CPF"
+		      <input type="text" <?php echo $this->cliente->getCpf() ? "disabled='disabled'" : ""?> name="cpf" value="<?php echo $this->cliente->getCpf();?>" class="form-control maskCpf" id="cpf" placeholder="Número do CPF"
 					data-required="true"					
 					data-description-required="O campo CPF é obrigatório!"
 					data-pattern="^([0-9]){3}\.([0-9]){3}\.([0-9]){3}-([0-9]){2}$"

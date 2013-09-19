@@ -8,18 +8,18 @@
     <meta name="description" content="">
     <meta name="author" content="">    
     
-    <link href="<?php echo SH_WEB_ROOT_LIB ?>/css/bootstrap.min.css" rel="stylesheet">    
-    <link href="<?php echo SH_WEB_ROOT_LIB ?>/css/local.css" rel="stylesheet">
+    <link href="./Lib/css/bootstrap.min.css" rel="stylesheet">    
+    <link href="./Lib/css/local.css" rel="stylesheet">
 
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.min.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular.min.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular-route.min.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/angular.locale.pt-br.min.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.tablesorter.min.js"></script>    
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.maskedinput.min.js"></script>    
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/jquery.validate.min.js"></script>
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/bootstrap.min.js"></script>    
-    <script src="<?php echo SH_WEB_ROOT_LIB ?>/js/local.js"></script>
+    <script src="./Lib/js/jquery.min.js"></script>
+    <script src="./Lib/js/angular.min.js"></script>
+    <script src="./Lib/js/angular-route.min.js"></script>
+    <script src="./Lib/js/angular.locale.pt-br.min.js"></script>
+    <script src="./Lib/js/jquery.tablesorter.min.js"></script>    
+    <script src="./Lib/js/jquery.maskedinput.min.js"></script>    
+    <script src="./Lib/js/jquery.validate.min.js"></script>
+    <script src="./Lib/js/bootstrap.min.js"></script>    
+    <script src="./Lib/js/local.js"></script>
 
 
 
@@ -34,8 +34,8 @@
     <nav id="navbar-example" role="navigation" class="navbar navbar-inverse navbar-static-top">
         <div class="container">
           <div class="navbar-header">
-            <?php
-                  Session::setValue("S_LOGADO",false);
+            <?php              
+                  Session::setValue("S_LOGADO",true);
 
                   if(Session::getValue("S_LOGADO"))
                   {
@@ -61,15 +61,15 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="">Cliente</a></li>
-                    <li><a href="ProdutoListar">Produto</a></li>
+                    <li><a href="Cliente/listar">Cliente</a></li>
+                    <li><a href="Produto/Listar">Produto</a></li>
                     <li><a href="">Grupo</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Processos <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="<?php echo SH_WEB_ROOT_APP ?>/Cliente/listar">Pedido</a></li>
+                    <li><a href="">Pedido</a></li>
                    
                   </ul>
                 </li>
@@ -78,10 +78,10 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="<?php echo SH_WEB_ROOT_APP ?>/Configuracao/config"><i class="glyphicon glyphicon-cog"></i> Configurações</a></li>
-                    <li><a tabindex="-1" href="<?php echo SH_WEB_ROOT_APP ?>/Sobre"><i class="glyphicon glyphicon-info-sign"></i> Sobre</a></li>                  
+                    <li><a href="/Configuracao/config"><i class="glyphicon glyphicon-cog"></i> Configurações</a></li>
+                    <li><a tabindex="-1" href="/Sobre"><i class="glyphicon glyphicon-info-sign"></i> Sobre</a></li>                  
                     <li class="divider"></li>                  
-                    <li><a tabindex="-1" href="<?php echo SH_WEB_ROOT_APP ?>/Login/sair"><i class="glyphicon glyphicon-off"></i> Sair</a></li>                  
+                    <li><a tabindex="-1" href="/Login/sair"><i class="glyphicon glyphicon-off"></i> Sair</a></li>                  
                   </ul>                
                 </li>
               </ul>

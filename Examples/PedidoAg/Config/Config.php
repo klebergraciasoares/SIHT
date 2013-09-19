@@ -81,19 +81,33 @@
 	* required : yes
 	* example: http://mydomain.com/APP/Lib
 	*/
-	define("SH_WEB_ROOT_LIB", "http://{$_SERVER["HTTP_HOST"]}/SIHT/Examples/Pedido/Lib");
+	define("SH_WEB_ROOT_LIB", "http://{$_SERVER["HTTP_HOST"]}/SIHT/Examples/PedidoAg/Lib");
+
+	/**
+	* ....
+	* default value: true
+	* required : no	
+	*/
+	define("SH_VALIDATE_CLASS", false);
+
+	/**
+	* ....
+	* default value: true
+	* required : no	
+	*/
+	define("SH_VALIDATE_METHOD", false);
 	
 	/**
 	* define SH_INIT_CLASS constant: defines the class that will be executed when there is no parameter {SH_HTA_PARAM_NAME}1
 	* default value: (void)
 	* required : no	
 	*/
-	define("SH_INIT_CLASS", "Principal");
+	//define("SH_INIT_CLASS", "Principal");
 
 	/**
 	* define SH_INIT_METHOD constant: defines the method that will be executed when there is no parameter {SH_HTA_PARAM_NAME}2
 	* default value: index
 	* required : no	
 	*/
-	define("SH_INIT_METHOD", "index"); 
+	//define("SH_INIT_METHOD", "index"); 
 ?>  

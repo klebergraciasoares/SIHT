@@ -55,10 +55,12 @@
 		* @return void 
 		*/
 		public function __call($function, $args){
-			AlertController::setAlert(new Alert("WARNING: ","Method '{$function}' does not exist!",Alert::$DANGER));
-			$errorController = new ErrorController();			
-			$errorController->show();
-			exit();
+			if(constant("SH_VALIDATE_METHOD")){
+				AlertController::setAlert(new Alert("WARNING: ","Method '{$function}' does not exist!",Alert::$DANGER));
+				$errorController = new ErrorController();			
+				$errorController->show();
+				exit();
+			}
 		}
 
 		/** 
