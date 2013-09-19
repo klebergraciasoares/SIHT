@@ -59,7 +59,7 @@
 		}
 
 		/** 
-		* 
+		* Define function the errors
 		* 
 		* @access public
 		* @param string $class Name of the class to load
@@ -69,6 +69,7 @@
 		public static function defineErrorHandler(){
 
 			function shErrorHandler($errno, $errstr, $errfile, $errline){
+
 			    switch ($errno){
 				    case E_USER_ERROR:				      
 				        AlertController::setAlert(new Alert("ERROR: ","[$errno] $errstr<br>Fatal error on line $errline in file $errfile, PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />",Alert::$DANGER));				        
@@ -88,11 +89,11 @@
 						$errorController->show();
 				    break;
 
-				    default:
-				    	AlertController::setAlert(new Alert("ERROR: ","Unknown error type: [$errno] $errstr",Alert::$DANGER));				    	
+				    /*default:
+				    	AlertController::setAlert(new Alert("ERROR: ","Unknown error type: [$errno] $errstr: {$errfile}: {$errline}",Alert::$DANGER));				    	
 				    	$errorController = new ErrorController();
-						$errorController->show();
-				    }
+						$errorController->show();*/
+				}
 			    
 			    return true;
 			}

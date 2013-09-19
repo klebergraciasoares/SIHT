@@ -85,22 +85,25 @@
 				$this->cliente->setCelular($this->post["celular"]);
 				$this->cliente->setStatus($this->post["status"]);
 
-				if($clienteCPF = $clienteDAO->buscaCpf($this->cliente->getCpf()))
+				if(!$this->cliente->getIdCliente())
 				{
-					AlertController::setAlert(new Alert("ATENÇÃO:","CPF já cadastrado para o cliente: '".$clienteCPF->getNome()."'!",Alert::$DANGER));	
-					$this->cadastrar();
-				}else{					
-
-					if($clienteDAO->salvar($this->cliente))
+					if($clienteCPF = $clienteDAO->buscaCpf($this->cliente->getCpf()))
 					{
-						AlertController::setAlert(new Alert("ATENÇÃO:","Cliente '".$this->cliente->getNome()."' foi salvo com sucesso!",Alert::$SUCESS));
-						$this->redirectView("Cliente/listar");
-					}else{
-						AlertController::setAlert(new Alert("ATENÇÃO:","Erro ao salvar cliente!",Alert::$DANGER));	
+						AlertController::setAlert(new Alert("ATENÇÃO:","CPF já cadastrado para o cliente: '".$clienteCPF->getNome()."'!",Alert::$DANGER));	
 						$this->cadastrar();
+						return false;
 					}
 				}
-				
+
+				if($clienteDAO->salvar($this->cliente))
+				{
+					AlertController::setAlert(new Alert("ATENÇÃO:","Cliente '".$this->cliente->getNome()."' foi salvo com sucesso!",Alert::$SUCESS));
+					$this->redirectView("Cliente/listar");
+				}else{
+					AlertController::setAlert(new Alert("ATENÇÃO:","Erro ao salvar cliente!",Alert::$DANGER));	
+					$this->cadastrar();
+				}
+								
 			}
 		}
 
