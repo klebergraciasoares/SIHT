@@ -80,7 +80,7 @@
         $http({
             method  : "POST",
             url   : "http://localhost/SIHT/Examples/Pedido/Produto/RequestEdit/" + idProduto, 
-            //cache   : $templateCache,         
+            //cache   : $templateCache,
             //headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
           }).success(function(data, status) {
                 $scope.showAlerts();
