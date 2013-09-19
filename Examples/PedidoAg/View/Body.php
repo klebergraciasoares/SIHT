@@ -1,6 +1,6 @@
   <a href="Produto/Listar">Lista</a> |
   <a href="Produto/Novo">Cadastro</a> |
-  <a href="Produto/Editar/48">Editar </a>
+  <a href="Produto/Editar/13138">Editar </a>
 
 
   <div ng-repeat="alert in alerts">
@@ -76,7 +76,7 @@
             });
         };
 
-      $scope.recuperar = function (idProduto){
+      $scope.recuperar = function (idProduto){       
         $http({
             method  : "POST",
             url   : "http://localhost/SIHT/Examples/Pedido/Produto/RequestEdit/" + idProduto, 
