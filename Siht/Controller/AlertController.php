@@ -33,7 +33,7 @@
           return $html;
     }
 
-    public function RequestAlerts()
+    public static function requestAlerts()
     {
       $retorno = new stdClass();
       $retorno->alerts = self::getAlerts();

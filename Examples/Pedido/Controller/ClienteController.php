@@ -84,6 +84,7 @@
 				$this->cliente->setTelefone($this->post["telefone"]);
 				$this->cliente->setCelular($this->post["celular"]);
 				$this->cliente->setStatus($this->post["status"]);
+				
 
 				if(!$this->cliente->getIdCliente())
 				{
