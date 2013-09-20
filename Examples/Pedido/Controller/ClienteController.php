@@ -84,7 +84,8 @@
 				$this->cliente->setTelefone($this->post["telefone"]);
 				$this->cliente->setCelular($this->post["celular"]);
 				$this->cliente->setStatus($this->post["status"]);
-				
+
+				//new StringValidator();
 
 				if(!$this->cliente->getIdCliente())
 				{

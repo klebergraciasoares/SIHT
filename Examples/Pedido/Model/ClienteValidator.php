@@ -1,6 +1,6 @@
 <?php
 
-	class ClienteValidator{
+	class ClienteValidate implements Validate{
 
 		private $alerts 	= array();
 		private $validator 	= array();
@@ -13,14 +13,14 @@
 			$this->validator[] = $stringValidator;
 		}
 
-		public function validate(){
+		/*public function validate(){
 
 			foreach ($validator) {
 				# code...
 			}
 
 			return 
-		}
+		}*/
 	}
 
 ?>
