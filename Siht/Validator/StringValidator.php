@@ -2,8 +2,10 @@
 
 	class StringValidator extends Validator{
 		
-		private $maxLength = null;
-		private $minLength = null;
+		private $maxLength 		= null;
+		private $minLength 		= null;
+		private $tooLongError 	= "This string is longer than the maximum allowed length. This must be less than {0} characters long.";
+		private $tooShortError 	= "This string is shorter than the minimum allowed length. This must be at least {0} characters long.";
 
 		public function __construct(){
 			parent::__construct();

@@ -5,10 +5,8 @@
 		private $required 			= true;
 		private $error 				= "";
 
-		private $requiredError 		= "";
-		private $tooLongError 		= "";
-		private $tooShortError 		= "";
-
+		private $requiredError 		= "This field is required.";
+		
 		public function __construct(){
 			
 		}
