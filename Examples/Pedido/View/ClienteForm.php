@@ -170,7 +170,11 @@
 
 
 	<script type="text/javascript">	
-		
+
+		//alert(document.getElementById('email').validationMessage);
+		 
+		//document.getElementById('email').setCustomValidity('Passwords must match.');
+		//document.getElementById('email').checkValidity();
 		/*
 		$('form').validate({
 			

@@ -1,1 +1,9 @@
-asdfasd {{teste.id}}
+<?php
+  $this->setView("Header");
+?>
+	
+	
+  
+<?php
+  $this->setView("Footer");
+?>  

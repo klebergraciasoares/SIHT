@@ -1,11 +1,11 @@
 <?php
 
-	class ClienteValidate implements Validate{
+	class ClienteValidate{
 
 		private $alerts 	= array();
 		private $validator 	= array();
 
-		public function validate(Cliente $cliente){
+		public function config(Cliente $cliente){
 			$stringValidator = new StringValidator();
 			$stringValidator->value 	= $cliente->getNome();
 			$stringValidator->required 	= true;
@@ -13,14 +13,10 @@
 			$this->validator[] = $stringValidator;
 		}
 
-		/*public function validate(){
+		public function validate(){
 
-			foreach ($validator) {
-				# code...
-			}
-
-			return 
-		}*/
+			
+		}
 	}
 
 ?>

@@ -87,6 +87,15 @@
 
 				//new StringValidator();
 
+				$validators [] = new StringValidator($this->cliente->getNome(),true,"Campo nome é obrigatório!");
+				$validators [] = new StringValidator($this->cliente->getCpf(),false,"Campo cpf é obrigatório!",Validate::$CPF_OPTIONS);						
+				$validators [] = new EmailValidator($this->cliente->getEmail(),true,"Campo email é obrigatório!");
+				
+				if(!Validate::isValid($validators)){
+					$this->cadastrar();
+					return false;
+				}
+
 				if(!$this->cliente->getIdCliente())
 				{
 					if($clienteCPF = $clienteDAO->buscaCpf($this->cliente->getCpf()))
