@@ -1,6 +1,7 @@
 <?php
 
 	class Validator{
+		private $name				= null;
 		private $value				= null;
 		private $required 			= true;		
 		private $expected			= null;
@@ -13,7 +14,10 @@
 		private $regexError 		= "Regex Error.";
 		private $functionError 		= "";
 		
-		protected function __construct($value,$required = true, $requiredError = null, $options = array()){
+		protected function __construct($name = null, $value = null, $required = true, $requiredError = null, $options = array()){
+			if(!is_null($name))
+				$this->setName($name);
+
 			if(!is_null($value))
 				$this->setValue($value);
 
@@ -31,6 +35,14 @@
 				$this->$method($value);
 			}
 		}
+
+		public function setName($name){
+	    	$this->name = $name;
+	    }
+
+	    public function getName(){
+	    	return $this->name;
+	    }
 
 		public function setValue($value){
 			if(is_string($value))

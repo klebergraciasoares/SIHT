@@ -13,6 +13,7 @@
 		{
 
 			$stringValidator = new StringValidator();
+			$stringValidator->setName("Teste");			
 			$stringValidator->setFunction("Util::teste");			
 			$stringValidator->setFunctionError("CPF inválido!");			
 			$stringValidator->setValue("aaa");
@@ -20,6 +21,7 @@
 			$this->validators [] = $stringValidator;
 
 			$stringValidator = new StringValidator("a",false);
+			$stringValidator->setName("Nome");
 			$stringValidator->setRequiredError("Campo X Obrigatório");
 			$stringValidator->setMaxLengthError("O texto deve contér no máximo {0} caracteres!");
 			$stringValidator->setMinLengthError("O texto deve contér no mínimo {0} caracteres!");
@@ -86,7 +88,7 @@
 			$this->validators [] = $numberValidator;
 			*/
 
-			Validate::isValid($this->validators);
+			Validate::validatePanel($this->validators);
 
 			$this->setView("Teste");
 

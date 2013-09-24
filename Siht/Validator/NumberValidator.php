@@ -21,8 +21,8 @@
 		private $invalidError			= "The input contains invalid characters.";		
 		private $negativeError			= "The amount may not be negative.";
 
-		public function __construct($value = null,$required = true, $requiredError = null, $options = array()){			
-			parent::__construct($value, $required, $requiredError, $options);
+		public function __construct($name = null,$value = null,$required = true, $requiredError = null, $options = array()){			
+			parent::__construct($name, $value, $required, $requiredError, $options);
 		}
 
 		public function setAllowNegative($allowNegative){

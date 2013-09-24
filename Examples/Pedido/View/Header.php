@@ -88,4 +88,5 @@
 
       <?php
         echo AlertController::showAlerts();
+        echo PanelController::showPanels();
       ?>

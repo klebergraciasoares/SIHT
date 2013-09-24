@@ -4,8 +4,8 @@
 		
 		private $invalidEmailError	= "Your e-mail address is invalid.";
 			   
-		public function __construct($value = null,$required = true, $requiredError = null, $options = array()){		
-			parent::__construct($value, $required, $requiredError, $options);
+		public function __construct($name = null,$value = null,$required = true, $requiredError = null, $options = array()){			
+			parent::__construct($name, $value, $required, $requiredError, $options);
 		}
 
 		public function setInvalidEmailError($invalidEmailError){

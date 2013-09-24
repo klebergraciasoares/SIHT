@@ -7,8 +7,10 @@
 * @version 1.0
 * @copyright getsiht project 2013 
 */	
- 	class Alert implements JsonSerializable
+ 	class Panel implements JsonSerializable
  	{
+ 		public static $DEFAULT 	= "default";
+ 		public static $PRIMARY 	= "primary";
  		public static $DANGER 	= "danger";
  		public static $SUCESS 	= "success";
  		public static $INFO 	= "info";
@@ -17,14 +19,14 @@
 		private $title;
  		private $text;
  		private $type;
- 		private $close;
+ 		private $footer;
 
- 		public function __construct($title = false, $text = false, $type = false, $close = true)
+ 		public function __construct($title = false, $text = false, $footer = false, $type = false)
  		{
  			$this->setTitle($title);
  			$this->setText($text);
- 			$this->setType($type);
- 			$this->setClose($close);
+ 			$this->setFooter($footer); 		
+ 			$this->setType($type); 		
  		}
 
  		public function jsonSerialize()
@@ -48,8 +50,18 @@
  			return $this->text;
  		}
 
+ 		public function setFooter($footer){
+	        $this->footer = $footer;
+	    }
+
+	    public function getFooter(){
+	        return $this->footer;
+	    }
+
  		public function setType($type){
  			switch ($type) {
+ 				case self::$DEFAULT:
+ 				case self::$PRIMARY:
  				case self::$DANGER:
  				case self::$SUCESS:
  				case self::$INFO:
@@ -58,7 +70,7 @@
  				break;
  				
  				default:
- 					$this->type = self::$WARNING;
+ 					$this->type = self::$DEFAULT;
  				break;
  			} 			
  		}
@@ -67,21 +79,13 @@
  			return $this->type;
  		}
 
- 		public function setClose($close){
- 			$this->close = is_bool($close) ? $close : $this->close;
- 		}
-
- 		public function getClose(){
- 			return $this->close;
- 		}
-
  		public function getHtml()
  		{
  			return
- 				"<div class=\"alert".($this->getClose() ? " alert-dismissable" : "")." ".($this->getType() ? " alert-".($this->getType())."" : "")."\">
- 					".($this->getClose() ? "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" : "")."
- 					".($this->getTitle() ? "<strong>" . ($this->getTitle()). "</strong>" : "")."
- 					".($this->getText() ? $this->getText() : "")."  					 
+ 				"<div class=\"panel".($this->getType() ? " panel-".($this->getType())."" : "")."\"> 					
+		          	".( $this->getTitle() 	? "<div class=\"panel-heading\"><h3 class=\"panel-title\">" . ($this->getTitle()). "</h3></div>" : "")."
+		          	".( $this->getText() 	? "<div class=\"panel-body\">" 	 . ($this->getText())		. "</div>" : "")."
+		          	".( $this->getFooter() 	? "<div class=\"panel-footer\">" . ($this->getFooter())	. "</div>" : "")."				 
 				</div>";
  		}
  	}

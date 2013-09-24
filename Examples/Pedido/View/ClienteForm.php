@@ -74,7 +74,9 @@
 		    </div>	
 		 	<div class="form-group col-lg-2 col-sm-2">
 		      <label for="cep">CEP</label>
-		      <input type="text" name="cep" id="cep" value="<?php echo $this->cliente->getCep();?>" class="form-control maskCep" placeholder="CEP"		      		
+		      <input type="text" name="cep" id="cep"
+		      required pattern="^[0-9]{5}-[0-9]{3}$" 
+		      		value="<?php echo $this->cliente->getCep();?>" class="form-control maskCep" placeholder="99999-999"		      		
 					data-required="true"
 					data-description-required="O campo CEP é obrigatório!"
 					data-pattern="^[0-9]{5}-[0-9]{3}$"

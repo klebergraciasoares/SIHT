@@ -87,11 +87,11 @@
 
 				//new StringValidator();
 
-				$validators [] = new StringValidator($this->cliente->getNome(),true,"Campo nome é obrigatório!");
-				$validators [] = new StringValidator($this->cliente->getCpf(),false,"Campo cpf é obrigatório!",Validate::$CPF_OPTIONS);						
-				$validators [] = new EmailValidator($this->cliente->getEmail(),true,"Campo email é obrigatório!");
+				$validators [] = new StringValidator("Nome",$this->cliente->getNome(),true,"Campo nome é obrigatório!");
+				$validators [] = new StringValidator("CPF",$this->cliente->getCpf(),true,"Campo cpf é obrigatório!",Validate::$CPF_OPTIONS);						
+				$validators [] = new EmailValidator("Email",$this->cliente->getEmail(),true,"Campo email é obrigatório!");
 				
-				if(!Validate::isValid($validators)){
+				if(!Validate::validatePanel($validators)){
 					$this->cadastrar();
 					return false;
 				}

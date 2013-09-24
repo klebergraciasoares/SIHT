@@ -24,13 +24,12 @@
 
     public static function showAlerts(){       
       $html="";
-      if(is_array(self::getAlerts()))
-            foreach (self::getAlerts() as $alert)
-              $html.=$alert->getHtml();
+        if(is_array(self::getAlerts()))
+          foreach (self::getAlerts() as $alert)
+            $html.=$alert->getHtml();
               
-          self::clearAlerts();
-
-          return $html;
+      self::clearAlerts();
+      return $html;
     }
 
     public static function requestAlerts()
