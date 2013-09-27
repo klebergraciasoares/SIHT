@@ -84,9 +84,7 @@
 				$this->cliente->setTelefone($this->post["telefone"]);
 				$this->cliente->setCelular($this->post["celular"]);
 				$this->cliente->setStatus($this->post["status"]);
-
-				//new StringValidator();
-
+				
 				$validators [] = new StringValidator("Nome",$this->cliente->getNome(),true,"Campo nome é obrigatório!");
 				$validators [] = new StringValidator("CPF",$this->cliente->getCpf(),true,"Campo cpf é obrigatório!",Validate::$CPF_OPTIONS);						
 				$validators [] = new EmailValidator("Email",$this->cliente->getEmail(),true,"Campo email é obrigatório!");
